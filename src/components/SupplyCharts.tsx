@@ -3,14 +3,18 @@ import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
 import { Line, LineChart, XAxis, YAxis } from "recharts";
 
 const mockData = [
-  { date: '2024-01-01', circulatingSupply: 12500000, amoSupply: 8200000 },
-  { date: '2024-01-15', circulatingSupply: 12800000, amoSupply: 8300000 },
-  { date: '2024-02-01', circulatingSupply: 13100000, amoSupply: 8500000 },
-  { date: '2024-02-15', circulatingSupply: 13500000, amoSupply: 8600000 },
-  { date: '2024-03-01', circulatingSupply: 14200000, amoSupply: 8800000 },
-  { date: '2024-03-15', circulatingSupply: 14800000, amoSupply: 8900000 },
-  { date: '2024-04-01', circulatingSupply: 15234567, amoSupply: 9100000 },
-  { date: '2024-04-15', circulatingSupply: 15500000, amoSupply: 9300000 },
+  { date: '2024-01-01', circulatingSupply: 0, amoSupply: 0 },
+  { date: '2024-01-07', circulatingSupply: 2500000, amoSupply: 1500000 },
+  { date: '2024-01-14', circulatingSupply: 5000000, amoSupply: 3000000 },
+  { date: '2024-01-21', circulatingSupply: 7500000, amoSupply: 4500000 },
+  { date: '2024-01-28', circulatingSupply: 9000000, amoSupply: 5500000 },
+  { date: '2024-02-04', circulatingSupply: 10500000, amoSupply: 6500000 },
+  { date: '2024-02-11', circulatingSupply: 11800000, amoSupply: 7200000 },
+  { date: '2024-02-18', circulatingSupply: 12900000, amoSupply: 7800000 },
+  { date: '2024-02-25', circulatingSupply: 13700000, amoSupply: 8300000 },
+  { date: '2024-03-03', circulatingSupply: 14200000, amoSupply: 8600000 },
+  { date: '2024-03-10', circulatingSupply: 14800000, amoSupply: 8900000 },
+  { date: '2024-03-17', circulatingSupply: 15234567, amoSupply: 9100000 },
 ];
 
 const formatCurrency = (value: number) => {
