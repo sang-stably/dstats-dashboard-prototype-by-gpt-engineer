@@ -29,7 +29,7 @@ const SupplyCharts = () => {
     <div className="grid grid-cols-2 gap-6 mt-6">
       <div className="glass-card rounded-xl">
         <CardHeader>
-          <CardTitle>dUSD Circulating Supply</CardTitle>
+          <CardTitle className="text-[#8702ff]">dUSD Circulating Supply</CardTitle>
         </CardHeader>
         <CardContent>
           <ChartContainer
@@ -64,8 +64,8 @@ const SupplyCharts = () => {
                   if (active && payload && payload.length) {
                     return (
                       <div className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <p className="text-sm font-medium">{formatDate(payload[0].payload.date)}</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm font-medium text-[#8702ff]">{formatDate(payload[0].payload.date)}</p>
+                        <p className="text-sm text-[#8702ff]">
                           {formatCurrency(payload[0].value as number)}
                         </p>
                       </div>
@@ -88,7 +88,7 @@ const SupplyCharts = () => {
 
       <div className="glass-card rounded-xl">
         <CardHeader>
-          <CardTitle>dUSD AMO Supply</CardTitle>
+          <CardTitle className="text-[#8702ff]">dUSD AMO Supply</CardTitle>
         </CardHeader>
         <CardContent>
           <ChartContainer
@@ -96,8 +96,8 @@ const SupplyCharts = () => {
             config={{
               line: {
                 theme: {
-                  light: "#a64dff",
-                  dark: "#a64dff",
+                  light: "#8702ff",
+                  dark: "#8702ff",
                 },
               },
             }}
@@ -123,8 +123,8 @@ const SupplyCharts = () => {
                   if (active && payload && payload.length) {
                     return (
                       <div className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <p className="text-sm font-medium">{formatDate(payload[0].payload.date)}</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm font-medium text-[#8702ff]">{formatDate(payload[0].payload.date)}</p>
+                        <p className="text-sm text-[#8702ff]">
                           {formatCurrency(payload[0].value as number)}
                         </p>
                       </div>
