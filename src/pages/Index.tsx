@@ -1,5 +1,6 @@
 import { Card } from '@/components/ui/card';
 import MetricCard from '@/components/MetricCard';
+import SupplyCharts from '@/components/SupplyCharts';
 
 const Index = () => {
   const metrics = [
@@ -87,6 +88,8 @@ const Index = () => {
             ))}
           </div>
         </div>
+
+        <SupplyCharts />
       </div>
     </div>
   );
