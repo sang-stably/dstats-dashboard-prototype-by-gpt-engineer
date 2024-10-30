@@ -28,7 +28,7 @@ const SupplyCharts = () => {
   return (
     <div className="grid grid-cols-2 gap-6 mt-6">
       <div className="glass-card rounded-xl">
-        <CardHeader>
+        <CardHeader className="text-center">
           <CardTitle>dUSD Circulating Supply</CardTitle>
         </CardHeader>
         <CardContent>
@@ -36,10 +36,7 @@ const SupplyCharts = () => {
             className="aspect-[2/1]"
             config={{
               line: {
-                theme: {
-                  light: "#8702ff",
-                  dark: "#8702ff",
-                },
+                color: "#8702ff",
               },
             }}
           >
@@ -77,6 +74,7 @@ const SupplyCharts = () => {
               <Line
                 type="monotone"
                 dataKey="circulatingSupply"
+                stroke="#8702ff"
                 strokeWidth={2}
                 dot={false}
                 activeDot={{ r: 4 }}
@@ -87,7 +85,7 @@ const SupplyCharts = () => {
       </div>
 
       <div className="glass-card rounded-xl">
-        <CardHeader>
+        <CardHeader className="text-center">
           <CardTitle>dUSD AMO Supply</CardTitle>
         </CardHeader>
         <CardContent>
@@ -95,10 +93,7 @@ const SupplyCharts = () => {
             className="aspect-[2/1]"
             config={{
               line: {
-                theme: {
-                  light: "#a64dff",
-                  dark: "#a64dff",
-                },
+                color: "#8702ff",
               },
             }}
           >
@@ -136,6 +131,7 @@ const SupplyCharts = () => {
               <Line
                 type="monotone"
                 dataKey="amoSupply"
+                stroke="#8702ff"
                 strokeWidth={2}
                 dot={false}
                 activeDot={{ r: 4 }}
