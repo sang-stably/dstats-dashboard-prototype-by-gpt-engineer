@@ -62,28 +62,30 @@ const Index = () => {
           <h1 className="text-2xl font-bold">dSTATS Dashboard</h1>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {metrics.slice(0, 4).map((metric, index) => (
-            <MetricCard
-              key={`row1-${index}`}
-              title={metric.title}
-              value={metric.value}
-              format={metric.format}
-              description={metric.description}
-            />
-          ))}
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-          {metrics.slice(4, 8).map((metric, index) => (
-            <MetricCard
-              key={`row2-${index}`}
-              title={metric.title}
-              value={metric.value}
-              format={metric.format}
-              description={metric.description}
-            />
-          ))}
+        <div className="grid grid-rows-2 gap-6">
+          <div className="grid grid-cols-4 gap-6">
+            {metrics.slice(0, 4).map((metric, index) => (
+              <MetricCard
+                key={`row1-${index}`}
+                title={metric.title}
+                value={metric.value}
+                format={metric.format}
+                description={metric.description}
+              />
+            ))}
+          </div>
+          
+          <div className="grid grid-cols-4 gap-6">
+            {metrics.slice(4, 8).map((metric, index) => (
+              <MetricCard
+                key={`row2-${index}`}
+                title={metric.title}
+                value={metric.value}
+                format={metric.format}
+                description={metric.description}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
