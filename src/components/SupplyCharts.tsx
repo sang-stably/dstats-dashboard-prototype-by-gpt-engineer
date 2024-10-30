@@ -29,17 +29,14 @@ const SupplyCharts = () => {
     <div className="grid grid-cols-2 gap-6 mt-6">
       <div className="glass-card rounded-xl">
         <CardHeader>
-          <CardTitle>dUSD Circulating Supply</CardTitle>
+          <CardTitle className="metric-value">dUSD Circulating Supply</CardTitle>
         </CardHeader>
         <CardContent>
           <ChartContainer
             className="aspect-[2/1]"
             config={{
               line: {
-                theme: {
-                  light: "#8702ff",
-                  dark: "#8702ff",
-                },
+                color: "#8702ff",
               },
             }}
           >
@@ -64,7 +61,7 @@ const SupplyCharts = () => {
                   if (active && payload && payload.length) {
                     return (
                       <div className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <p className="text-sm font-medium">{formatDate(payload[0].payload.date)}</p>
+                        <p className="text-sm font-medium metric-value">{formatDate(payload[0].payload.date)}</p>
                         <p className="text-sm text-muted-foreground">
                           {formatCurrency(payload[0].value as number)}
                         </p>
@@ -80,6 +77,7 @@ const SupplyCharts = () => {
                 strokeWidth={2}
                 dot={false}
                 activeDot={{ r: 4 }}
+                stroke="#8702ff"
               />
             </LineChart>
           </ChartContainer>
@@ -88,17 +86,14 @@ const SupplyCharts = () => {
 
       <div className="glass-card rounded-xl">
         <CardHeader>
-          <CardTitle>dUSD AMO Supply</CardTitle>
+          <CardTitle className="metric-value">dUSD AMO Supply</CardTitle>
         </CardHeader>
         <CardContent>
           <ChartContainer
             className="aspect-[2/1]"
             config={{
               line: {
-                theme: {
-                  light: "#a64dff",
-                  dark: "#a64dff",
-                },
+                color: "#8702ff",
               },
             }}
           >
@@ -123,7 +118,7 @@ const SupplyCharts = () => {
                   if (active && payload && payload.length) {
                     return (
                       <div className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <p className="text-sm font-medium">{formatDate(payload[0].payload.date)}</p>
+                        <p className="text-sm font-medium metric-value">{formatDate(payload[0].payload.date)}</p>
                         <p className="text-sm text-muted-foreground">
                           {formatCurrency(payload[0].value as number)}
                         </p>
@@ -139,6 +134,7 @@ const SupplyCharts = () => {
                 strokeWidth={2}
                 dot={false}
                 activeDot={{ r: 4 }}
+                stroke="#8702ff"
               />
             </LineChart>
           </ChartContainer>
