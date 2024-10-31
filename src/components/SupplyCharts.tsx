@@ -52,13 +52,15 @@ const SupplyCharts = () => {
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={formatDate}
+                tick={{ fill: "#E3E6EA" }}
               />
               <YAxis
-                stroke="#888888"
+                stroke="#E3E6EA"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={formatCurrency}
+                tick={{ fill: "#E3E6EA" }}
               />
               <ChartTooltip 
                 content={({ active, payload }) => {
@@ -109,13 +111,15 @@ const SupplyCharts = () => {
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={formatDate}
+                tick={{ fill: "#E3E6EA" }}
               />
               <YAxis
-                stroke="#888888"
+                stroke="#E3E6EA"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={formatCurrency}
+                tick={{ fill: "#E3E6EA" }}
               />
               <ChartTooltip 
                 content={({ active, payload }) => {
