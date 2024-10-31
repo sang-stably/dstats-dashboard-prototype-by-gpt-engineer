@@ -40,7 +40,7 @@ const SupplyCharts = () => {
             className="aspect-[2/1]"
             config={{
               line: {
-                color: "#E3E6EA",
+                color: "#8702ff",
               },
             }}
           >
@@ -78,7 +78,7 @@ const SupplyCharts = () => {
               <Line
                 type="monotone"
                 dataKey="circulatingSupply"
-                stroke="#E3E6EA"
+                stroke="#8702ff"
                 strokeWidth={2}
                 dot={false}
                 activeDot={{ r: 4 }}
@@ -97,7 +97,7 @@ const SupplyCharts = () => {
             className="aspect-[2/1]"
             config={{
               line: {
-                color: "#E3E6EA",
+                color: "#8702ff",
               },
             }}
           >
@@ -135,7 +135,7 @@ const SupplyCharts = () => {
               <Line
                 type="monotone"
                 dataKey="amoSupply"
-                stroke="#E3E6EA"
+                stroke="#8702ff"
                 strokeWidth={2}
                 dot={false}
                 activeDot={{ r: 4 }}
