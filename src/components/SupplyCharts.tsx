@@ -47,7 +47,7 @@ const SupplyCharts = () => {
             <LineChart data={mockData}>
               <XAxis
                 dataKey="date"
-                stroke="#888888"
+                stroke="#E3E6EA"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
@@ -104,7 +104,7 @@ const SupplyCharts = () => {
             <LineChart data={mockData}>
               <XAxis
                 dataKey="date"
-                stroke="#888888"
+                stroke="#E3E6EA"
                 fontSize={12}
                 tickLine={false}
                 axisLine={false}
