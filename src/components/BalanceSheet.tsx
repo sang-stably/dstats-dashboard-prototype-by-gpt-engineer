@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const BalanceSheet = () => {
   const assets = [
@@ -26,7 +26,7 @@ const BalanceSheet = () => {
 
   return (
     <Card className="glass-card">
-      <CardHeader className="text-center">
+      <CardHeader>
         <CardTitle>dUSD Balance Sheet</CardTitle>
       </CardHeader>
       <CardContent>
@@ -72,9 +72,6 @@ const BalanceSheet = () => {
           </div>
         </div>
       </CardContent>
-      <CardFooter className="text-center text-sm text-gray-400">
-        Last updated: {new Date().toLocaleDateString()}
-      </CardFooter>
     </Card>
   );
 };
