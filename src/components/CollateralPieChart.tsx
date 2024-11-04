@@ -8,7 +8,7 @@ const data = [
 ];
 
 const formatCurrency = (value: number) => {
-  return `$${(value / 1000000).toFixed(2)}M`;
+  return `${(value / 1000000).toFixed(2)}M`;
 };
 
 const CollateralPieChart = () => {
