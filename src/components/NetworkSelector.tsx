@@ -5,7 +5,7 @@ const NetworkSelector = () => {
   return (
     <Button 
       variant="ghost" 
-      className="glass-card flex items-center gap-2 hover:border-primary/30"
+      className="glass-card flex items-center gap-2 hover:border-primary/30 rounded-xl"
     >
       <img 
         src="https://fraxscan.com/assets/frax/images/svg/logos/chain-light.svg?v=24.10.4.1" 
