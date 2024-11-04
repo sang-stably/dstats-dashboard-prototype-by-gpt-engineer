@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button"
+import { Link } from "lucide-react"
 
 const NetworkSelector = () => {
   return (
     <Button 
       variant="ghost" 
-      className="flex items-center gap-2"
+      className="flex items-center gap-2 border border-primary/20 hover:border-primary/40"
     >
       <img 
         src="https://fraxscan.com/assets/frax/images/svg/logos/chain-light.svg?v=24.10.4.1" 
@@ -12,6 +13,7 @@ const NetworkSelector = () => {
         className="w-5 h-5"
       />
       <span className="text-sm font-medium">Fraxtal</span>
+      <Link className="w-4 h-4 ml-1 opacity-50" />
     </Button>
   )
 }
