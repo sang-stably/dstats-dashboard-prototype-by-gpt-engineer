@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
-import { Line, LineChart, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, XAxis, YAxis } from "recharts";
 
 const mockData = [
   { date: '2024-01-01', circulatingSupply: 0, amoSupply: 0 },
@@ -39,12 +39,18 @@ const SupplyCharts = () => {
           <ChartContainer
             className="aspect-[2/1]"
             config={{
-              line: {
+              area: {
                 color: "#8702ff",
               },
             }}
           >
-            <LineChart data={mockData}>
+            <AreaChart data={mockData}>
+              <defs>
+                <linearGradient id="colorCirculating" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#8702ff" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
               <XAxis
                 dataKey="date"
                 stroke="#E3E6EA"
@@ -77,15 +83,15 @@ const SupplyCharts = () => {
                   return null;
                 }}
               />
-              <Line
+              <Area
                 type="monotone"
                 dataKey="circulatingSupply"
                 stroke="#8702ff"
                 strokeWidth={2}
-                dot={false}
-                activeDot={{ r: 4 }}
+                fillOpacity={1}
+                fill="url(#colorCirculating)"
               />
-            </LineChart>
+            </AreaChart>
           </ChartContainer>
         </CardContent>
       </div>
@@ -98,12 +104,18 @@ const SupplyCharts = () => {
           <ChartContainer
             className="aspect-[2/1]"
             config={{
-              line: {
+              area: {
                 color: "#8702ff",
               },
             }}
           >
-            <LineChart data={mockData}>
+            <AreaChart data={mockData}>
+              <defs>
+                <linearGradient id="colorAmo" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#8702ff" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
               <XAxis
                 dataKey="date"
                 stroke="#E3E6EA"
@@ -136,15 +148,15 @@ const SupplyCharts = () => {
                   return null;
                 }}
               />
-              <Line
+              <Area
                 type="monotone"
                 dataKey="amoSupply"
                 stroke="#8702ff"
                 strokeWidth={2}
-                dot={false}
-                activeDot={{ r: 4 }}
+                fillOpacity={1}
+                fill="url(#colorAmo)"
               />
-            </LineChart>
+            </AreaChart>
           </ChartContainer>
         </CardContent>
       </div>
