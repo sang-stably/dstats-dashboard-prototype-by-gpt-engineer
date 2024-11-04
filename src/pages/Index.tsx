@@ -1,6 +1,8 @@
 import { Card } from '@/components/ui/card';
 import MetricCard from '@/components/MetricCard';
 import SupplyCharts from '@/components/SupplyCharts';
+import NavMenu from '@/components/NavMenu';
+import NetworkSelector from '@/components/NetworkSelector';
 
 const Index = () => {
   const metrics = [
@@ -60,7 +62,11 @@ const Index = () => {
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold">dSTATS Dashboard</h1>
+          <div className="flex items-center gap-8">
+            <h1 className="text-2xl font-bold">dSTATS Dashboard</h1>
+            <NavMenu />
+          </div>
+          <NetworkSelector />
         </div>
         
         <div className="grid grid-rows-2 gap-6">
