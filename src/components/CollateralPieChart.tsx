@@ -16,7 +16,7 @@ const CollateralPieChart = () => {
   
   return (
     <Card className="glass-card">
-      <CardHeader>
+      <CardHeader className="text-center">
         <CardTitle>dUSD Collateral Distribution</CardTitle>
       </CardHeader>
       <CardContent>

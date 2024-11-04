@@ -26,7 +26,7 @@ const BalanceSheet = () => {
 
   return (
     <Card className="glass-card">
-      <CardHeader>
+      <CardHeader className="text-center">
         <CardTitle>dUSD Balance Sheet</CardTitle>
       </CardHeader>
       <CardContent>
