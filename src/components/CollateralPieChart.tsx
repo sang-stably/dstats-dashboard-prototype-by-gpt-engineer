@@ -20,9 +20,23 @@ const CollateralPieChart = () => {
         <CardTitle>dUSD Collateral Distribution</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="h-[400px]">
+        <div className="h-[400px] relative">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                className="total-value"
+              >
+                <tspan x="50%" dy="-1em" fontSize="16" fill="#666">
+                  Total Collateral
+                </tspan>
+                <tspan x="50%" dy="1.5em" fontSize="20" fontWeight="bold" fill="#000">
+                  {formatCurrency(total)}
+                </tspan>
+              </text>
               <Pie
                 data={data}
                 cx="50%"
