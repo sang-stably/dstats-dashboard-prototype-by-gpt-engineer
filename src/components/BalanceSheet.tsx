@@ -30,7 +30,7 @@ const BalanceSheet = () => {
         <CardTitle>dUSD Balance Sheet</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 gap-8">
+        <div className="space-y-8">
           <div>
             <h3 className="text-lg font-semibold mb-4">Assets</h3>
             <div className="space-y-2">
