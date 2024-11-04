@@ -2,6 +2,7 @@ import CollateralPieChart from "@/components/CollateralPieChart";
 import BalanceSheet from "@/components/BalanceSheet";
 import NavMenu from "@/components/NavMenu";
 import NetworkSelector from "@/components/NetworkSelector";
+import AmoAllocationTable from "@/components/AmoAllocationTable";
 
 const Collaterals = () => {
   return (
@@ -15,9 +16,13 @@ const Collaterals = () => {
           <NetworkSelector />
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <CollateralPieChart />
           <BalanceSheet />
+        </div>
+
+        <div className="mt-6">
+          <AmoAllocationTable />
         </div>
       </div>
     </div>
