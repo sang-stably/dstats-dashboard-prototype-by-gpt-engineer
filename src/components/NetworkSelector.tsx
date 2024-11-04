@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { ArrowDown } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 
 const NetworkSelector = () => {
   return (
@@ -7,7 +7,7 @@ const NetworkSelector = () => {
       variant="ghost" 
       className="flex items-center gap-2 border border-primary/20 hover:border-primary/40"
     >
-      <ArrowDown className="w-4 h-4 opacity-50" />
+      <ChevronDown className="w-4 h-4 opacity-50" />
       <img 
         src="https://fraxscan.com/assets/frax/images/svg/logos/chain-light.svg?v=24.10.4.1" 
         alt="Fraxtal" 
