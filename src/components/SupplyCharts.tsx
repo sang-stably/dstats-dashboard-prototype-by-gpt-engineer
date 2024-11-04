@@ -59,6 +59,7 @@ const SupplyCharts = () => {
                 axisLine={false}
                 tickFormatter={formatDate}
                 tick={{ fill: "#ffffff" }}
+                style={{ fill: "#ffffff" }}
               />
               <YAxis
                 stroke="#ffffff"
@@ -67,14 +68,15 @@ const SupplyCharts = () => {
                 axisLine={false}
                 tickFormatter={formatCurrency}
                 tick={{ fill: "#ffffff" }}
+                style={{ fill: "#ffffff" }}
               />
               <ChartTooltip 
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     return (
                       <div className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <p className="text-sm font-medium">{formatDate(payload[0].payload.date)}</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm font-medium text-white">{formatDate(payload[0].payload.date)}</p>
+                        <p className="text-sm text-white">
                           {formatCurrency(payload[0].value as number)}
                         </p>
                       </div>
@@ -124,6 +126,7 @@ const SupplyCharts = () => {
                 axisLine={false}
                 tickFormatter={formatDate}
                 tick={{ fill: "#ffffff" }}
+                style={{ fill: "#ffffff" }}
               />
               <YAxis
                 stroke="#ffffff"
@@ -132,14 +135,15 @@ const SupplyCharts = () => {
                 axisLine={false}
                 tickFormatter={formatCurrency}
                 tick={{ fill: "#ffffff" }}
+                style={{ fill: "#ffffff" }}
               />
               <ChartTooltip 
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     return (
                       <div className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <p className="text-sm font-medium">{formatDate(payload[0].payload.date)}</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm font-medium text-white">{formatDate(payload[0].payload.date)}</p>
+                        <p className="text-sm text-white">
                           {formatCurrency(payload[0].value as number)}
                         </p>
                       </div>
