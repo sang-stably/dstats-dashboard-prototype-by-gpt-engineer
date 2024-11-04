@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="w-full py-8 mt-16" style={{ background: 'linear-gradient(135deg, #13111C 0%, #8702ff 100%)' }}>
+    <footer className="w-full py-8 mt-16" style={{ background: 'linear-gradient(to top, #13111C 0%, #8702ff 100%)' }}>
       <div className="container mx-auto flex justify-center items-center">
         <img 
           src="https://app.testnet.dtrinity.org/dlend/dTrinity-White-Logo.png" 
