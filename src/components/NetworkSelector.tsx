@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Link } from "lucide-react"
+import { ArrowDown } from "lucide-react"
 
 const NetworkSelector = () => {
   return (
@@ -13,7 +13,7 @@ const NetworkSelector = () => {
         className="w-5 h-5"
       />
       <span className="text-sm font-medium">Fraxtal</span>
-      <Link className="w-4 h-4 ml-1 opacity-50" />
+      <ArrowDown className="w-4 h-4 ml-1 opacity-50" />
     </Button>
   )
 }
