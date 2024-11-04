@@ -30,10 +30,10 @@ const CollateralPieChart = () => {
                 dominantBaseline="middle"
                 className="total-value"
               >
-                <tspan x="50%" dy="-1em" fontSize="16" fill="#666">
+                <tspan x="50%" dy="-1em" fontSize="16" fill="#E3E6EA">
                   Total Collateral
                 </tspan>
-                <tspan x="50%" dy="1.5em" fontSize="20" fontWeight="bold" fill="#000">
+                <tspan x="50%" dy="1.5em" fontSize="20" fontWeight="bold" fill="#8702ff">
                   {formatCurrency(total)}
                 </tspan>
               </text>
