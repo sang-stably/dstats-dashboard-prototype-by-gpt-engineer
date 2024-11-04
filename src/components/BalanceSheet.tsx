@@ -25,7 +25,7 @@ const BalanceSheet = () => {
   const equity = totalAssets - totalLiabilities;
 
   return (
-    <Card className="glass-card">
+    <Card className="glass-card rounded-xl">
       <CardHeader className="text-center">
         <CardTitle>dUSD Balance Sheet</CardTitle>
       </CardHeader>

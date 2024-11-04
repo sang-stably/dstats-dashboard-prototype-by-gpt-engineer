@@ -15,7 +15,7 @@ const CollateralPieChart = () => {
   const total = data.reduce((sum, item) => sum + item.value, 0);
   
   return (
-    <Card className="glass-card">
+    <Card className="glass-card rounded-xl">
       <CardHeader className="text-center">
         <CardTitle>dUSD Collateral Distribution</CardTitle>
       </CardHeader>
