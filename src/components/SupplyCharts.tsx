@@ -67,14 +67,15 @@ const SupplyCharts = () => {
                 axisLine={false}
                 tickFormatter={formatCurrency}
                 tick={{ fill: "#E3E6EA" }}
+                label={{ value: 'Supply', angle: -90, position: 'insideLeft', fill: '#E3E6EA' }}
               />
               <ChartTooltip 
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     return (
                       <div className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <p className="text-sm font-medium">{formatDate(payload[0].payload.date)}</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm font-medium text-white">{formatDate(payload[0].payload.date)}</p>
+                        <p className="text-sm text-white">
                           {formatCurrency(payload[0].value as number)}
                         </p>
                       </div>
@@ -90,6 +91,12 @@ const SupplyCharts = () => {
                 strokeWidth={2}
                 fillOpacity={1}
                 fill="url(#colorCirculating)"
+                label={{ 
+                  position: 'top',
+                  fill: '#E3E6EA',
+                  fontSize: 12,
+                  formatter: formatCurrency
+                }}
               />
             </AreaChart>
           </ChartContainer>
@@ -132,14 +139,15 @@ const SupplyCharts = () => {
                 axisLine={false}
                 tickFormatter={formatCurrency}
                 tick={{ fill: "#E3E6EA" }}
+                label={{ value: 'Supply', angle: -90, position: 'insideLeft', fill: '#E3E6EA' }}
               />
               <ChartTooltip 
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     return (
                       <div className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <p className="text-sm font-medium">{formatDate(payload[0].payload.date)}</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm font-medium text-white">{formatDate(payload[0].payload.date)}</p>
+                        <p className="text-sm text-white">
                           {formatCurrency(payload[0].value as number)}
                         </p>
                       </div>
@@ -155,6 +163,12 @@ const SupplyCharts = () => {
                 strokeWidth={2}
                 fillOpacity={1}
                 fill="url(#colorAmo)"
+                label={{ 
+                  position: 'top',
+                  fill: '#E3E6EA',
+                  fontSize: 12,
+                  formatter: formatCurrency
+                }}
               />
             </AreaChart>
           </ChartContainer>
