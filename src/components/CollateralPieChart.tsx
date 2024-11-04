@@ -30,10 +30,13 @@ const CollateralPieChart = () => {
                 dominantBaseline="middle"
                 className="total-value"
               >
-                <tspan x="50%" dy="-1em" fontSize="16" fill="#E3E6EA">
-                  Total Collateral
-                </tspan>
-                <tspan x="50%" dy="1.5em" fontSize="20" fontWeight="bold" fill="#8702ff">
+                <tspan 
+                  x="50%" 
+                  dy="-0.6em" 
+                  fontSize="32" 
+                  fontWeight="bold" 
+                  fill="#8702ff"
+                >
                   {formatCurrency(total)}
                 </tspan>
               </text>
@@ -43,6 +46,7 @@ const CollateralPieChart = () => {
                 cy="50%"
                 labelLine={false}
                 outerRadius={150}
+                innerRadius={80}
                 fill="#8884d8"
                 dataKey="value"
                 label={({ percent }) => `${(percent * 100).toFixed(1)}%`}
