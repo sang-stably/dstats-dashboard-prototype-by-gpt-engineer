@@ -24,7 +24,7 @@ const NavMenu = () => {
             sx={{
               fontSize: '0.875rem',
               fontWeight: 500,
-              color: location.pathname === item.path ? '#8702ff' : 'rgba(255, 255, 255, 0.6)',
+              color: location.pathname === item.path ? '#8702ff' : '#ffffff',
               transition: 'color 0.2s',
               cursor: 'pointer',
               '&:hover': {
