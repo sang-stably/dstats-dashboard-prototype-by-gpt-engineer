@@ -75,7 +75,7 @@ const Index = () => {
   const metrics = getMetricProps(data.metrics);
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4 }}>
+    <Container maxWidth="xl" sx={{ py: 4, px: { xs: 3, sm: 4, md: 6 } }}>
       <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <Typography variant="h4" component="h1" fontWeight="bold">

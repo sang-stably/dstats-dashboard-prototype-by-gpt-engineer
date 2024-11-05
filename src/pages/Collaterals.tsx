@@ -7,7 +7,7 @@ import AmoAllocationTable from "@/components/AmoAllocationTable";
 
 const Collaterals = () => {
   return (
-    <Container maxWidth="xl" sx={{ py: 8 }}>
+    <Container maxWidth="xl" sx={{ py: 8, px: { xs: 3, sm: 4, md: 6 } }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 8 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <Typography variant="h4" component="h1" fontWeight="bold">
