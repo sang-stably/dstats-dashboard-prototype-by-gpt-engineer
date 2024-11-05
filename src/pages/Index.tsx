@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+import { Container, Grid, Typography, Box } from '@mui/material';
 import MetricCard from '@/components/MetricCard';
 import SupplyCharts from '@/components/SupplyCharts';
 import NavMenu from '@/components/NavMenu';
@@ -65,45 +65,53 @@ const Index = () => {
   ];
 
   if (isLoading || !data) {
-    return <div>Loading...</div>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+        <Typography>Loading...</Typography>
+      </Box>
+    );
   }
 
   const metrics = getMetricProps(data.metrics);
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-8">
-            <h1 className="text-2xl font-bold">dSTATS Dashboard</h1>
-            <NavMenu />
-          </div>
-          <NetworkSelector />
-        </div>
-        
-        <div className="grid grid-rows-2 gap-6">
-          <div className="grid grid-cols-4 gap-6">
-            {metrics.slice(0, 4).map((metric, index) => (
-              <MetricCard
-                key={`row1-${index}`}
-                {...metric}
-              />
-            ))}
-          </div>
-          
-          <div className="grid grid-cols-4 gap-6">
-            {metrics.slice(4, 8).map((metric, index) => (
-              <MetricCard
-                key={`row2-${index}`}
-                {...metric}
-              />
-            ))}
-          </div>
-        </div>
+    <Container maxWidth="xl" sx={{ py: 4 }}>
+      <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <Typography variant="h4" component="h1" fontWeight="bold">
+            dSTATS Dashboard
+          </Typography>
+          <NavMenu />
+        </Box>
+        <NetworkSelector />
+      </Box>
 
-        <SupplyCharts data={data.supplyData} />
-      </div>
-    </div>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Grid container spacing={3}>
+            {metrics.slice(0, 4).map((metric, index) => (
+              <Grid item xs={12} sm={6} md={3} key={`row1-${index}`}>
+                <MetricCard {...metric} />
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Grid container spacing={3}>
+            {metrics.slice(4, 8).map((metric, index) => (
+              <Grid item xs={12} sm={6} md={3} key={`row2-${index}`}>
+                <MetricCard {...metric} />
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12}>
+          <SupplyCharts data={data.supplyData} />
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
