@@ -1,18 +1,23 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts';
-
-const data = [
-  { name: 'sFRAX', value: 8500000, color: '#8702ff' },
-  { name: 'sDAI', value: 4200000, color: '#a64dff' },
-  { name: 'sUSDe', value: 2534567, color: '#c29fff' },
-];
+import { useQuery } from '@tanstack/react-query';
+import { fetchDashboardData } from '@/lib/api';
 
 const formatCurrency = (value: number) => {
   return `${(value / 1000000).toFixed(2)}M`;
 };
 
 const CollateralPieChart = () => {
-  const total = data.reduce((sum, item) => sum + item.value, 0);
+  const { data, isLoading } = useQuery({
+    queryKey: ['dashboardData'],
+    queryFn: fetchDashboardData
+  });
+
+  if (isLoading || !data) {
+    return <div>Loading...</div>;
+  }
+
+  const total = data.collateralDistribution.reduce((sum, item) => sum + item.value, 0);
   
   return (
     <Card className="glass-card rounded-xl">
@@ -41,7 +46,7 @@ const CollateralPieChart = () => {
                 </tspan>
               </text>
               <Pie
-                data={data}
+                data={data.collateralDistribution}
                 cx="50%"
                 cy="50%"
                 labelLine={false}
@@ -51,7 +56,7 @@ const CollateralPieChart = () => {
                 dataKey="value"
                 label={({ percent }) => `${(percent * 100).toFixed(1)}%`}
               >
-                {data.map((entry, index) => (
+                {data.collateralDistribution.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
               </Pie>
