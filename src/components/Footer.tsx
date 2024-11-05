@@ -1,14 +1,16 @@
+import { Box, Container } from '@mui/material';
+
 const Footer = () => {
   return (
-    <footer className="w-full py-8 mt-16">
-      <div className="container mx-auto flex justify-center items-center">
+    <Box component="footer" sx={{ width: '100%', py: 8, mt: 16 }}>
+      <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <img 
           src="https://app.testnet.dtrinity.org/dlend/dTrinity-White-Logo.png" 
           alt="dTrinity Logo" 
-          className="h-8 object-contain"
+          style={{ height: '2rem', objectFit: 'contain' }}
         />
-      </div>
-    </footer>
+      </Container>
+    </Box>
   );
 };
 

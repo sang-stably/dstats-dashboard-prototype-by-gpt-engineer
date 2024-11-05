@@ -1,6 +1,5 @@
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu"
-import { cn } from "@/lib/utils"
-import { Link, useLocation } from "react-router-dom"
+import { Box, Link as MuiLink } from '@mui/material';
+import { Link, useLocation } from "react-router-dom";
 
 const NavMenu = () => {
   const location = useLocation();
@@ -13,27 +12,33 @@ const NavMenu = () => {
   ];
 
   return (
-    <NavigationMenu>
-      <NavigationMenuList className="gap-6">
-        {items.map((item) => (
-          <NavigationMenuItem key={item.path}>
-            <Link to={item.path}>
-              <NavigationMenuLink
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  location.pathname === item.path 
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                )}
-              >
-                {item.name}
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        ))}
-      </NavigationMenuList>
-    </NavigationMenu>
-  )
-}
+    <Box sx={{ display: 'flex', gap: 6 }}>
+      {items.map((item) => (
+        <Link 
+          key={item.path} 
+          to={item.path} 
+          style={{ textDecoration: 'none' }}
+        >
+          <MuiLink
+            component="span"
+            sx={{
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              color: location.pathname === item.path ? '#8702ff' : 'rgba(255, 255, 255, 0.6)',
+              transition: 'color 0.2s',
+              cursor: 'pointer',
+              '&:hover': {
+                color: '#8702ff',
+                textDecoration: 'none'
+              }
+            }}
+          >
+            {item.name}
+          </MuiLink>
+        </Link>
+      ))}
+    </Box>
+  );
+};
 
-export default NavMenu
+export default NavMenu;
