@@ -35,39 +35,32 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
               </defs>
               <XAxis
                 dataKey="date"
-                stroke="#ffffff"
+                stroke="rgba(255, 255, 255, 0.6)"
                 fontSize={12}
                 tickLine={false}
-                axisLine={false}
+                axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
                 tickFormatter={formatDate}
-                tick={{ fill: "#ffffff" }}
-                style={{ fill: "#ffffff" }}
+                tick={{ fill: "rgba(255, 255, 255, 0.6)" }}
               />
               <YAxis
-                stroke="#ffffff"
+                stroke="rgba(255, 255, 255, 0.6)"
                 fontSize={12}
                 tickLine={false}
-                axisLine={false}
+                axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
                 tickFormatter={formatCurrency}
-                tick={{ fill: "#ffffff" }}
-                style={{ fill: "#ffffff" }}
+                tick={{ fill: "rgba(255, 255, 255, 0.6)" }}
               />
               <Tooltip
-                content={({ active, payload }) => {
-                  if (active && payload && payload.length) {
-                    return (
-                      <Box className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <Typography variant="body2" className="text-white">
-                          {formatDate(payload[0].payload.date)}
-                        </Typography>
-                        <Typography variant="body2" className="text-white">
-                          {formatCurrency(payload[0].value as number)}
-                        </Typography>
-                      </Box>
-                    );
-                  }
-                  return null;
+                contentStyle={{
+                  backgroundColor: 'rgba(19, 17, 28, 0.95)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '8px',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
                 }}
+                labelStyle={{ color: 'rgba(255, 255, 255, 0.87)' }}
+                itemStyle={{ color: 'rgba(255, 255, 255, 0.87)' }}
+                formatter={(value: any) => formatCurrency(value as number)}
+                labelFormatter={formatDate}
               />
               <Area
                 type="monotone"
@@ -97,39 +90,32 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
               </defs>
               <XAxis
                 dataKey="date"
-                stroke="#ffffff"
+                stroke="rgba(255, 255, 255, 0.6)"
                 fontSize={12}
                 tickLine={false}
-                axisLine={false}
+                axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
                 tickFormatter={formatDate}
-                tick={{ fill: "#ffffff" }}
-                style={{ fill: "#ffffff" }}
+                tick={{ fill: "rgba(255, 255, 255, 0.6)" }}
               />
               <YAxis
-                stroke="#ffffff"
+                stroke="rgba(255, 255, 255, 0.6)"
                 fontSize={12}
                 tickLine={false}
-                axisLine={false}
+                axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
                 tickFormatter={formatCurrency}
-                tick={{ fill: "#ffffff" }}
-                style={{ fill: "#ffffff" }}
+                tick={{ fill: "rgba(255, 255, 255, 0.6)" }}
               />
               <Tooltip
-                content={({ active, payload }) => {
-                  if (active && payload && payload.length) {
-                    return (
-                      <Box className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <Typography variant="body2" className="text-white">
-                          {formatDate(payload[0].payload.date)}
-                        </Typography>
-                        <Typography variant="body2" className="text-white">
-                          {formatCurrency(payload[0].value as number)}
-                        </Typography>
-                      </Box>
-                    );
-                  }
-                  return null;
+                contentStyle={{
+                  backgroundColor: 'rgba(19, 17, 28, 0.95)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '8px',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
                 }}
+                labelStyle={{ color: 'rgba(255, 255, 255, 0.87)' }}
+                itemStyle={{ color: 'rgba(255, 255, 255, 0.87)' }}
+                formatter={(value: any) => formatCurrency(value as number)}
+                labelFormatter={formatDate}
               />
               <Area
                 type="monotone"
