@@ -1,5 +1,5 @@
 import { Card, CardContent, Typography, Box } from "@mui/material";
-import { Area, AreaChart, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+import { Area, AreaChart, XAxis, YAxis, Tooltip } from "recharts";
 import { SupplyDataPoint } from "@/lib/types";
 
 interface SupplyChartsProps {
@@ -38,7 +38,6 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                   <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
               <XAxis
                 dataKey="date"
                 stroke="white"
@@ -101,7 +100,6 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                   <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
               <XAxis
                 dataKey="date"
                 stroke="white"
