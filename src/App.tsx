@@ -15,7 +15,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/collaterals" element={<Collaterals />} />
-            <Route path="/amo-smo" element={<Navigate to="/" replace />} />
             <Route path="/treasury" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>

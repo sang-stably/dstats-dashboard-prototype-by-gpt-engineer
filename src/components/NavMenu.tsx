@@ -1,6 +1,6 @@
 import { Box, Link as MuiLink, IconButton, Drawer } from '@mui/material';
 import { Link, useLocation } from "react-router-dom";
-import { Menu } from 'lucide-react';
+import { Menu, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import NetworkSelector from './NetworkSelector';
 
@@ -11,8 +11,12 @@ const NavMenu = () => {
   const items = [
     { name: "Key Metrics", path: "/" },
     { name: "dUSD Collaterals", path: "/collaterals" },
-    { name: "AMO & SMO", path: "/amo-smo" },
-    { name: "Treasury", path: "/treasury" }
+    { name: "Treasury", path: "/treasury" },
+    { 
+      name: "dTRINITY App", 
+      path: "https://app.testnet.dtrinity.org",
+      isExternal: true 
+    }
   ];
 
   const handleDrawerToggle = () => {
@@ -22,34 +26,64 @@ const NavMenu = () => {
   const menuItems = (
     <>
       {items.map((item) => (
-        <Link 
-          key={item.path} 
-          to={item.path} 
-          style={{ textDecoration: 'none' }}
-          onClick={() => setMobileOpen(false)}
-        >
+        item.isExternal ? (
           <MuiLink
-            component="span"
+            key={item.path}
+            href={item.path}
+            target="_blank"
+            rel="noopener noreferrer"
             sx={{
               fontSize: { xs: '0.875rem', lg: '0.9rem' },
               fontWeight: 500,
-              color: location.pathname === item.path ? '#8702ff' : '#ffffff',
+              color: '#ffffff',
               transition: 'color 0.2s',
               cursor: 'pointer',
-              display: 'block',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 0.5,
               py: { xs: 1, sm: 0 },
               px: { sm: 1.5, md: 2 },
               whiteSpace: 'nowrap',
-              textAlign: 'left', // Align text to the left
+              textAlign: 'left',
+              textDecoration: 'none',
               '&:hover': {
                 color: '#8702ff',
-                textDecoration: 'none'
               }
             }}
           >
             {item.name}
+            <ExternalLink size={16} />
           </MuiLink>
-        </Link>
+        ) : (
+          <Link 
+            key={item.path} 
+            to={item.path} 
+            style={{ textDecoration: 'none' }}
+            onClick={() => setMobileOpen(false)}
+          >
+            <MuiLink
+              component="span"
+              sx={{
+                fontSize: { xs: '0.875rem', lg: '0.9rem' },
+                fontWeight: 500,
+                color: location.pathname === item.path ? '#8702ff' : '#ffffff',
+                transition: 'color 0.2s',
+                cursor: 'pointer',
+                display: 'block',
+                py: { xs: 1, sm: 0 },
+                px: { sm: 1.5, md: 2 },
+                whiteSpace: 'nowrap',
+                textAlign: 'left',
+                '&:hover': {
+                  color: '#8702ff',
+                  textDecoration: 'none'
+                }
+              }}
+            >
+              {item.name}
+            </MuiLink>
+          </Link>
+        )
       ))}
     </>
   );
@@ -91,7 +125,7 @@ const NavMenu = () => {
             flexDirection: 'column', 
             gap: 1, 
             flexGrow: 1,
-            alignItems: 'flex-start' // Align items to the left
+            alignItems: 'flex-start'
           }}>
             {menuItems}
           </Box>
