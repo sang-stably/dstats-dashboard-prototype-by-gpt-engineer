@@ -26,7 +26,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
           backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           transition: 'all 0.3s ease',
-          borderRadius: '16px',
+          borderRadius: '12px',
           '&:hover': {
             transform: 'translateY(-2px)',
             borderColor: 'rgba(135, 2, 255, 0.3)',
@@ -105,7 +105,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
           backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           transition: 'all 0.3s ease',
-          borderRadius: '16px',
+          borderRadius: '12px',
           '&:hover': {
             transform: 'translateY(-2px)',
             borderColor: 'rgba(135, 2, 255, 0.3)',
