@@ -31,14 +31,14 @@ const NavMenu = () => {
           <MuiLink
             component="span"
             sx={{
-              fontSize: { xs: '0.875rem', lg: '1rem' },
+              fontSize: { xs: '0.875rem', lg: '0.9rem' },
               fontWeight: 500,
               color: location.pathname === item.path ? '#8702ff' : '#ffffff',
               transition: 'color 0.2s',
               cursor: 'pointer',
               display: 'block',
               py: { xs: 2, sm: 0 },
-              px: { sm: 2, md: 3, lg: 4 },
+              px: { sm: 1.5, md: 2 },
               whiteSpace: 'nowrap',
               '&:hover': {
                 color: '#8702ff',
@@ -96,7 +96,7 @@ const NavMenu = () => {
       <Box sx={{ 
         display: { xs: 'none', sm: 'flex' },
         flexDirection: 'row',
-        gap: { sm: 2, md: 3, lg: 4 },
+        gap: { sm: 1, md: 2 },
         alignItems: 'center',
         flexWrap: 'nowrap',
         overflow: 'auto',

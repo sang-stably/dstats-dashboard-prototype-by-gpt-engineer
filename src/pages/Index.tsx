@@ -76,12 +76,13 @@ const Index = () => {
 
   return (
     <Container maxWidth="xl" sx={{ py: { xs: 2, sm: 4 }, px: { xs: 2, sm: 3, md: 6 } }}>
+
       <Box sx={{ 
         mb: { xs: 2, sm: 4 }, 
         display: 'flex',
         justifyContent: 'space-between', 
         alignItems: 'center',
-        gap: 4
+        gap: 2
       }}>
         <Typography variant="h5" component="h1" fontWeight="bold">
           dSTATS Dashboard
@@ -89,7 +90,7 @@ const Index = () => {
         <Box sx={{ 
           display: 'flex', 
           alignItems: 'center', 
-          gap: 4,
+          gap: 2,
           flex: 1,
           justifyContent: 'flex-end'
         }}>

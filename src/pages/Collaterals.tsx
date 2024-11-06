@@ -13,7 +13,7 @@ const Collaterals = () => {
         display: 'flex',
         justifyContent: 'space-between', 
         alignItems: 'center',
-        gap: 4
+        gap: 2
       }}>
         <Typography variant="h5" component="h1" fontWeight="bold">
           dSTATS Dashboard
@@ -21,7 +21,7 @@ const Collaterals = () => {
         <Box sx={{ 
           display: 'flex', 
           alignItems: 'center', 
-          gap: 4,
+          gap: 2,
           flex: 1,
           justifyContent: 'flex-end'
         }}>
