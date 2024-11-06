@@ -80,19 +80,29 @@ const Index = () => {
         mb: { xs: 2, sm: 4 }, 
         display: 'flex',
         justifyContent: 'space-between', 
-        alignItems: 'center'
+        alignItems: 'center',
+        gap: 4
       }}>
         <Typography variant="h5" component="h1" fontWeight="bold">
           dSTATS Dashboard
         </Typography>
-        <Box sx={{ display: { sm: 'none' } }}>
-          <NavMenu />
+        <Box sx={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: 4,
+          flex: 1,
+          justifyContent: 'flex-end'
+        }}>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <NavMenu />
+          </Box>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <NetworkSelector />
+          </Box>
+          <Box sx={{ display: { sm: 'none' } }}>
+            <NavMenu />
+          </Box>
         </Box>
-      </Box>
-
-      <Box sx={{ display: { xs: 'none', sm: 'flex' }, mb: 4, alignItems: 'center', gap: 4 }}>
-        <NavMenu />
-        <NetworkSelector />
       </Box>
 
       <Grid container spacing={{ xs: 2, sm: 3 }}>
