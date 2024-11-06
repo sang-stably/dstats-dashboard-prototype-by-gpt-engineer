@@ -55,7 +55,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                 stroke="white"
                 fontSize={12}
                 tickLine={false}
-                axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
+                axisLine={{ stroke: 'transparent' }}
                 tickFormatter={formatCurrency}
                 tick={{ fill: "white" }}
               />
@@ -121,7 +121,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                 stroke="white"
                 fontSize={12}
                 tickLine={false}
-                axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
+                axisLine={{ stroke: 'transparent' }}
                 tickFormatter={formatCurrency}
                 tick={{ fill: "white" }}
               />
