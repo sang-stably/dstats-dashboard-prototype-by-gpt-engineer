@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Box, Card, CardContent, Typography } from '@mui/material';
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 import { useQuery } from '@tanstack/react-query';
 import { fetchDashboardData } from '@/lib/api';
@@ -14,18 +14,32 @@ const CollateralPieChart = () => {
   });
 
   if (isLoading || !data) {
-    return <div>Loading...</div>;
+    return <Box>Loading...</Box>;
   }
 
   const total = data.collateralDistribution.reduce((sum, item) => sum + item.value, 0);
   
   return (
-    <Card className="glass-card rounded-xl">
-      <CardHeader className="text-center">
-        <CardTitle>dUSD Collateral Distribution</CardTitle>
-      </CardHeader>
+    <Card sx={{
+      background: 'rgba(255, 255, 255, 0.05)',
+      backdropFilter: 'blur(10px)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      transition: 'all 0.3s ease',
+      borderRadius: '12px',
+      height: '100%',
+      '&:hover': {
+        transform: 'translateY(-2px)',
+        borderColor: 'rgba(135, 2, 255, 0.3)',
+        boxShadow: '0 8px 32px rgba(135, 2, 255, 0.15)'
+      }
+    }}>
+      <Box sx={{ p: 3, textAlign: 'center' }}>
+        <Typography variant="h6" component="h2">
+          dUSD Collateral Distribution
+        </Typography>
+      </Box>
       <CardContent>
-        <div className="h-[400px] relative">
+        <Box sx={{ height: 400, position: 'relative' }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <text
@@ -33,7 +47,6 @@ const CollateralPieChart = () => {
                 y="50%"
                 textAnchor="middle"
                 dominantBaseline="middle"
-                className="total-value"
               >
                 <tspan 
                   x="50%" 
@@ -66,7 +79,7 @@ const CollateralPieChart = () => {
               <Legend />
             </PieChart>
           </ResponsiveContainer>
-        </div>
+        </Box>
       </CardContent>
     </Card>
   );
