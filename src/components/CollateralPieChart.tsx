@@ -20,19 +20,7 @@ const CollateralPieChart = () => {
   const total = data.collateralDistribution.reduce((sum, item) => sum + item.value, 0);
 
   return (
-    <Card sx={{
-      background: 'rgba(255, 255, 255, 0.05)',
-      backdropFilter: 'blur(10px)',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
-      transition: 'all 0.3s ease',
-      borderRadius: '12px',
-      height: '100%',
-      '&:hover': {
-        transform: 'translateY(-2px)',
-        borderColor: 'rgba(135, 2, 255, 0.3)',
-        boxShadow: '0 8px 32px rgba(135, 2, 255, 0.15)'
-      }
-    }}>
+    <Card className="glass-card">
       <Box sx={{ p: 3, textAlign: 'center' }}>
         <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
           dUSD Collateral Distribution
