@@ -1,5 +1,5 @@
 import { Card, CardContent, Typography, Box } from "@mui/material";
-import { Area, AreaChart, XAxis, YAxis, Tooltip } from "recharts";
+import { Area, AreaChart, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 import { SupplyDataPoint } from "@/lib/types";
 
 interface SupplyChartsProps {
@@ -33,25 +33,26 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                   <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
                 </linearGradient>
               </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
               <XAxis
                 dataKey="date"
                 stroke="rgba(255, 255, 255, 0.6)"
                 fontSize={12}
                 tickLine={false}
-                axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
+                axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                 tickFormatter={formatDate}
-                tick={{ fill: "rgba(255, 255, 255, 0.6)" }}
+                tick={{ fill: "rgba(255, 255, 255, 0.87)" }}
               />
               <YAxis
                 stroke="rgba(255, 255, 255, 0.6)"
                 fontSize={12}
                 tickLine={false}
-                axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
+                axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                 tickFormatter={formatCurrency}
-                tick={{ fill: "rgba(255, 255, 255, 0.6)" }}
+                tick={{ fill: "rgba(255, 255, 255, 0.87)" }}
               />
               <Tooltip
-                cursor={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
+                cursor={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                 contentStyle={{
                   backgroundColor: 'rgba(19, 17, 28, 0.95)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -89,25 +90,26 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                   <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
                 </linearGradient>
               </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
               <XAxis
                 dataKey="date"
                 stroke="rgba(255, 255, 255, 0.6)"
                 fontSize={12}
                 tickLine={false}
-                axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
+                axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                 tickFormatter={formatDate}
-                tick={{ fill: "rgba(255, 255, 255, 0.6)" }}
+                tick={{ fill: "rgba(255, 255, 255, 0.87)" }}
               />
               <YAxis
                 stroke="rgba(255, 255, 255, 0.6)"
                 fontSize={12}
                 tickLine={false}
-                axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
+                axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                 tickFormatter={formatCurrency}
-                tick={{ fill: "rgba(255, 255, 255, 0.6)" }}
+                tick={{ fill: "rgba(255, 255, 255, 0.87)" }}
               />
               <Tooltip
-                cursor={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
+                cursor={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                 contentStyle={{
                   backgroundColor: 'rgba(19, 17, 28, 0.95)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
