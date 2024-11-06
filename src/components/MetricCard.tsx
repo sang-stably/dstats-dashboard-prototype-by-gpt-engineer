@@ -21,11 +21,11 @@ const MetricCard = ({ title, value, format, description }: MetricCardProps) => {
     >
       <CardContent>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
-          <Typography variant="subtitle2" color="text.secondary">
+          <Typography variant="subtitle2" sx={{ color: 'white' }}>
             {title}
           </Typography>
           <Tooltip title={description} arrow>
-            <IconButton size="small" sx={{ color: 'text.secondary', '&:hover': { color: 'primary.main' } }}>
+            <IconButton size="small" sx={{ color: 'white', '&:hover': { color: 'primary.main' } }}>
               <InfoIcon fontSize="small" />
             </IconButton>
           </Tooltip>
