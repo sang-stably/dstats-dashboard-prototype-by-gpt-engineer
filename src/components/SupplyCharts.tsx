@@ -22,7 +22,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
     <Box className="grid grid-cols-2 gap-6 mt-6">
       <Card className="glass-card rounded-xl">
         <CardContent>
-          <Typography variant="h6" align="center" gutterBottom>
+          <Typography variant="h6" align="center" gutterBottom sx={{ color: 'rgba(255, 255, 255, 0.87)' }}>
             dUSD Circulating Supply
           </Typography>
           <Box className="aspect-[2/1]">
@@ -51,6 +51,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                 tick={{ fill: "rgba(255, 255, 255, 0.6)" }}
               />
               <Tooltip
+                cursor={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
                 contentStyle={{
                   backgroundColor: 'rgba(19, 17, 28, 0.95)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -77,7 +78,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
 
       <Card className="glass-card rounded-xl">
         <CardContent>
-          <Typography variant="h6" align="center" gutterBottom>
+          <Typography variant="h6" align="center" gutterBottom sx={{ color: 'rgba(255, 255, 255, 0.87)' }}>
             dUSD AMO Supply
           </Typography>
           <Box className="aspect-[2/1]">
@@ -106,6 +107,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                 tick={{ fill: "rgba(255, 255, 255, 0.6)" }}
               />
               <Tooltip
+                cursor={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
                 contentStyle={{
                   backgroundColor: 'rgba(19, 17, 28, 0.95)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
