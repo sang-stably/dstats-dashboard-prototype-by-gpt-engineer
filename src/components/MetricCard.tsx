@@ -2,6 +2,7 @@ import { Card, CardContent, Typography, Tooltip, IconButton, Box } from '@mui/ma
 import { Info as InfoIcon } from '@mui/icons-material';
 import { MetricCardProps } from '@/lib/types';
 import NumberCounter from './NumberCounter';
+import { tooltipStyles } from '@/lib/styles';
 
 const MetricCard = ({ title, value, format, description }: MetricCardProps) => {
   return (
@@ -25,7 +26,14 @@ const MetricCard = ({ title, value, format, description }: MetricCardProps) => {
           <Typography variant="subtitle2" sx={{ color: 'white' }}>
             {title}
           </Typography>
-          <Tooltip title={description} arrow>
+          <Tooltip 
+            title={description} 
+            arrow 
+            componentsProps={{
+              tooltip: { sx: tooltipStyles },
+              arrow: { sx: { color: 'rgba(19, 17, 28, 0.95)' } }
+            }}
+          >
             <IconButton size="small" sx={{ color: 'white', '&:hover': { color: 'primary.main' } }}>
               <InfoIcon fontSize="small" />
             </IconButton>
