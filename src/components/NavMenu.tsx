@@ -37,7 +37,7 @@ const NavMenu = () => {
               transition: 'color 0.2s',
               cursor: 'pointer',
               display: 'block',
-              py: { xs: 2, sm: 0 },
+              py: { xs: 1, sm: 0 },
               px: { sm: 1.5, md: 2 },
               whiteSpace: 'nowrap',
               '&:hover': {
@@ -85,7 +85,7 @@ const NavMenu = () => {
             },
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, flexGrow: 1 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, flexGrow: 1 }}>
             {menuItems}
           </Box>
           <Box sx={{ mt: 'auto', pt: 2, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
