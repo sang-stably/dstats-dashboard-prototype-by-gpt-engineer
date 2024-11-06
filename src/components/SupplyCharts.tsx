@@ -22,7 +22,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
     <Box className="grid grid-cols-2 gap-6 mt-6">
       <Card className="glass-card rounded-xl">
         <CardContent>
-          <Typography variant="h6" align="center" gutterBottom sx={{ color: 'rgba(255, 255, 255, 0.87)' }}>
+          <Typography variant="h6" align="center" gutterBottom sx={{ color: 'white' }}>
             dUSD Circulating Supply
           </Typography>
           <Box className="aspect-[2/1]">
@@ -36,20 +36,20 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
               <XAxis
                 dataKey="date"
-                stroke="rgba(255, 255, 255, 0.6)"
+                stroke="white"
                 fontSize={12}
                 tickLine={false}
                 axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                 tickFormatter={formatDate}
-                tick={{ fill: "rgba(255, 255, 255, 0.87)" }}
+                tick={{ fill: "white" }}
               />
               <YAxis
-                stroke="rgba(255, 255, 255, 0.6)"
+                stroke="white"
                 fontSize={12}
                 tickLine={false}
                 axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                 tickFormatter={formatCurrency}
-                tick={{ fill: "rgba(255, 255, 255, 0.87)" }}
+                tick={{ fill: "white" }}
               />
               <Tooltip
                 cursor={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
@@ -57,10 +57,11 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                   backgroundColor: 'rgba(19, 17, 28, 0.95)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '8px',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  color: 'white'
                 }}
-                labelStyle={{ color: 'rgba(255, 255, 255, 0.87)' }}
-                itemStyle={{ color: 'rgba(255, 255, 255, 0.87)' }}
+                labelStyle={{ color: 'white' }}
+                itemStyle={{ color: 'white' }}
                 formatter={(value: any) => formatCurrency(value as number)}
                 labelFormatter={formatDate}
               />
@@ -79,7 +80,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
 
       <Card className="glass-card rounded-xl">
         <CardContent>
-          <Typography variant="h6" align="center" gutterBottom sx={{ color: 'rgba(255, 255, 255, 0.87)' }}>
+          <Typography variant="h6" align="center" gutterBottom sx={{ color: 'white' }}>
             dUSD AMO Supply
           </Typography>
           <Box className="aspect-[2/1]">
@@ -93,20 +94,20 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.1)" />
               <XAxis
                 dataKey="date"
-                stroke="rgba(255, 255, 255, 0.6)"
+                stroke="white"
                 fontSize={12}
                 tickLine={false}
                 axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                 tickFormatter={formatDate}
-                tick={{ fill: "rgba(255, 255, 255, 0.87)" }}
+                tick={{ fill: "white" }}
               />
               <YAxis
-                stroke="rgba(255, 255, 255, 0.6)"
+                stroke="white"
                 fontSize={12}
                 tickLine={false}
                 axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                 tickFormatter={formatCurrency}
-                tick={{ fill: "rgba(255, 255, 255, 0.87)" }}
+                tick={{ fill: "white" }}
               />
               <Tooltip
                 cursor={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
@@ -114,10 +115,11 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                   backgroundColor: 'rgba(19, 17, 28, 0.95)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '8px',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  color: 'white'
                 }}
-                labelStyle={{ color: 'rgba(255, 255, 255, 0.87)' }}
-                itemStyle={{ color: 'rgba(255, 255, 255, 0.87)' }}
+                labelStyle={{ color: 'white' }}
+                itemStyle={{ color: 'white' }}
                 formatter={(value: any) => formatCurrency(value as number)}
                 labelFormatter={formatDate}
               />
