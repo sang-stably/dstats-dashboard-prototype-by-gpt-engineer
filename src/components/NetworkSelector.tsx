@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import { KeyboardArrowDown } from '@mui/icons-material';
 
 const NetworkSelector = () => {
   return (
@@ -30,7 +29,6 @@ const NetworkSelector = () => {
         style={{ width: '20px', height: '20px' }}
       />
       <span style={{ fontSize: '0.875rem', fontWeight: 500 }}>Fraxtal</span>
-      <KeyboardArrowDown sx={{ width: 16, height: 16, opacity: 0.5 }} />
     </Button>
   );
 };
