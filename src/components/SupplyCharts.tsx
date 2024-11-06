@@ -26,7 +26,12 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
             dUSD Circulating Supply
           </Typography>
           <Box className="aspect-[2/1]">
-            <AreaChart data={data} width={500} height={300} style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+            <AreaChart 
+              data={data} 
+              width={500} 
+              height={300} 
+              style={{ backgroundColor: 'rgba(19, 17, 28, 0.95)' }}
+            >
               <defs>
                 <linearGradient id="colorCirculating" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#8702ff" stopOpacity={0.3}/>
@@ -84,7 +89,12 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
             dUSD AMO Supply
           </Typography>
           <Box className="aspect-[2/1]">
-            <AreaChart data={data} width={500} height={300} style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+            <AreaChart 
+              data={data} 
+              width={500} 
+              height={300} 
+              style={{ backgroundColor: 'rgba(19, 17, 28, 0.95)' }}
+            >
               <defs>
                 <linearGradient id="colorAmo" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#8702ff" stopOpacity={0.3}/>
