@@ -1,6 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
-import { Area, AreaChart, XAxis, YAxis } from "recharts";
+import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Area, AreaChart, XAxis, YAxis, Tooltip } from "recharts";
 import { SupplyDataPoint } from "@/lib/types";
 
 interface SupplyChartsProps {
@@ -20,21 +19,14 @@ const formatDate = (date: string) => {
 
 const SupplyCharts = ({ data }: SupplyChartsProps) => {
   return (
-    <div className="grid grid-cols-2 gap-6 mt-6">
-      <div className="glass-card rounded-xl">
-        <CardHeader className="text-center">
-          <CardTitle>dUSD Circulating Supply</CardTitle>
-        </CardHeader>
+    <Box className="grid grid-cols-2 gap-6 mt-6">
+      <Card className="glass-card rounded-xl">
         <CardContent>
-          <ChartContainer
-            className="aspect-[2/1]"
-            config={{
-              area: {
-                color: "#8702ff",
-              },
-            }}
-          >
-            <AreaChart data={data}>
+          <Typography variant="h6" align="center" gutterBottom>
+            dUSD Circulating Supply
+          </Typography>
+          <Box className="aspect-[2/1]">
+            <AreaChart data={data} width={500} height={300}>
               <defs>
                 <linearGradient id="colorCirculating" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#8702ff" stopOpacity={0.3}/>
@@ -60,16 +52,18 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                 tick={{ fill: "#ffffff" }}
                 style={{ fill: "#ffffff" }}
               />
-              <ChartTooltip 
+              <Tooltip
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     return (
-                      <div className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <p className="text-sm font-medium text-white">{formatDate(payload[0].payload.date)}</p>
-                        <p className="text-sm text-white">
+                      <Box className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
+                        <Typography variant="body2" className="text-white">
+                          {formatDate(payload[0].payload.date)}
+                        </Typography>
+                        <Typography variant="body2" className="text-white">
                           {formatCurrency(payload[0].value as number)}
-                        </p>
-                      </div>
+                        </Typography>
+                      </Box>
                     );
                   }
                   return null;
@@ -84,24 +78,17 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                 fill="url(#colorCirculating)"
               />
             </AreaChart>
-          </ChartContainer>
+          </Box>
         </CardContent>
-      </div>
+      </Card>
 
-      <div className="glass-card rounded-xl">
-        <CardHeader className="text-center">
-          <CardTitle>dUSD AMO Supply</CardTitle>
-        </CardHeader>
+      <Card className="glass-card rounded-xl">
         <CardContent>
-          <ChartContainer
-            className="aspect-[2/1]"
-            config={{
-              area: {
-                color: "#8702ff",
-              },
-            }}
-          >
-            <AreaChart data={data}>
+          <Typography variant="h6" align="center" gutterBottom>
+            dUSD AMO Supply
+          </Typography>
+          <Box className="aspect-[2/1]">
+            <AreaChart data={data} width={500} height={300}>
               <defs>
                 <linearGradient id="colorAmo" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#8702ff" stopOpacity={0.3}/>
@@ -127,16 +114,18 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                 tick={{ fill: "#ffffff" }}
                 style={{ fill: "#ffffff" }}
               />
-              <ChartTooltip 
+              <Tooltip
                 content={({ active, payload }) => {
                   if (active && payload && payload.length) {
                     return (
-                      <div className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
-                        <p className="text-sm font-medium text-white">{formatDate(payload[0].payload.date)}</p>
-                        <p className="text-sm text-white">
+                      <Box className="rounded-lg border border-border/50 bg-background p-2 shadow-xl">
+                        <Typography variant="body2" className="text-white">
+                          {formatDate(payload[0].payload.date)}
+                        </Typography>
+                        <Typography variant="body2" className="text-white">
                           {formatCurrency(payload[0].value as number)}
-                        </p>
-                      </div>
+                        </Typography>
+                      </Box>
                     );
                   }
                   return null;
@@ -151,10 +140,10 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                 fill="url(#colorAmo)"
               />
             </AreaChart>
-          </ChartContainer>
+          </Box>
         </CardContent>
-      </div>
-    </div>
+      </Card>
+    </Box>
   );
 };
 
