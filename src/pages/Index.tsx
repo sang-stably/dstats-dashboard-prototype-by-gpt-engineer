@@ -78,23 +78,20 @@ const Index = () => {
     <Container maxWidth="xl" sx={{ py: { xs: 2, sm: 4 }, px: { xs: 2, sm: 3, md: 6 } }}>
       <Box sx={{ 
         mb: { xs: 2, sm: 4 }, 
-        display: 'flex', 
-        flexDirection: { xs: 'column', sm: 'row' },
-        gap: { xs: 2, sm: 0 },
+        display: 'flex',
         justifyContent: 'space-between', 
-        alignItems: { xs: 'stretch', sm: 'center' }
+        alignItems: 'center'
       }}>
-        <Box sx={{ 
-          display: 'flex', 
-          flexDirection: { xs: 'column', sm: 'row' },
-          alignItems: { xs: 'flex-start', sm: 'center' }, 
-          gap: { xs: 2, sm: 4 }
-        }}>
-          <Typography variant="h5" component="h1" fontWeight="bold">
-            dSTATS Dashboard
-          </Typography>
+        <Typography variant="h5" component="h1" fontWeight="bold">
+          dSTATS Dashboard
+        </Typography>
+        <Box sx={{ display: { sm: 'none' } }}>
           <NavMenu />
         </Box>
+      </Box>
+
+      <Box sx={{ display: { xs: 'none', sm: 'flex' }, mb: 4, alignItems: 'center', gap: 4 }}>
+        <NavMenu />
         <NetworkSelector />
       </Box>
 

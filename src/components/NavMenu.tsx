@@ -2,6 +2,7 @@ import { Box, Link as MuiLink, IconButton, Drawer } from '@mui/material';
 import { Link, useLocation } from "react-router-dom";
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
+import NetworkSelector from './NetworkSelector';
 
 const NavMenu = () => {
   const location = useLocation();
@@ -58,7 +59,6 @@ const NavMenu = () => {
           aria-label="open drawer"
           edge="start"
           onClick={handleDrawerToggle}
-          sx={{ mr: 2 }}
         >
           <Menu />
         </IconButton>
@@ -68,7 +68,7 @@ const NavMenu = () => {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
@@ -77,20 +77,24 @@ const NavMenu = () => {
               width: 240,
               backgroundColor: '#13111C',
               borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-              padding: 2
+              padding: 2,
+              display: 'flex',
+              flexDirection: 'column'
             },
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, flexGrow: 1 }}>
             {menuItems}
+          </Box>
+          <Box sx={{ mt: 'auto', pt: 2, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+            <NetworkSelector />
           </Box>
         </Drawer>
       </Box>
       <Box sx={{ 
         display: { xs: 'none', sm: 'flex' },
-        flexDirection: { xs: 'column', sm: 'row' },
-        gap: { xs: 2, sm: 6 },
-        width: { xs: '100%', sm: 'auto' }
+        flexDirection: 'row',
+        gap: 6,
       }}>
         {menuItems}
       </Box>
