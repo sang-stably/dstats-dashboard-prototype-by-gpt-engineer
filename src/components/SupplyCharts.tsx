@@ -21,16 +21,20 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
   return (
     <Box className="grid grid-cols-2 gap-6 mt-6">
       <Card className="glass-card rounded-xl">
-        <CardContent>
-          <Typography variant="h6" align="center" gutterBottom sx={{ color: 'white' }}>
+        <CardContent className="bg-[rgba(19,17,28,0.95)]">
+          <Typography 
+            variant="h6" 
+            align="center" 
+            gutterBottom 
+            className="text-white mb-4"
+          >
             dUSD Circulating Supply
           </Typography>
           <Box className="aspect-[2/1]">
             <AreaChart 
               data={data} 
               width={500} 
-              height={300} 
-              style={{ backgroundColor: 'rgba(19, 17, 28, 0.95)' }}
+              height={300}
             >
               <defs>
                 <linearGradient id="colorCirculating" x1="0" y1="0" x2="0" y2="1">
@@ -83,16 +87,20 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
       </Card>
 
       <Card className="glass-card rounded-xl">
-        <CardContent>
-          <Typography variant="h6" align="center" gutterBottom sx={{ color: 'white' }}>
+        <CardContent className="bg-[rgba(19,17,28,0.95)]">
+          <Typography 
+            variant="h6" 
+            align="center" 
+            gutterBottom 
+            className="text-white mb-4"
+          >
             dUSD AMO Supply
           </Typography>
           <Box className="aspect-[2/1]">
             <AreaChart 
               data={data} 
               width={500} 
-              height={300} 
-              style={{ backgroundColor: 'rgba(19, 17, 28, 0.95)' }}
+              height={300}
             >
               <defs>
                 <linearGradient id="colorAmo" x1="0" y1="0" x2="0" y2="1">
