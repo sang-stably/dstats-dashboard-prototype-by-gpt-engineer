@@ -21,11 +21,8 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
   return (
     <Box className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
       <Card 
+        className="glass-card"
         sx={{ 
-          background: 'rgba(255, 255, 255, 0.05)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          transition: 'all 0.3s ease',
           borderRadius: '12px',
           '&:hover': {
             transform: 'translateY(-2px)',
@@ -98,11 +95,8 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
       </Card>
 
       <Card 
+        className="glass-card"
         sx={{ 
-          background: 'rgba(255, 255, 255, 0.05)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          transition: 'all 0.3s ease',
           borderRadius: '12px',
           '&:hover': {
             transform: 'translateY(-2px)',
