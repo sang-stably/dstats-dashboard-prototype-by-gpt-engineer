@@ -18,7 +18,7 @@ const CollateralPieChart = () => {
   }
 
   const total = data.collateralDistribution.reduce((sum, item) => sum + item.value, 0);
-  
+
   return (
     <Card sx={{
       background: 'rgba(255, 255, 255, 0.05)',
