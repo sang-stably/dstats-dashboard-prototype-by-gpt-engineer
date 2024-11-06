@@ -1,8 +1,6 @@
 import { DashboardData } from './types';
 
-// Simulated API call - replace with real API endpoint later
 export const fetchDashboardData = async (): Promise<DashboardData> => {
-  // Simulating API latency
   await new Promise(resolve => setTimeout(resolve, 1000));
   
   return {
@@ -18,37 +16,37 @@ export const fetchDashboardData = async (): Promise<DashboardData> => {
     },
     supplyData: [
       { date: '2024-11-01', circulatingSupply: 0, amoSupply: 0 },
-      { date: '2024-11-08', circulatingSupply: 2500, amoSupply: 1250 },
-      { date: '2024-11-15', circulatingSupply: 8000, amoSupply: 4000 },
-      { date: '2024-11-22', circulatingSupply: 15000, amoSupply: 7500 },
-      { date: '2024-12-01', circulatingSupply: 45000, amoSupply: 22500 },
-      { date: '2024-12-08', circulatingSupply: 120000, amoSupply: 60000 },
-      { date: '2024-12-15', circulatingSupply: 280000, amoSupply: 140000 },
-      { date: '2024-12-22', circulatingSupply: 450000, amoSupply: 225000 },
-      { date: '2025-01-01', circulatingSupply: 850000, amoSupply: 425000 },
-      { date: '2025-01-08', circulatingSupply: 1200000, amoSupply: 600000 },
-      { date: '2025-01-15', circulatingSupply: 980000, amoSupply: 490000 }, // Market correction
-      { date: '2025-01-22', circulatingSupply: 1150000, amoSupply: 575000 },
-      { date: '2025-02-01', circulatingSupply: 2100000, amoSupply: 1050000 },
-      { date: '2025-02-08', circulatingSupply: 3400000, amoSupply: 1700000 },
-      { date: '2025-02-15', circulatingSupply: 4800000, amoSupply: 2400000 },
-      { date: '2025-02-22', circulatingSupply: 4200000, amoSupply: 2100000 }, // Market correction
-      { date: '2025-03-01', circulatingSupply: 4900000, amoSupply: 2450000 },
-      { date: '2025-03-08', circulatingSupply: 6200000, amoSupply: 3100000 },
-      { date: '2025-03-15', circulatingSupply: 7800000, amoSupply: 3900000 },
-      { date: '2025-03-22', circulatingSupply: 7200000, amoSupply: 3600000 }, // Small dip
-      { date: '2025-04-01', circulatingSupply: 8500000, amoSupply: 4250000 },
-      { date: '2025-04-08', circulatingSupply: 10200000, amoSupply: 5100000 },
-      { date: '2025-04-15', circulatingSupply: 11800000, amoSupply: 5900000 },
-      { date: '2025-04-22', circulatingSupply: 11200000, amoSupply: 5600000 }, // Small correction
-      { date: '2025-05-01', circulatingSupply: 12500000, amoSupply: 6250000 },
-      { date: '2025-05-08', circulatingSupply: 13400000, amoSupply: 6700000 },
-      { date: '2025-05-15', circulatingSupply: 13100000, amoSupply: 6550000 }, // Minor pullback
-      { date: '2025-05-22', circulatingSupply: 13800000, amoSupply: 6900000 },
-      { date: '2025-06-01', circulatingSupply: 14300000, amoSupply: 7150000 },
-      { date: '2025-06-08', circulatingSupply: 14800000, amoSupply: 7400000 },
-      { date: '2025-06-15', circulatingSupply: 15000000, amoSupply: 7500000 },
-      { date: '2025-06-22', circulatingSupply: 14700000, amoSupply: 7350000 }, // Final consolidation
+      { date: '2024-11-08', circulatingSupply: 3500, amoSupply: 1750 },
+      { date: '2024-11-15', circulatingSupply: 7800, amoSupply: 3900 },
+      { date: '2024-11-22', circulatingSupply: 16500, amoSupply: 8250 },
+      { date: '2024-12-01', circulatingSupply: 42000, amoSupply: 21000 },
+      { date: '2024-12-08', circulatingSupply: 125000, amoSupply: 62500 },
+      { date: '2024-12-15', circulatingSupply: 275000, amoSupply: 137500 },
+      { date: '2024-12-22', circulatingSupply: 460000, amoSupply: 230000 },
+      { date: '2025-01-01', circulatingSupply: 820000, amoSupply: 410000 },
+      { date: '2025-01-08', circulatingSupply: 1150000, amoSupply: 575000 },
+      { date: '2025-01-15', circulatingSupply: 1050000, amoSupply: 525000 }, // Smoother dip
+      { date: '2025-01-22', circulatingSupply: 1180000, amoSupply: 590000 },
+      { date: '2025-02-01', circulatingSupply: 2000000, amoSupply: 1000000 },
+      { date: '2025-02-08', circulatingSupply: 3200000, amoSupply: 1600000 },
+      { date: '2025-02-15', circulatingSupply: 4500000, amoSupply: 2250000 },
+      { date: '2025-02-22', circulatingSupply: 4300000, amoSupply: 2150000 }, // Smoother correction
+      { date: '2025-03-01', circulatingSupply: 4800000, amoSupply: 2400000 },
+      { date: '2025-03-08', circulatingSupply: 6000000, amoSupply: 3000000 },
+      { date: '2025-03-15', circulatingSupply: 7500000, amoSupply: 3750000 },
+      { date: '2025-03-22', circulatingSupply: 7300000, amoSupply: 3650000 }, // Gentler dip
+      { date: '2025-04-01', circulatingSupply: 8200000, amoSupply: 4100000 },
+      { date: '2025-04-08', circulatingSupply: 10000000, amoSupply: 5000000 },
+      { date: '2025-04-15', circulatingSupply: 11500000, amoSupply: 5750000 },
+      { date: '2025-04-22', circulatingSupply: 11300000, amoSupply: 5650000 }, // Smoother correction
+      { date: '2025-05-01', circulatingSupply: 12300000, amoSupply: 6150000 },
+      { date: '2025-05-08', circulatingSupply: 13200000, amoSupply: 6600000 },
+      { date: '2025-05-15', circulatingSupply: 13000000, amoSupply: 6500000 }, // Gentler pullback
+      { date: '2025-05-22', circulatingSupply: 13600000, amoSupply: 6800000 },
+      { date: '2025-06-01', circulatingSupply: 14200000, amoSupply: 7100000 },
+      { date: '2025-06-08', circulatingSupply: 14600000, amoSupply: 7300000 },
+      { date: '2025-06-15', circulatingSupply: 14900000, amoSupply: 7450000 },
+      { date: '2025-06-22', circulatingSupply: 15100000, amoSupply: 7550000 },
       { date: '2025-06-30', circulatingSupply: 15234567, amoSupply: 7617283 },
     ],
     collateralDistribution: [
