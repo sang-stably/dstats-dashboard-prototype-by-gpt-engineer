@@ -21,10 +21,13 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
   return (
     <Box className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
       <Card 
-        className="glass-card"
         sx={{ 
+          height: '100%',
+          background: 'rgba(255, 255, 255, 0.05)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          transition: 'all 0.3s ease',
           borderRadius: '12px',
-          border: '1px solid rgba(255, 255, 255, 0.1)', // Added border styling
           '&:hover': {
             transform: 'translateY(-2px)',
             borderColor: 'rgba(135, 2, 255, 0.3)',
@@ -32,7 +35,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
           }
         }}
       >
-        <CardContent className="bg-[rgba(19,17,28,0.95)]">
+        <CardContent>
           <Typography 
             variant="h6" 
             align="center" 
@@ -96,10 +99,13 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
       </Card>
 
       <Card 
-        className="glass-card"
         sx={{ 
+          height: '100%',
+          background: 'rgba(255, 255, 255, 0.05)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          transition: 'all 0.3s ease',
           borderRadius: '12px',
-          border: '1px solid rgba(255, 255, 255, 0.1)', // Added border styling
           '&:hover': {
             transform: 'translateY(-2px)',
             borderColor: 'rgba(135, 2, 255, 0.3)',
@@ -107,7 +113,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
           }
         }}
       >
-        <CardContent className="bg-[rgba(19,17,28,0.95)]">
+        <CardContent>
           <Typography 
             variant="h6" 
             align="center" 
