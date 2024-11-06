@@ -77,9 +77,18 @@ const CollateralPieChart = () => {
               </Pie>
               <Tooltip
                 formatter={(value: number) => formatCurrency(value)}
-                contentStyle={tooltipStyles}
-                itemStyle={{ fontSize: '11px' }}
-                labelStyle={{ fontSize: '11px' }}
+                contentStyle={{
+                  ...tooltipStyles,
+                  color: 'white'  // Explicitly set text color to white
+                }}
+                itemStyle={{ 
+                  fontSize: '11px', 
+                  color: 'white'  // Ensure item text is white 
+                }}
+                labelStyle={{ 
+                  fontSize: '11px', 
+                  color: 'white'  // Ensure label text is white
+                }}
               />
               <Legend formatter={(value) => <span style={{ color: 'white', fontSize: '12px' }}>{value}</span>} />
             </PieChart>
