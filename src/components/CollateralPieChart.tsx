@@ -80,10 +80,13 @@ const CollateralPieChart = () => {
                   backgroundColor: 'rgba(19, 17, 28, 0.95)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '8px',
-                  color: 'white'
+                  color: 'white',
+                  fontSize: '12px'
                 }}
+                itemStyle={{ fontSize: '11px' }}
+                labelStyle={{ fontSize: '11px' }}
               />
-              <Legend formatter={(value) => <span style={{ color: 'white' }}>{value}</span>} />
+              <Legend formatter={(value) => <span style={{ color: 'white', fontSize: '12px' }}>{value}</span>} />
             </PieChart>
           </ResponsiveContainer>
         </Box>
