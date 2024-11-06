@@ -75,9 +75,21 @@ const Index = () => {
   const metrics = getMetricProps(data.metrics);
 
   return (
-    <Container maxWidth="xl" sx={{ py: 4, px: { xs: 3, sm: 4, md: 6 } }}>
-      <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+    <Container maxWidth="xl" sx={{ py: { xs: 2, sm: 4 }, px: { xs: 2, sm: 3, md: 6 } }}>
+      <Box sx={{ 
+        mb: { xs: 2, sm: 4 }, 
+        display: 'flex', 
+        flexDirection: { xs: 'column', sm: 'row' },
+        gap: { xs: 2, sm: 0 },
+        justifyContent: 'space-between', 
+        alignItems: { xs: 'stretch', sm: 'center' }
+      }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { xs: 'flex-start', sm: 'center' }, 
+          gap: { xs: 2, sm: 4 }
+        }}>
           <Typography variant="h5" component="h1" fontWeight="bold">
             dSTATS Dashboard
           </Typography>
@@ -86,9 +98,9 @@ const Index = () => {
         <NetworkSelector />
       </Box>
 
-      <Grid container spacing={3}>
+      <Grid container spacing={{ xs: 2, sm: 3 }}>
         <Grid item xs={12}>
-          <Grid container spacing={3}>
+          <Grid container spacing={{ xs: 2, sm: 3 }}>
             {metrics.slice(0, 4).map((metric, index) => (
               <Grid item xs={12} sm={6} md={3} key={`row1-${index}`}>
                 <MetricCard {...metric} />
@@ -98,7 +110,7 @@ const Index = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <Grid container spacing={3}>
+          <Grid container spacing={{ xs: 2, sm: 3 }}>
             {metrics.slice(4, 8).map((metric, index) => (
               <Grid item xs={12} sm={6} md={3} key={`row2-${index}`}>
                 <MetricCard {...metric} />

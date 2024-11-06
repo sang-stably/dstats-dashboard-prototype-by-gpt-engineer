@@ -12,7 +12,12 @@ const NavMenu = () => {
   ];
 
   return (
-    <Box sx={{ display: 'flex', gap: 6 }}>
+    <Box sx={{ 
+      display: 'flex', 
+      flexDirection: { xs: 'column', sm: 'row' },
+      gap: { xs: 2, sm: 6 },
+      width: { xs: '100%', sm: 'auto' }
+    }}>
       {items.map((item) => (
         <Link 
           key={item.path} 
@@ -27,6 +32,7 @@ const NavMenu = () => {
               color: location.pathname === item.path ? '#8702ff' : '#ffffff',
               transition: 'color 0.2s',
               cursor: 'pointer',
+              display: 'block',
               '&:hover': {
                 color: '#8702ff',
                 textDecoration: 'none'

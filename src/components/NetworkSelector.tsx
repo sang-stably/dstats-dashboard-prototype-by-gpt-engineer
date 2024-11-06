@@ -15,6 +15,8 @@ const NetworkSelector = () => {
         gap: '8px',
         padding: '8px 16px',
         color: 'white',
+        width: { xs: '100%', sm: 'auto' },
+        justifyContent: { xs: 'center', sm: 'flex-start' },
         '&:hover': {
           background: 'rgba(255, 255, 255, 0.1)',
           borderColor: 'rgba(135, 2, 255, 0.3)',

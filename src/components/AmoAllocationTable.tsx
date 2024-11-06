@@ -68,31 +68,31 @@ const AmoAllocationTable = () => {
         boxShadow: '0 8px 32px rgba(135, 2, 255, 0.15)'
       }
     }}>
-      <Box sx={{ p: 3, textAlign: 'center' }}>
+      <Box sx={{ p: { xs: 2, sm: 3 }, textAlign: 'center' }}>
         <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
           AMO dUSD Allocation
         </Typography>
       </Box>
-      <CardContent>
+      <CardContent sx={{ overflowX: 'auto' }}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ color: 'white' }}>Protocol</TableCell>
-              <TableCell sx={{ color: 'white' }}>Pool</TableCell>
-              <TableCell sx={{ color: 'white' }}>Contract</TableCell>
-              <TableCell sx={{ color: 'white' }}>AMO Type</TableCell>
-              <TableCell sx={{ color: 'white' }}>Value</TableCell>
+              <TableCell sx={{ color: 'white', whiteSpace: 'nowrap' }}>Protocol</TableCell>
+              <TableCell sx={{ color: 'white', whiteSpace: 'nowrap' }}>Pool</TableCell>
+              <TableCell sx={{ color: 'white', whiteSpace: 'nowrap' }}>Contract</TableCell>
+              <TableCell sx={{ color: 'white', whiteSpace: 'nowrap' }}>AMO Type</TableCell>
+              <TableCell sx={{ color: 'white', whiteSpace: 'nowrap' }}>Value</TableCell>
               <TableCell sx={{ color: 'white' }} align="right">Link</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {amoData.map((row, index) => (
               <TableRow key={index}>
-                <TableCell sx={{ color: 'white' }}>{row.protocol}</TableCell>
-                <TableCell sx={{ color: 'white' }}>{row.pool}</TableCell>
-                <TableCell sx={{ color: 'white', fontFamily: 'monospace' }}>{row.contract}</TableCell>
-                <TableCell sx={{ color: 'white' }}>{row.amoType}</TableCell>
-                <TableCell sx={{ color: 'white' }}>{formatCurrency(row.value)}</TableCell>
+                <TableCell sx={{ color: 'white', whiteSpace: 'nowrap' }}>{row.protocol}</TableCell>
+                <TableCell sx={{ color: 'white', whiteSpace: 'nowrap' }}>{row.pool}</TableCell>
+                <TableCell sx={{ color: 'white', fontFamily: 'monospace', whiteSpace: 'nowrap' }}>{row.contract}</TableCell>
+                <TableCell sx={{ color: 'white', whiteSpace: 'nowrap' }}>{row.amoType}</TableCell>
+                <TableCell sx={{ color: 'white', whiteSpace: 'nowrap' }}>{formatCurrency(row.value)}</TableCell>
                 <TableCell align="right">
                   <Link
                     href={row.link}
