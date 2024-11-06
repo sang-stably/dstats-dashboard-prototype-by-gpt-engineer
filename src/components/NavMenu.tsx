@@ -40,6 +40,7 @@ const NavMenu = () => {
               py: { xs: 1, sm: 0 },
               px: { sm: 1.5, md: 2 },
               whiteSpace: 'nowrap',
+              textAlign: 'left', // Align text to the left
               '&:hover': {
                 color: '#8702ff',
                 textDecoration: 'none'
@@ -85,7 +86,13 @@ const NavMenu = () => {
             },
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, flexGrow: 1 }}>
+          <Box sx={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: 1, 
+            flexGrow: 1,
+            alignItems: 'flex-start' // Align items to the left
+          }}>
             {menuItems}
           </Box>
           <Box sx={{ mt: 'auto', pt: 2, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
