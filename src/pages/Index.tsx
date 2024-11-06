@@ -132,7 +132,9 @@ const Index = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <SupplyCharts data={data.supplyData} />
+          <Box className="glass-card p-4 rounded-xl">
+            <SupplyCharts data={data.supplyData} />
+          </Box>
         </Grid>
       </Grid>
     </Container>
