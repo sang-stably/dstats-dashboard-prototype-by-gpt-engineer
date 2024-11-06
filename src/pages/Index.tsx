@@ -80,7 +80,8 @@ const Index = () => {
         mb: { xs: 2, sm: 4 }, 
         display: 'flex',
         alignItems: 'center',
-        gap: 2
+        gap: 2,
+        position: 'relative'
       }}>
         <Typography variant="h5" component="h1" fontWeight="bold">
           dSTATS Dashboard
@@ -97,7 +98,13 @@ const Index = () => {
           <Box sx={{ display: { xs: 'none', sm: 'block' }, marginLeft: 'auto' }}>
             <NetworkSelector />
           </Box>
-          <Box sx={{ display: { sm: 'none' } }}>
+          <Box sx={{ 
+            display: { sm: 'none' }, 
+            position: 'absolute',
+            right: 0,
+            top: '50%',
+            transform: 'translateY(-50%)'
+          }}>
             <NavMenu />
           </Box>
         </Box>
