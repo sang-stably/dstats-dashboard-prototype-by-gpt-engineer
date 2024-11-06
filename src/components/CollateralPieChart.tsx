@@ -14,7 +14,7 @@ const CollateralPieChart = () => {
   });
 
   if (isLoading || !data) {
-    return <Box>Loading...</Box>;
+    return <Box sx={{ color: 'white' }}>Loading...</Box>;
   }
 
   const total = data.collateralDistribution.reduce((sum, item) => sum + item.value, 0);
@@ -34,7 +34,7 @@ const CollateralPieChart = () => {
       }
     }}>
       <Box sx={{ p: 3, textAlign: 'center' }}>
-        <Typography variant="h6" component="h2">
+        <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
           dUSD Collateral Distribution
         </Typography>
       </Box>
@@ -47,6 +47,7 @@ const CollateralPieChart = () => {
                 y="50%"
                 textAnchor="middle"
                 dominantBaseline="middle"
+                fill="white"
               >
                 <tspan 
                   x="50%" 
@@ -75,8 +76,14 @@ const CollateralPieChart = () => {
               </Pie>
               <Tooltip
                 formatter={(value: number) => formatCurrency(value)}
+                contentStyle={{
+                  backgroundColor: 'rgba(19, 17, 28, 0.95)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '8px',
+                  color: 'white'
+                }}
               />
-              <Legend />
+              <Legend formatter={(value) => <span style={{ color: 'white' }}>{value}</span>} />
             </PieChart>
           </ResponsiveContainer>
         </Box>

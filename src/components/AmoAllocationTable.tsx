@@ -69,7 +69,7 @@ const AmoAllocationTable = () => {
       }
     }}>
       <Box sx={{ p: 3, textAlign: 'center' }}>
-        <Typography variant="h6" component="h2">
+        <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
           AMO dUSD Allocation
         </Typography>
       </Box>
@@ -77,22 +77,22 @@ const AmoAllocationTable = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Protocol</TableCell>
-              <TableCell>Pool</TableCell>
-              <TableCell>Contract</TableCell>
-              <TableCell>AMO Type</TableCell>
-              <TableCell>Value</TableCell>
-              <TableCell align="right">Link</TableCell>
+              <TableCell sx={{ color: 'white' }}>Protocol</TableCell>
+              <TableCell sx={{ color: 'white' }}>Pool</TableCell>
+              <TableCell sx={{ color: 'white' }}>Contract</TableCell>
+              <TableCell sx={{ color: 'white' }}>AMO Type</TableCell>
+              <TableCell sx={{ color: 'white' }}>Value</TableCell>
+              <TableCell sx={{ color: 'white' }} align="right">Link</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {amoData.map((row, index) => (
               <TableRow key={index}>
-                <TableCell>{row.protocol}</TableCell>
-                <TableCell>{row.pool}</TableCell>
-                <TableCell sx={{ fontFamily: 'monospace' }}>{row.contract}</TableCell>
-                <TableCell>{row.amoType}</TableCell>
-                <TableCell>{formatCurrency(row.value)}</TableCell>
+                <TableCell sx={{ color: 'white' }}>{row.protocol}</TableCell>
+                <TableCell sx={{ color: 'white' }}>{row.pool}</TableCell>
+                <TableCell sx={{ color: 'white', fontFamily: 'monospace' }}>{row.contract}</TableCell>
+                <TableCell sx={{ color: 'white' }}>{row.amoType}</TableCell>
+                <TableCell sx={{ color: 'white' }}>{formatCurrency(row.value)}</TableCell>
                 <TableCell align="right">
                   <Link
                     href={row.link}

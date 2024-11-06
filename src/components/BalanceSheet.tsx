@@ -39,49 +39,49 @@ const BalanceSheet = () => {
       }
     }}>
       <Box sx={{ p: 3, textAlign: 'center' }}>
-        <Typography variant="h6" component="h2">
+        <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
           dUSD Balance Sheet
         </Typography>
       </Box>
       <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         <Box>
-          <Typography variant="subtitle1" fontWeight="600" mb={2}>
+          <Typography variant="subtitle1" fontWeight="600" mb={2} sx={{ color: 'white' }}>
             Assets
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             {assets.map((item) => (
               <Box key={item.name} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography color="text.secondary">{item.name}</Typography>
-                <Typography fontFamily="monospace">{formatCurrency(item.value)}</Typography>
+                <Typography sx={{ color: 'rgba(255, 255, 255, 0.87)' }}>{item.name}</Typography>
+                <Typography fontFamily="monospace" sx={{ color: 'white' }}>{formatCurrency(item.value)}</Typography>
               </Box>
             ))}
             <Divider sx={{ my: 2, borderColor: 'rgba(255, 255, 255, 0.1)' }} />
             <Box sx={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
-              <Typography>Total Assets</Typography>
-              <Typography fontFamily="monospace">{formatCurrency(totalAssets)}</Typography>
+              <Typography sx={{ color: 'white' }}>Total Assets</Typography>
+              <Typography fontFamily="monospace" sx={{ color: 'white' }}>{formatCurrency(totalAssets)}</Typography>
             </Box>
           </Box>
         </Box>
         
         <Box>
-          <Typography variant="subtitle1" fontWeight="600" mb={2}>
+          <Typography variant="subtitle1" fontWeight="600" mb={2} sx={{ color: 'white' }}>
             Liabilities & Equity
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             {liabilities.map((item) => (
               <Box key={item.name} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography color="text.secondary">{item.name}</Typography>
-                <Typography fontFamily="monospace">{formatCurrency(item.value)}</Typography>
+                <Typography sx={{ color: 'rgba(255, 255, 255, 0.87)' }}>{item.name}</Typography>
+                <Typography fontFamily="monospace" sx={{ color: 'white' }}>{formatCurrency(item.value)}</Typography>
               </Box>
             ))}
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography color="text.secondary">Protocol Equity</Typography>
-              <Typography fontFamily="monospace">{formatCurrency(equity)}</Typography>
+              <Typography sx={{ color: 'rgba(255, 255, 255, 0.87)' }}>Protocol Equity</Typography>
+              <Typography fontFamily="monospace" sx={{ color: 'white' }}>{formatCurrency(equity)}</Typography>
             </Box>
             <Divider sx={{ my: 2, borderColor: 'rgba(255, 255, 255, 0.1)' }} />
             <Box sx={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
-              <Typography>Total L&E</Typography>
-              <Typography fontFamily="monospace">{formatCurrency(totalAssets)}</Typography>
+              <Typography sx={{ color: 'white' }}>Total L&E</Typography>
+              <Typography fontFamily="monospace" sx={{ color: 'white' }}>{formatCurrency(totalAssets)}</Typography>
             </Box>
           </Box>
         </Box>
