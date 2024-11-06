@@ -2,6 +2,7 @@ import { Box, Card, CardContent, Typography } from '@mui/material';
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 import { useQuery } from '@tanstack/react-query';
 import { fetchDashboardData } from '@/lib/api';
+import { commonTooltipStyle } from '@/lib/chartStyles';
 
 const formatCurrency = (value: number) => {
   return `${(value / 1000000).toFixed(2)}M`;
@@ -75,16 +76,9 @@ const CollateralPieChart = () => {
                 ))}
               </Pie>
               <Tooltip
+                cursor={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
+                {...commonTooltipStyle}
                 formatter={(value: number) => formatCurrency(value)}
-                contentStyle={{
-                  backgroundColor: 'rgba(19, 17, 28, 0.95)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  borderRadius: '8px',
-                  color: 'white',
-                  fontSize: '12px'
-                }}
-                itemStyle={{ fontSize: '11px' }}
-                labelStyle={{ fontSize: '11px' }}
               />
               <Legend formatter={(value) => <span style={{ color: 'white', fontSize: '12px' }}>{value}</span>} />
             </PieChart>
