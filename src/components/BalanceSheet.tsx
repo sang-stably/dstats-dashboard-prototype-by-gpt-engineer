@@ -1,84 +1,89 @@
-import { Box, Card, CardContent, Typography } from '@mui/material';
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { useQuery } from '@tanstack/react-query';
-import { fetchDashboardData } from '@/lib/api';
-import { commonTooltipStyle, commonAxisStyle } from '@/lib/chartStyles';
-
-const formatCurrency = (value: number) => {
-  return `$${(value / 1000000).toFixed(2)}M`;
-};
-
-const formatDate = (date: string) => {
-  return new Date(date).toLocaleDateString('en-US', { 
-    month: 'short',
-    day: 'numeric'
-  });
-};
+import { Box, Card, CardContent, Typography, Divider } from '@mui/material';
 
 const BalanceSheet = () => {
-  const { data, isLoading } = useQuery({
-    queryKey: ['dashboardData'],
-    queryFn: fetchDashboardData
-  });
+  const assets = [
+    { name: 'sFRAX', value: 8500000 },
+    { name: 'sDAI', value: 4200000 },
+    { name: 'sUSDe', value: 2534567 },
+  ];
 
-  if (isLoading || !data) {
-    return <Box sx={{ color: 'white' }}>Loading...</Box>;
-  }
+  const liabilities = [
+    { name: 'Circulating dUSD', value: 15234567 },
+  ];
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(value);
+  };
+
+  const totalAssets = assets.reduce((sum, item) => sum + item.value, 0);
+  const totalLiabilities = liabilities.reduce((sum, item) => sum + item.value, 0);
+  const equity = totalAssets - totalLiabilities;
 
   return (
-    <Card className="glass-card">
-      <CardContent>
-        <Typography variant="h6" align="center" gutterBottom className="text-white mb-4">
-          Balance Sheet
+    <Card sx={{
+      background: 'rgba(255, 255, 255, 0.05)',
+      backdropFilter: 'blur(10px)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      transition: 'all 0.3s ease',
+      borderRadius: '12px',
+      height: '100%',
+      '&:hover': {
+        transform: 'translateY(-2px)',
+        borderColor: 'rgba(135, 2, 255, 0.3)',
+        boxShadow: '0 8px 32px rgba(135, 2, 255, 0.15)'
+      }
+    }}>
+      <Box sx={{ p: 3, textAlign: 'center' }}>
+        <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
+          dUSD Balance Sheet
         </Typography>
-        <Box className="w-full aspect-[2/1]">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data.balanceSheetData}>
-              <defs>
-                <linearGradient id="colorAssets" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8702ff" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
-                </linearGradient>
-                <linearGradient id="colorLiabilities" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#a64dff" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#a64dff" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <XAxis
-                {...commonAxisStyle}
-                dataKey="date"
-                axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
-                tickFormatter={formatDate}
-              />
-              <YAxis
-                {...commonAxisStyle}
-                axisLine={{ stroke: 'transparent' }}
-                tickFormatter={formatCurrency}
-              />
-              <Tooltip
-                cursor={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
-                {...commonTooltipStyle}
-                formatter={(value: any) => formatCurrency(value as number)}
-                labelFormatter={formatDate}
-              />
-              <Area
-                type="monotone"
-                dataKey="assets"
-                stroke="#8702ff"
-                strokeWidth={2}
-                fillOpacity={1}
-                fill="url(#colorAssets)"
-              />
-              <Area
-                type="monotone"
-                dataKey="liabilities"
-                stroke="#a64dff"
-                strokeWidth={2}
-                fillOpacity={1}
-                fill="url(#colorLiabilities)"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
+      </Box>
+      <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <Box>
+          <Typography variant="subtitle1" fontWeight="600" mb={2} sx={{ color: 'white' }}>
+            Assets
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            {assets.map((item) => (
+              <Box key={item.name} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography sx={{ color: 'rgba(255, 255, 255, 0.87)' }}>{item.name}</Typography>
+                <Typography fontFamily="monospace" sx={{ color: 'white' }}>{formatCurrency(item.value)}</Typography>
+              </Box>
+            ))}
+            <Divider sx={{ my: 2, borderColor: 'rgba(255, 255, 255, 0.1)' }} />
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+              <Typography sx={{ color: 'white' }}>Total Assets</Typography>
+              <Typography fontFamily="monospace" sx={{ color: 'white' }}>{formatCurrency(totalAssets)}</Typography>
+            </Box>
+          </Box>
+        </Box>
+        
+        <Box>
+          <Typography variant="subtitle1" fontWeight="600" mb={2} sx={{ color: 'white' }}>
+            Liabilities & Equity
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            {liabilities.map((item) => (
+              <Box key={item.name} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography sx={{ color: 'rgba(255, 255, 255, 0.87)' }}>{item.name}</Typography>
+                <Typography fontFamily="monospace" sx={{ color: 'white' }}>{formatCurrency(item.value)}</Typography>
+              </Box>
+            ))}
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography sx={{ color: 'rgba(255, 255, 255, 0.87)' }}>Protocol Equity</Typography>
+              <Typography fontFamily="monospace" sx={{ color: 'white' }}>{formatCurrency(equity)}</Typography>
+            </Box>
+            <Divider sx={{ my: 2, borderColor: 'rgba(255, 255, 255, 0.1)' }} />
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+              <Typography sx={{ color: 'white' }}>Total L&E</Typography>
+              <Typography fontFamily="monospace" sx={{ color: 'white' }}>{formatCurrency(totalAssets)}</Typography>
+            </Box>
+          </Box>
         </Box>
       </CardContent>
     </Card>

@@ -1,7 +1,6 @@
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import { Area, AreaChart, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { SupplyDataPoint } from "@/lib/types";
-import { commonTooltipStyle, commonAxisStyle } from '@/lib/chartStyles';
 
 interface SupplyChartsProps {
   data: SupplyDataPoint[];
@@ -16,6 +15,19 @@ const formatDate = (date: string) => {
     month: 'short',
     day: 'numeric'
   });
+};
+
+const commonTooltipStyle = {
+  contentStyle: {
+    backgroundColor: 'rgba(19, 17, 28, 0.95)',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '8px',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    color: 'white',
+    fontSize: '12px'
+  },
+  itemStyle: { color: 'white', fontSize: '11px' },
+  labelStyle: { color: 'white', fontSize: '11px' }
 };
 
 const SupplyCharts = ({ data }: SupplyChartsProps) => {
@@ -55,15 +67,21 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                   </linearGradient>
                 </defs>
                 <XAxis
-                  {...commonAxisStyle}
                   dataKey="date"
+                  stroke="white"
+                  fontSize={11}
+                  tickLine={false}
                   axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                   tickFormatter={formatDate}
+                  tick={{ fill: "white" }}
                 />
                 <YAxis
-                  {...commonAxisStyle}
+                  stroke="white"
+                  fontSize={11}
+                  tickLine={false}
                   axisLine={{ stroke: 'transparent' }}
                   tickFormatter={formatCurrency}
+                  tick={{ fill: "white" }}
                 />
                 <Tooltip
                   cursor={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
@@ -119,15 +137,21 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
                   </linearGradient>
                 </defs>
                 <XAxis
-                  {...commonAxisStyle}
                   dataKey="date"
+                  stroke="white"
+                  fontSize={11}
+                  tickLine={false}
                   axisLine={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
                   tickFormatter={formatDate}
+                  tick={{ fill: "white" }}
                 />
                 <YAxis
-                  {...commonAxisStyle}
+                  stroke="white"
+                  fontSize={11}
+                  tickLine={false}
                   axisLine={{ stroke: 'transparent' }}
                   tickFormatter={formatCurrency}
+                  tick={{ fill: "white" }}
                 />
                 <Tooltip
                   cursor={{ stroke: 'rgba(255, 255, 255, 0.3)' }}
