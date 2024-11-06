@@ -24,6 +24,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
         className="glass-card"
         sx={{ 
           borderRadius: '12px',
+          border: '1px solid rgba(255, 255, 255, 0.1)', // Added border styling
           '&:hover': {
             transform: 'translateY(-2px)',
             borderColor: 'rgba(135, 2, 255, 0.3)',
@@ -98,6 +99,7 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
         className="glass-card"
         sx={{ 
           borderRadius: '12px',
+          border: '1px solid rgba(255, 255, 255, 0.1)', // Added border styling
           '&:hover': {
             transform: 'translateY(-2px)',
             borderColor: 'rgba(135, 2, 255, 0.3)',
