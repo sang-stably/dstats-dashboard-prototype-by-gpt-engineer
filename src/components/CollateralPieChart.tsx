@@ -25,7 +25,7 @@ const CollateralPieChart = () => {
       backdropFilter: 'blur(10px)',
       border: '1px solid rgba(255, 255, 255, 0.1)',
       transition: 'all 0.3s ease',
-      borderRadius: '12px',
+      borderRadius: '16px',
       height: '100%',
       '&:hover': {
         transform: 'translateY(-2px)',
