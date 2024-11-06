@@ -20,7 +20,21 @@ const formatDate = (date: string) => {
 const SupplyCharts = ({ data }: SupplyChartsProps) => {
   return (
     <Box className="grid grid-cols-2 gap-6 mt-6">
-      <Card className="glass-card rounded-xl">
+      <Card 
+        sx={{ 
+          background: 'rgba(255, 255, 255, 0.05)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          transition: 'all 0.3s ease',
+          borderRadius: '12px',
+          '&:hover': {
+            transform: 'translateY(-2px)',
+            borderColor: 'rgba(135, 2, 255, 0.3)',
+            boxShadow: '0 8px 32px rgba(135, 2, 255, 0.15)'
+          }
+        }}
+        className="glass-card rounded-xl"
+      >
         <CardContent className="bg-[rgba(19,17,28,0.95)]">
           <Typography 
             variant="h6" 
@@ -86,7 +100,21 @@ const SupplyCharts = ({ data }: SupplyChartsProps) => {
         </CardContent>
       </Card>
 
-      <Card className="glass-card rounded-xl">
+      <Card 
+        sx={{ 
+          background: 'rgba(255, 255, 255, 0.05)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          transition: 'all 0.3s ease',
+          borderRadius: '12px',
+          '&:hover': {
+            transform: 'translateY(-2px)',
+            borderColor: 'rgba(135, 2, 255, 0.3)',
+            boxShadow: '0 8px 32px rgba(135, 2, 255, 0.15)'
+          }
+        }}
+        className="glass-card rounded-xl"
+      >
         <CardContent className="bg-[rgba(19,17,28,0.95)]">
           <Typography 
             variant="h6" 
