@@ -17,9 +17,9 @@ const Collaterals = () => {
       <Box sx={{ 
         mb: { xs: 4, sm: 6 }, 
         display: 'flex',
-        justifyContent: 'space-between', 
         alignItems: 'center',
-        gap: 3
+        gap: 3,
+        position: 'relative'
       }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <img 
@@ -32,21 +32,21 @@ const Collaterals = () => {
           </Typography>
         </Box>
         <Box sx={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: 3,
-          flex: 1,
-          justifyContent: 'flex-end'
+          display: { xs: 'none', sm: 'block' } 
         }}>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            <NavMenu />
-          </Box>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            <NetworkSelector />
-          </Box>
-          <Box sx={{ display: { sm: 'none' } }}>
-            <NavMenu />
-          </Box>
+          <NavMenu />
+        </Box>
+        <Box sx={{ display: { xs: 'none', sm: 'block' }, marginLeft: 'auto' }}>
+          <NetworkSelector />
+        </Box>
+        <Box sx={{ 
+          display: { sm: 'none' }, 
+          position: 'absolute',
+          right: 0,
+          top: '50%',
+          transform: 'translateY(-50%)'
+        }}>
+          <NavMenu />
         </Box>
       </Box>
       
