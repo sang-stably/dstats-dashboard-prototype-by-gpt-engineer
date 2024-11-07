@@ -34,7 +34,16 @@ const MetricCard = ({ title, value, format, description }: MetricCardProps) => {
               arrow: { sx: { color: 'rgba(19, 17, 28, 0.95)' } }
             }}
           >
-            <IconButton size="small" sx={{ color: 'white', '&:hover': { color: 'primary.main' } }}>
+            <IconButton 
+              size="small" 
+              sx={{ 
+                color: 'rgba(255, 255, 255, 0.5)', 
+                '&:hover': { 
+                  color: 'white',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                } 
+              }}
+            >
               <InfoIcon fontSize="small" />
             </IconButton>
           </Tooltip>
