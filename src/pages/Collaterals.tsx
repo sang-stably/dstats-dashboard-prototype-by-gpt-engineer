@@ -7,13 +7,13 @@ import AmoAllocationTable from "@/components/AmoAllocationTable";
 
 const Collaterals = () => {
   return (
-    <Container maxWidth="xl" sx={{ py: { xs: 2, sm: 4 }, px: { xs: 4, sm: 6, md: 8, xl: 16 } }}>
+    <Container maxWidth="xl" sx={{ py: { xs: 4, sm: 6 }, px: { xs: 4, sm: 6, md: 8, xl: 16 } }}>
       <Box sx={{ 
-        mb: { xs: 2, sm: 4 }, 
+        mb: { xs: 4, sm: 6 }, 
         display: 'flex',
         justifyContent: 'space-between', 
         alignItems: 'center',
-        gap: 2
+        gap: 3
       }}>
         <Typography variant="h5" component="h1" fontWeight="bold">
           dSTATS Dashboard
@@ -21,7 +21,7 @@ const Collaterals = () => {
         <Box sx={{ 
           display: 'flex', 
           alignItems: 'center', 
-          gap: 2,
+          gap: 3,
           flex: 1,
           justifyContent: 'flex-end'
         }}>
@@ -37,7 +37,7 @@ const Collaterals = () => {
         </Box>
       </Box>
       
-      <Grid container spacing={{ xs: 2, sm: 6 }}>
+      <Grid container spacing={{ xs: 3, sm: 6 }}>
         <Grid item xs={12} md={6}>
           <CollateralPieChart />
         </Grid>
@@ -46,7 +46,7 @@ const Collaterals = () => {
         </Grid>
       </Grid>
 
-      <Box sx={{ mt: { xs: 2, sm: 6 } }}>
+      <Box sx={{ mt: { xs: 3, sm: 6 } }}>
         <AmoAllocationTable />
       </Box>
     </Container>
