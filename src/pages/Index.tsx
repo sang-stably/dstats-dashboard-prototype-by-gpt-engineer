@@ -75,7 +75,7 @@ const Index = () => {
   const metrics = getMetricProps(data.metrics);
 
   return (
-    <Container maxWidth="xl" sx={{ py: { xs: 2, sm: 4 }, px: { xs: 2, sm: 3, md: 6, xl: 12 } }}>
+    <Container maxWidth="xl" sx={{ py: { xs: 2, sm: 4 }, px: { xs: 4, sm: 6, md: 8, xl: 16 } }}>
       <Box sx={{ 
         mb: { xs: 2, sm: 4 }, 
         display: 'flex',
@@ -87,26 +87,21 @@ const Index = () => {
           dSTATS Dashboard
         </Typography>
         <Box sx={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: 2,
-          flex: 1
+          display: { xs: 'none', sm: 'block' } 
         }}>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            <NavMenu />
-          </Box>
-          <Box sx={{ display: { xs: 'none', sm: 'block' }, marginLeft: 'auto' }}>
-            <NetworkSelector />
-          </Box>
-          <Box sx={{ 
-            display: { sm: 'none' }, 
-            position: 'absolute',
-            right: 0,
-            top: '50%',
-            transform: 'translateY(-50%)'
-          }}>
-            <NavMenu />
-          </Box>
+          <NavMenu />
+        </Box>
+        <Box sx={{ display: { xs: 'none', sm: 'block' }, marginLeft: 'auto' }}>
+          <NetworkSelector />
+        </Box>
+        <Box sx={{ 
+          display: { sm: 'none' }, 
+          position: 'absolute',
+          right: 0,
+          top: '50%',
+          transform: 'translateY(-50%)'
+        }}>
+          <NavMenu />
         </Box>
       </Box>
 
