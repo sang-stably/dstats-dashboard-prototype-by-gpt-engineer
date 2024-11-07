@@ -1,5 +1,5 @@
 import { Card, CardContent, Typography, Tooltip, IconButton, Box } from '@mui/material';
-import { Info as InfoIcon } from '@mui/icons-material';
+import { InfoOutlined as InfoIcon } from '@mui/icons-material';
 import { MetricCardProps } from '@/lib/types';
 import NumberCounter from './NumberCounter';
 import { tooltipStyles } from '@/lib/styles';
