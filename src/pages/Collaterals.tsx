@@ -15,9 +15,16 @@ const Collaterals = () => {
         alignItems: 'center',
         gap: 3
       }}>
-        <Typography variant="h5" component="h1" fontWeight="bold">
-          dSTATS Dashboard
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <img 
+            src="https://app.testnet.dtrinity.org/dlend/trinity.svg" 
+            alt="Trinity Logo" 
+            style={{ height: '24px', width: 'auto' }}
+          />
+          <Typography variant="h5" component="h1" fontWeight="bold">
+            dSTATS
+          </Typography>
+        </Box>
         <Box sx={{ 
           display: 'flex', 
           alignItems: 'center', 
