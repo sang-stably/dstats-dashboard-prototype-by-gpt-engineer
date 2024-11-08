@@ -8,12 +8,12 @@ export const curveMetrics = {
 
 export const curveChartData = {
   lpPrice: Array.from({ length: 30 }, (_, i) => {
-    const basePrice = 1.002; // Center point between 1 and 1.004
-    const randomVariation = Math.random() * 0.002; // Max variation of 0.002 to stay within range
-    const open = basePrice + randomVariation - 0.001;
-    const close = basePrice + randomVariation - 0.001;
-    const high = Math.max(open, close) + (Math.random() * 0.001);
-    const low = Math.min(open, close) - (Math.random() * 0.001);
+    const basePrice = 1.0;
+    const randomVariation = Math.random() * 0.002 - 0.001;
+    const open = basePrice + randomVariation;
+    const close = basePrice + Math.random() * 0.002 - 0.001;
+    const high = Math.max(open, close) + Math.random() * 0.001;
+    const low = Math.min(open, close) - Math.random() * 0.001;
     
     return {
       date: new Date(2023, 10, i + 1).toISOString(),
