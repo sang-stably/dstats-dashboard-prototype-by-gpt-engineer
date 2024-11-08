@@ -12,7 +12,7 @@ const SortIcon = ({ columnKey, currentSortKey, sortDirection }: SortIconProps) =
   if (currentSortKey !== columnKey) {
     return (
       <Box sx={{ opacity: 0.3 }}>
-        <SwapVert className="w-4 h-4" />
+        <SwapVert sx={{ color: 'white' }} className="w-4 h-4" />
       </Box>
     );
   }
@@ -21,7 +21,7 @@ const SortIcon = ({ columnKey, currentSortKey, sortDirection }: SortIconProps) =
       transform: sortDirection === 'desc' ? 'rotate(180deg)' : 'none',
       transition: 'transform 0.2s'
     }}>
-      <SwapVert className="w-4 h-4" />
+      <SwapVert sx={{ color: '#8702ff' }} className="w-4 h-4" />
     </Box>
   );
 };
