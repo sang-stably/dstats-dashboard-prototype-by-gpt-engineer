@@ -1,6 +1,6 @@
 import { Box, Button } from '@mui/material';
 
-export type TimeRange = '1D' | '1W' | '1M' | '3M' | '1Y' | 'ALL';
+export type TimeRange = '1W' | '1M' | '3M' | '1Y' | 'ALL';
 
 interface TimeRangeSelectorProps {
   value: TimeRange;
@@ -8,7 +8,7 @@ interface TimeRangeSelectorProps {
 }
 
 const TimeRangeSelector = ({ value, onChange }: TimeRangeSelectorProps) => {
-  const timeRanges: TimeRange[] = ['1D', '1W', '1M', '3M', '1Y', 'ALL'];
+  const timeRanges: TimeRange[] = ['1W', '1M', '3M', '1Y', 'ALL'];
 
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>

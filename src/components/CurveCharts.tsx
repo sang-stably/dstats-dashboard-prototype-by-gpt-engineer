@@ -86,10 +86,10 @@ const ChartCard = ({ title, children, fullWidth, onTimeRangeChange }: ChartCardP
           <Typography variant="subtitle2" sx={{ color: 'white', textAlign: 'center' }}>
             {title}
           </Typography>
-          <TimeRangeSelector value={timeRange} onChange={handleTimeRangeChange} />
-          <Box sx={{ height: 300 }}>
+          <Box sx={{ height: 300, position: 'relative' }}>
             {children}
           </Box>
+          <TimeRangeSelector value={timeRange} onChange={handleTimeRangeChange} />
         </Box>
       </CardContent>
     </Card>
