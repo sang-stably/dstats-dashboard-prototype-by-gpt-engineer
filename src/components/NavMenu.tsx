@@ -10,7 +10,7 @@ const NavMenu = () => {
   
   const items = [
     { name: "Key Metrics", path: "/" },
-    { name: "dUSD Collaterals", path: "/collaterals" },
+    { name: "dUSD", path: "/collaterals" },
     { name: "Treasury", path: "/treasury" },
     { 
       name: "dTRINITY App", 
