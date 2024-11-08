@@ -11,7 +11,7 @@ const NavMenu = () => {
   const items = [
     { name: "Key Metrics", path: "/" },
     { name: "dUSD", path: "/collaterals" },
-    { name: "dLEND", path: "/dlend" },
+    { name: "dLEND", path: "/dLEND" },
     { name: "Curve", path: "/curve" },
     { 
       name: "dTRINITY App", 
