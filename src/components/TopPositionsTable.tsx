@@ -1,16 +1,17 @@
 import { Card, CardContent, Typography, Table, TableBody, TableCell, TableHead, TableRow, Box } from '@mui/material';
-import { ExternalLink } from 'lucide-react';
 
 interface UserPosition {
+  lastActivity: string;
   address: string;
   dusdSupplied: number;
+  dusdDebt: number;
   collateralSupplied: string[];
   collateralValue: number;
-  dusdDebt: number;
   currentLTV: number;
   maxLTV: number;
   liquidationLTV: number;
   healthFactor: number;
+  healthIndicator: string;
 }
 
 interface TopPositionsTableProps {
@@ -23,43 +24,35 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      maximumFractionDigits: 2,
     }).format(value);
-  };
-
-  const getHealthFactorColor = (healthFactor: number) => {
-    if (healthFactor >= 1.5) return 'text-green-500';
-    if (healthFactor >= 1.2) return 'text-yellow-500';
-    return 'text-red-500';
   };
 
   return (
     <Card className="glass-card">
       <Box sx={{ p: 3, textAlign: 'center' }}>
         <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
-          Top 10 Largest Positions
+          Top Positions
         </Typography>
       </Box>
       <CardContent sx={{ overflowX: 'auto' }}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ color: 'white' }}>Rank</TableCell>
+              <TableCell sx={{ color: 'white' }}>Latest Activity</TableCell>
               <TableCell sx={{ color: 'white' }}>User</TableCell>
               <TableCell sx={{ color: 'white' }}>dUSD Supplied</TableCell>
+              <TableCell sx={{ color: 'white' }}>dUSD Debt</TableCell>
               <TableCell sx={{ color: 'white' }}>Collateral</TableCell>
               <TableCell sx={{ color: 'white' }}>Collateral Value</TableCell>
-              <TableCell sx={{ color: 'white' }}>dUSD Debt</TableCell>
               <TableCell sx={{ color: 'white' }}>Current LTV</TableCell>
-              <TableCell sx={{ color: 'white' }}>Max LTV</TableCell>
-              <TableCell sx={{ color: 'white' }}>Liquidation LTV</TableCell>
               <TableCell sx={{ color: 'white' }}>Health Factor</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {positions.map((position, index) => (
+            {positions.map((position) => (
               <TableRow key={position.address} className="hover:bg-white/5">
-                <TableCell sx={{ color: 'white' }}>{index + 1}</TableCell>
+                <TableCell sx={{ color: 'white' }}>{position.lastActivity}</TableCell>
                 <TableCell sx={{ color: 'white', fontFamily: 'monospace' }}>
                   {position.address}
                 </TableCell>
@@ -67,26 +60,20 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
                   {formatCurrency(position.dusdSupplied)}
                 </TableCell>
                 <TableCell sx={{ color: 'white' }}>
-                  {position.collateralSupplied.join(', ')}
+                  {formatCurrency(position.dusdDebt)}
+                </TableCell>
+                <TableCell sx={{ color: 'white' }}>
+                  {position.collateralSupplied.length > 0 ? position.collateralSupplied.join(', ') : '-'}
                 </TableCell>
                 <TableCell sx={{ color: 'white' }}>
                   {formatCurrency(position.collateralValue)}
                 </TableCell>
                 <TableCell sx={{ color: 'white' }}>
-                  {formatCurrency(position.dusdDebt)}
-                </TableCell>
-                <TableCell sx={{ color: 'white' }}>
-                  {position.currentLTV.toFixed(1)}%
-                </TableCell>
-                <TableCell sx={{ color: 'white' }}>
-                  {position.maxLTV}%
-                </TableCell>
-                <TableCell sx={{ color: 'white' }}>
-                  {position.liquidationLTV}%
+                  {position.currentLTV.toFixed(2)}%
                 </TableCell>
                 <TableCell>
-                  <span className={getHealthFactorColor(position.healthFactor)}>
-                    {position.healthFactor.toFixed(2)} ❤️
+                  <span>
+                    {position.healthFactor ? position.healthFactor.toFixed(2) : 'N/A'} {position.healthIndicator}
                   </span>
                 </TableCell>
               </TableRow>
