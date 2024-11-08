@@ -21,7 +21,7 @@ export const curveChartData = {
   })),
   fees: Array.from({ length: 30 }, (_, i) => ({
     date: new Date(2023, 10, i + 1).toISOString(),
-    value: 11.5 + (i * 0.07) + (Math.random() * 0.5)
+    value: 11000 + ((13500 - 11000) / 29 * i) + (Math.random() * 200 - 100)
   })),
   amoRevenue: Array.from({ length: 30 }, (_, i) => ({
     date: new Date(2023, 10, i + 1).toISOString(),
