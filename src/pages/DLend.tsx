@@ -140,7 +140,13 @@ const mockUserPositions = [
 const DLend = () => {
   return (
     <Container maxWidth="xl" sx={{ py: { xs: 4, sm: 6 }, px: { xs: 3, sm: 4 } }}>
-      <Box sx={{ mb: 4, display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Box sx={{ 
+        mb: { xs: 4, sm: 6 }, 
+        display: 'flex',
+        alignItems: 'center',
+        gap: 3,
+        position: 'relative'
+      }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <img
             src="https://app.testnet.dtrinity.org/dlend/trinity.svg"
@@ -151,8 +157,22 @@ const DLend = () => {
             dSTATS
           </Typography>
         </Box>
-        <Box sx={{ marginLeft: 'auto' }}>
+        <Box sx={{ 
+          display: { xs: 'none', sm: 'block' } 
+        }}>
+          <NavMenu />
+        </Box>
+        <Box sx={{ display: { xs: 'none', sm: 'block' }, marginLeft: 'auto' }}>
           <NetworkSelector />
+        </Box>
+        <Box sx={{ 
+          display: { sm: 'none' }, 
+          position: 'absolute',
+          right: 0,
+          top: '50%',
+          transform: 'translateY(-50%)'
+        }}>
+          <NavMenu />
         </Box>
       </Box>
 
