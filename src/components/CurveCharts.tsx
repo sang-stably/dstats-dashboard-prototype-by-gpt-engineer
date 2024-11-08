@@ -167,8 +167,16 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               }
               labelFormatter={formatDate}
             />
-            <Bar yAxisId="left" dataKey="revenue" fill="#8702ff" opacity={0.3} />
-            <Line yAxisId="right" type="monotone" dataKey="apy" stroke="#8702ff" />
+            <Legend
+              verticalAlign="top"
+              align="center"
+              height={20}
+              iconType="square"
+              iconSize={10}
+              wrapperStyle={{ fontSize: '14px', color: 'white' }}
+            />
+            <Bar yAxisId="left" dataKey="revenue" fill="#8702ff" opacity={0.3} name="Revenue" />
+            <Line yAxisId="right" type="monotone" dataKey="apy" stroke="#8702ff" name="APY" />
           </ComposedChart>
         </ResponsiveContainer>
       </ChartCard>
