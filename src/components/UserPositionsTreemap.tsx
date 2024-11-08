@@ -16,27 +16,37 @@ interface UserPosition {
 interface TreemapData {
   name: string;
   value: number;
+  healthFactor: number;
   children?: TreemapData[];
 }
 
 const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
+  const getColorByHealthFactor = (healthFactor: number) => {
+    if (healthFactor >= 1.5) return '#22c55e'; // Green for safe positions
+    if (healthFactor >= 1.2) return '#fbbf24'; // Yellow for warning
+    return '#ef4444'; // Red for danger
+  };
+
   const transformData = (positions: UserPosition[]): TreemapData => {
     const children = positions.map((position) => ({
       name: position.address,
       value: position.collateralValue,
+      healthFactor: position.healthFactor,
     }));
     
     return {
       name: 'User Positions',
       value: children.reduce((sum, child) => sum + child.value, 0),
+      healthFactor: 0,
       children,
     };
   };
 
   const config = {
     data: transformData(data),
-    colorField: 'value',
-    color: ['#8702ff', '#a64dff', '#bf80ff', '#dfbfff'],
+    colorField: 'healthFactor',
+    color: ({ healthFactor }: { healthFactor: number }) => 
+      getColorByHealthFactor(healthFactor),
     tooltip: {
       customContent: (title: string, items: any[]) => {
         if (!title) return '';
@@ -47,7 +57,7 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
         return `
           <div style="padding: 12px; background: rgba(0, 0, 0, 0.8); border-radius: 4px; color: white;">
             <div style="margin-bottom: 8px;">
-              <strong>User:</strong> ${position.address.slice(0, 8)}...${position.address.slice(-4)}
+              <strong>User:</strong> ${position.address}
             </div>
             <div style="margin-bottom: 4px;">
               <strong>dUSD Supplied:</strong> $${position.dusdSupplied.toLocaleString()}
@@ -62,7 +72,7 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
               <strong>dUSD Debt:</strong> $${position.dusdDebt.toLocaleString()}
             </div>
             <div style="margin-bottom: 4px;">
-              <strong>Current LTV:</strong> ${position.currentLTV}%
+              <strong>Current LTV:</strong> ${position.currentLTV.toFixed(1)}%
             </div>
             <div style="margin-bottom: 4px;">
               <strong>Max LTV:</strong> ${position.maxLTV}%
@@ -89,9 +99,7 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
       },
       formatter: (info: any) => {
         if (!info || !info.name) return '';
-        const position = data.find((p) => p.address === info.name);
-        if (!position) return '';
-        return `${position.address.slice(0, 6)}...`;
+        return `${info.name.slice(0, 6)}...`;
       },
     },
   };
