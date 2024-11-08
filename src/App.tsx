@@ -4,6 +4,7 @@ import { Snackbar, Alert } from "@mui/material";
 import { useState } from "react";
 import Index from "./pages/Index";
 import Collaterals from "./pages/Collaterals";
+import Curve from "./pages/Curve";
 import Footer from "./components/Footer";
 
 const queryClient = new QueryClient();
@@ -31,7 +32,8 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/collaterals" element={<Collaterals />} />
-              <Route path="/treasury" element={<Navigate to="/" replace />} />
+              <Route path="/dlend" element={<Navigate to="/" replace />} />
+              <Route path="/curve" element={<Curve />} />
             </Routes>
           </BrowserRouter>
         </div>
