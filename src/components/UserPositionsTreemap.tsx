@@ -22,23 +22,25 @@ interface TreemapData {
 
 const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
   const getColorByHealthFactor = (healthFactor: number) => {
-    if (healthFactor >= 1.5) return '#22c55e'; // Green for safe positions
-    if (healthFactor >= 1.2) return '#fbbf24'; // Yellow for warning
-    return '#ef4444'; // Red for danger
+    if (healthFactor >= 1.5) return '#22c55e';
+    if (healthFactor >= 1.2) return '#fbbf24';
+    return '#ef4444';
   };
 
   const transformData = (positions: UserPosition[]): TreemapData => {
+    const totalValue = positions.reduce((sum, pos) => sum + pos.collateralValue, 0);
+    
     const children = positions
       .sort((a, b) => b.collateralValue - a.collateralValue)
       .map((position) => ({
         name: position.address,
-        value: position.collateralValue, // This determines the size of each block
+        value: position.collateralValue,
         healthFactor: position.healthFactor,
       }));
     
     return {
       name: 'User Positions',
-      value: children.reduce((sum, child) => sum + child.value, 0),
+      value: totalValue,
       healthFactor: 0,
       children,
     };
@@ -48,7 +50,15 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
     data: transformData(data),
     colorField: 'healthFactor',
     color: ({ healthFactor }: any) => getColorByHealthFactor(healthFactor),
-    sizeField: 'value', // Explicitly set size field to use the value (collateral value)
+    sizeField: 'value',
+    hierarchyConfig: {
+      sort: (a: any, b: any) => b.value - a.value,
+    },
+    animation: {
+      appear: {
+        animation: 'fade-in',
+      },
+    },
     tooltip: {
       customContent: (title: string, items: any[]) => {
         if (!title) return '';
@@ -87,11 +97,6 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
             </div>
           </div>
         `;
-      },
-    },
-    animation: {
-      appear: {
-        animation: 'fade-in',
       },
     },
     label: {
