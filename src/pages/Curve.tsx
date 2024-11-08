@@ -1,6 +1,9 @@
-import { Container, Box, Typography } from '@mui/material';
+import { Container, Box, Typography, Grid } from '@mui/material';
 import NavMenu from "@/components/NavMenu";
 import NetworkSelector from "@/components/NetworkSelector";
+import CurveMetricCard from "@/components/CurveMetricCard";
+import CurveCharts from "@/components/CurveCharts";
+import { curveMetrics, curveChartData } from "@/lib/mockCurveData";
 
 const Curve = () => {
   return (
@@ -46,6 +49,47 @@ const Curve = () => {
           <NavMenu />
         </Box>
       </Box>
+
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+        <Grid item xs={12} sm={6} md={2.4}>
+          <CurveMetricCard
+            title="dUSD/FRAX TVL"
+            value={curveMetrics.dusdFraxTvl}
+            info="Total Value Locked in the dUSD/FRAX pool"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={2.4}>
+          <CurveMetricCard
+            title="dUSD AMO TVL"
+            value={curveMetrics.dusdAmoTvl}
+            info="Total Value Locked in the dUSD AMO"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={2.4}>
+          <CurveMetricCard
+            title="AMO Pool Share"
+            value={curveMetrics.amoPoolShare}
+            format="percentage"
+            info="Percentage of pool owned by AMO"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={2.4}>
+          <CurveMetricCard
+            title="24H Volume"
+            value={curveMetrics.volume24h}
+            info="Trading volume in the last 24 hours"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={2.4}>
+          <CurveMetricCard
+            title="24H Pool Fees"
+            value={curveMetrics.poolFees24h}
+            info="Trading fees earned in the last 24 hours"
+          />
+        </Grid>
+      </Grid>
+
+      <CurveCharts data={curveChartData} />
     </Container>
   );
 };
