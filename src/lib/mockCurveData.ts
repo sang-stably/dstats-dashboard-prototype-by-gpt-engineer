@@ -7,10 +7,22 @@ export const curveMetrics = {
 };
 
 export const curveChartData = {
-  lpPrice: Array.from({ length: 30 }, (_, i) => ({
-    date: new Date(2023, 10, i + 1).toISOString(),
-    value: 1.0 + Math.random() * 0.05
-  })),
+  lpPrice: Array.from({ length: 30 }, (_, i) => {
+    const basePrice = 1.0;
+    const randomVariation = Math.random() * 0.002 - 0.001;
+    const open = basePrice + randomVariation;
+    const close = basePrice + Math.random() * 0.002 - 0.001;
+    const high = Math.max(open, close) + Math.random() * 0.001;
+    const low = Math.min(open, close) - Math.random() * 0.001;
+    
+    return {
+      date: new Date(2023, 10, i + 1).toISOString(),
+      open,
+      high,
+      low,
+      close
+    };
+  }),
   tvl: Array.from({ length: 30 }, (_, i) => ({
     date: new Date(2023, 10, i + 1).toISOString(),
     value: 750000 + Math.random() * 250000

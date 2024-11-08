@@ -1,4 +1,4 @@
-import { Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, Tooltip, ResponsiveContainer, Candlestick } from 'recharts';
 import { format } from 'date-fns';
 
 export const formatDate = (date: string) => format(new Date(date), 'MMM d');
@@ -44,4 +44,4 @@ export const commonYAxisStyle = {
   axisLine: { stroke: 'transparent' }
 };
 
-export { Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, Tooltip, ResponsiveContainer };
+export { Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, Tooltip, ResponsiveContainer, Candlestick };
