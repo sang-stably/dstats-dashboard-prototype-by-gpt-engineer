@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Snackbar, Alert } from "@mui/material";
 import { useState } from "react";
 import Index from "./pages/Index";
@@ -32,7 +32,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/collaterals" element={<Collaterals />} />
-              <Route path="/dlend" element={<Navigate to="/" replace />} />
+              <Route path="/dlend" element={<Index />} />
               <Route path="/curve" element={<Curve />} />
             </Routes>
           </BrowserRouter>
