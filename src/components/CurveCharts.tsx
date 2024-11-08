@@ -1,5 +1,16 @@
 import { Box } from '@mui/material';
-import { AreaChart, BarChart, ComposedChart, ResponsiveContainer } from 'recharts';
+import { 
+  AreaChart, 
+  BarChart, 
+  ComposedChart, 
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Area,
+  Bar,
+  Line
+} from 'recharts';
 import ChartCard from './charts/ChartCard';
 import { 
   commonTooltipStyle, 
