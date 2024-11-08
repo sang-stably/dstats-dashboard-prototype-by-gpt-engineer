@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, Table, TableBody, TableCell, TableHead, TableRow, Box } from '@mui/material';
+import { Card, CardContent, Typography, Table, TableBody, TableCell, TableHead, TableRow, Box, Link } from '@mui/material';
 
 interface UserPosition {
   lastActivity: string;
@@ -26,6 +26,10 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
       minimumFractionDigits: 0,
       maximumFractionDigits: 2,
     }).format(value);
+  };
+
+  const formatAddress = (address: string) => {
+    return `${address.slice(0, 4)}...${address.slice(-5)}`;
   };
 
   const calculateDusdSupplied = (debt: number, ltv: number) => {
@@ -64,7 +68,14 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
                 <TableRow key={position.address} className="hover:bg-white/5">
                   <TableCell sx={{ color: 'white' }}>{position.lastActivity}</TableCell>
                   <TableCell sx={{ color: 'white', fontFamily: 'monospace' }}>
-                    {position.address}
+                    <Link 
+                      href={`https://etherscan.io/address/${position.address}`} 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{ color: 'white', textDecoration: 'underline' }}
+                    >
+                      {formatAddress(position.address)}
+                    </Link>
                   </TableCell>
                   <TableCell sx={{ color: 'white' }}>
                     {formatCurrency(calculatedSupplied)}
