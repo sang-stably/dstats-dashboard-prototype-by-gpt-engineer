@@ -28,12 +28,6 @@ const commonAxisStyle = {
   tick: { fill: 'white' }
 };
 
-const hiddenYAxisStyle = {
-  ...commonAxisStyle,
-  axisLine: { stroke: 'transparent' },
-  tick: { display: 'none' }
-};
-
 interface ChartCardProps {
   title: string;
   children: React.ReactNode;
@@ -91,7 +85,11 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               </linearGradient>
             </defs>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...hiddenYAxisStyle} />
+            <YAxis 
+              {...commonAxisStyle}
+              domain={[0.9990, 1.0050]} 
+              tickFormatter={(value) => value.toFixed(4)} 
+            />
             <Tooltip
               {...commonTooltipStyle}
               formatter={(value: number) => value.toFixed(4)}
@@ -112,7 +110,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               </linearGradient>
             </defs>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...hiddenYAxisStyle} />
+            <YAxis {...commonAxisStyle} tickFormatter={formatCurrency} />
             <Tooltip
               {...commonTooltipStyle}
               formatter={(value: number) => formatCurrency(value)}
@@ -127,7 +125,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
         <ResponsiveContainer>
           <BarChart data={data.volume}>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...hiddenYAxisStyle} />
+            <YAxis {...commonAxisStyle} tickFormatter={formatCurrency} />
             <Tooltip
               {...commonTooltipStyle}
               formatter={(value: number) => formatCurrency(value)}
@@ -148,7 +146,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               </linearGradient>
             </defs>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...hiddenYAxisStyle} />
+            <YAxis {...commonAxisStyle} tickFormatter={formatCurrency} />
             <Tooltip
               {...commonTooltipStyle}
               formatter={(value: number) => formatCurrency(value)}
@@ -163,8 +161,8 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
         <ResponsiveContainer>
           <ComposedChart data={data.amoRevenue}>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...hiddenYAxisStyle} yAxisId="left" />
-            <YAxis {...hiddenYAxisStyle} yAxisId="right" orientation="right" />
+            <YAxis {...commonAxisStyle} yAxisId="left" tickFormatter={formatCurrency} />
+            <YAxis {...commonAxisStyle} yAxisId="right" orientation="right" tickFormatter={formatPercentage} />
             <Tooltip
               {...commonTooltipStyle}
               formatter={(value: number, name: string) => 
