@@ -1,9 +1,10 @@
 import { Box } from '@mui/material';
 import { Stock } from '@ant-design/charts';
 import ChartCard from './charts/ChartCard';
+import TVLChart from './charts/TVLChart';
 import { 
-  Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, 
-  Tooltip, ResponsiveContainer, Legend,
+  AreaChart, BarChart, ComposedChart, XAxis, YAxis, 
+  Tooltip, ResponsiveContainer, Area, Bar, Line,
   formatDate, formatNumberWithSuffix, formatCurrency, formatPercentage, 
   commonTooltipStyle, commonAxisStyle, commonYAxisStyle
 } from './charts/ChartComponents';
@@ -110,55 +111,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
       </ChartCard>
 
       <ChartCard title="dUSD/FRAX TVL">
-        <ResponsiveContainer>
-          <AreaChart data={data.tvl}>
-            <defs>
-              <linearGradient id="colorDusd" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8702ff" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#8702ff" stopOpacity={0.3}/>
-              </linearGradient>
-              <linearGradient id="colorFrax" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#a64dff" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#a64dff" stopOpacity={0.3}/>
-              </linearGradient>
-            </defs>
-            <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...commonYAxisStyle} tickFormatter={formatNumberWithSuffix} />
-            <Tooltip
-              {...commonTooltipStyle}
-              formatter={(value: number, name: string) => [
-                formatCurrency(value),
-                name === 'dusd' ? 'dUSD' : 'FRAX'
-              ]}
-              labelFormatter={formatDate}
-            />
-            <Legend 
-              wrapperStyle={{ 
-                paddingTop: '20px',
-                position: 'relative',
-                top: '-40px'
-              }}
-              iconType="square"
-              iconSize={10}
-            />
-            <Area
-              type="monotone"
-              dataKey="frax"
-              stackId="1"
-              stroke="#a64dff"
-              fill="url(#colorFrax)"
-              name="FRAX"
-            />
-            <Area
-              type="monotone"
-              dataKey="dusd"
-              stackId="1"
-              stroke="#8702ff"
-              fill="url(#colorDusd)"
-              name="dUSD"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
+        <TVLChart data={data.tvl} />
       </ChartCard>
 
       <ChartCard title="dUSD/FRAX Volume">
