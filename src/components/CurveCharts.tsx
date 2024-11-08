@@ -1,27 +1,100 @@
-import { Box } from '@mui/material';
-import { 
-  AreaChart, 
-  BarChart, 
-  ComposedChart, 
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Area,
-  Bar,
-  Line
-} from 'recharts';
-import ChartCard from './charts/ChartCard';
-import { 
-  commonTooltipStyle, 
-  commonAxisStyle, 
-  commonYAxisStyle,
-  PurpleGradient,
-  formatDate,
-  formatCurrency,
-  formatPercentage,
-  formatNumberWithSuffix
-} from './charts/ChartComponents';
+import { Card, CardContent, Typography, Box } from '@mui/material';
+import { Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { format } from 'date-fns';
+import { useState } from 'react';
+import TimeRangeSelector, { TimeRange } from './TimeRangeSelector';
+
+const formatDate = (date: string) => format(new Date(date), 'MMM d');
+
+const formatNumberWithSuffix = (num: number) => {
+  if (num >= 1000000000) {
+    return `${(num / 1000000000).toFixed(2)}B`;
+  } else if (num >= 1000000) {
+    return `${(num / 1000000).toFixed(2)}M`;
+  } else if (num >= 1000) {
+    return `${(num / 1000).toFixed(2)}K`;
+  }
+  return num.toFixed(2);
+};
+
+const formatCurrency = (value: number) => `$${formatNumberWithSuffix(value)}`;
+const formatPercentage = (value: number) => `${value.toFixed(2)}%`;
+
+const commonTooltipStyle = {
+  contentStyle: {
+    backgroundColor: 'rgba(19, 17, 28, 0.95)',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '12px',
+    color: 'white',
+    fontSize: '12px',
+    padding: '8px 12px',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+  },
+  itemStyle: { color: 'white', fontSize: '11px' },
+  labelStyle: { color: 'white', fontSize: '11px' }
+};
+
+const commonAxisStyle = {
+  stroke: 'white',
+  fontSize: 11,
+  tickLine: false,
+  axisLine: { stroke: 'rgba(255, 255, 255, 0.3)' },
+  tick: { fill: 'white' }
+};
+
+const commonYAxisStyle = {
+  ...commonAxisStyle,
+  axisLine: { stroke: 'transparent' }
+};
+
+interface ChartCardProps {
+  title: string;
+  children: React.ReactNode;
+  fullWidth?: boolean;
+  onTimeRangeChange?: (range: TimeRange) => void;
+}
+
+const ChartCard = ({ title, children, fullWidth, onTimeRangeChange }: ChartCardProps) => {
+  const [timeRange, setTimeRange] = useState<TimeRange>('1M');
+
+  const handleTimeRangeChange = (newRange: TimeRange) => {
+    setTimeRange(newRange);
+    if (onTimeRangeChange) {
+      onTimeRangeChange(newRange);
+    }
+  };
+
+  return (
+    <Card 
+      sx={{ 
+        height: '100%',
+        background: 'rgba(255, 255, 255, 0.05)',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        transition: 'all 0.3s ease',
+        borderRadius: '12px',
+        '&:hover': {
+          transform: 'translateY(-2px)',
+          borderColor: 'rgba(135, 2, 255, 0.3)',
+          boxShadow: '0 8px 32px rgba(135, 2, 255, 0.15)'
+        }
+      }}
+      className={fullWidth ? 'col-span-full' : ''}
+    >
+      <CardContent>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Typography variant="subtitle2" sx={{ color: 'white', textAlign: 'center' }}>
+            {title}
+          </Typography>
+          <Box sx={{ height: 300, position: 'relative' }}>
+            {children}
+          </Box>
+          <TimeRangeSelector value={timeRange} onChange={handleTimeRangeChange} />
+        </Box>
+      </CardContent>
+    </Card>
+  );
+};
 
 interface CurveChartsProps {
   data: {
@@ -39,7 +112,12 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
       <ChartCard title="dUSD/FRAX LP Price (USD)">
         <ResponsiveContainer>
           <AreaChart data={data.lpPrice}>
-            <PurpleGradient id="colorLpPrice" />
+            <defs>
+              <linearGradient id="colorLpPrice" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#8702ff" stopOpacity={0.3}/>
+                <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
+              </linearGradient>
+            </defs>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
             <YAxis 
               {...commonYAxisStyle}
