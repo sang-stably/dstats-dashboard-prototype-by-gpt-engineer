@@ -6,6 +6,28 @@ const formatDate = (date: string) => format(new Date(date), 'MMM d');
 const formatCurrency = (value: number) => `$${value.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
 const formatPercentage = (value: number) => `${value.toFixed(2)}%`;
 
+const commonTooltipStyle = {
+  contentStyle: {
+    backgroundColor: 'rgba(19, 17, 28, 0.95)',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '12px',
+    color: 'white',
+    fontSize: '12px',
+    padding: '8px 12px',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+  },
+  itemStyle: { color: 'white', fontSize: '11px' },
+  labelStyle: { color: 'white', fontSize: '11px' }
+};
+
+const commonAxisStyle = {
+  stroke: 'white',
+  fontSize: 11,
+  tickLine: false,
+  axisLine: { stroke: 'rgba(255, 255, 255, 0.3)' },
+  tick: { fill: 'white' }
+};
+
 interface ChartCardProps {
   title: string;
   children: React.ReactNode;
@@ -30,7 +52,7 @@ const ChartCard = ({ title, children, fullWidth }: ChartCardProps) => (
     className={fullWidth ? 'col-span-full' : ''}
   >
     <CardContent>
-      <Typography variant="subtitle2" sx={{ color: 'white', mb: 2, textAlign: 'left' }}>
+      <Typography variant="subtitle2" sx={{ color: 'white', mb: 2, textAlign: 'center' }}>
         {title}
       </Typography>
       <Box sx={{ height: 300 }}>
@@ -62,12 +84,14 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
                 <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
               </linearGradient>
             </defs>
-            <XAxis dataKey="date" tickFormatter={formatDate} />
+            <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
             <YAxis 
+              {...commonAxisStyle}
               domain={[0.9990, 1.0050]} 
               tickFormatter={(value) => value.toFixed(4)} 
             />
             <Tooltip
+              {...commonTooltipStyle}
               formatter={(value: number) => value.toFixed(4)}
               labelFormatter={formatDate}
             />
@@ -85,9 +109,10 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
                 <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
               </linearGradient>
             </defs>
-            <XAxis dataKey="date" tickFormatter={formatDate} />
-            <YAxis tickFormatter={formatCurrency} />
+            <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
+            <YAxis {...commonAxisStyle} tickFormatter={formatCurrency} />
             <Tooltip
+              {...commonTooltipStyle}
               formatter={(value: number) => formatCurrency(value)}
               labelFormatter={formatDate}
             />
@@ -99,9 +124,10 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
       <ChartCard title="dUSD/FRAX Volume">
         <ResponsiveContainer>
           <BarChart data={data.volume}>
-            <XAxis dataKey="date" tickFormatter={formatDate} />
-            <YAxis tickFormatter={formatCurrency} />
+            <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
+            <YAxis {...commonAxisStyle} tickFormatter={formatCurrency} />
             <Tooltip
+              {...commonTooltipStyle}
               formatter={(value: number) => formatCurrency(value)}
               labelFormatter={formatDate}
             />
@@ -119,9 +145,10 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
                 <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
               </linearGradient>
             </defs>
-            <XAxis dataKey="date" tickFormatter={formatDate} />
-            <YAxis tickFormatter={formatCurrency} />
+            <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
+            <YAxis {...commonAxisStyle} tickFormatter={formatCurrency} />
             <Tooltip
+              {...commonTooltipStyle}
               formatter={(value: number) => formatCurrency(value)}
               labelFormatter={formatDate}
             />
@@ -133,10 +160,11 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
       <ChartCard title="dUSD AMO Revenue (Annualized)" fullWidth>
         <ResponsiveContainer>
           <ComposedChart data={data.amoRevenue}>
-            <XAxis dataKey="date" tickFormatter={formatDate} />
-            <YAxis yAxisId="left" tickFormatter={formatCurrency} />
-            <YAxis yAxisId="right" orientation="right" tickFormatter={formatPercentage} />
+            <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
+            <YAxis {...commonAxisStyle} yAxisId="left" tickFormatter={formatCurrency} />
+            <YAxis {...commonAxisStyle} yAxisId="right" orientation="right" tickFormatter={formatPercentage} />
             <Tooltip
+              {...commonTooltipStyle}
               formatter={(value: number, name: string) => 
                 name === 'revenue' ? formatCurrency(value) : formatPercentage(value)
               }
