@@ -2,6 +2,7 @@ import { Card, CardContent, Typography, Table, TableBody, TableCell, TableRow, B
 import { useState, useMemo } from 'react';
 import TableHeader from './table/TableHeader';
 import { UserPosition, SortConfig } from './table/types';
+import UserPositionsTreemap from './UserPositionsTreemap';
 
 interface TopPositionsTableProps {
   positions: UserPosition[];
@@ -72,10 +73,19 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
 
   return (
     <Card className="glass-card">
-      <Box sx={{ p: 3, textAlign: 'center' }}>
-        <Typography variant="h6" component="h2" sx={{ color: 'white' }}>
-          Top Positions
+      <Box sx={{ p: 3 }}>
+        <Typography 
+          variant="h6" 
+          component="h2" 
+          sx={{ 
+            color: 'white',
+            textAlign: 'center',
+            mb: 3
+          }}
+        >
+          User Positions
         </Typography>
+        <UserPositionsTreemap data={positions} />
       </Box>
       <CardContent sx={{ overflowX: 'auto' }}>
         <Table>

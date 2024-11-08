@@ -1,7 +1,6 @@
 import { Box, Container, Typography } from '@mui/material';
 import NavMenu from '@/components/NavMenu';
 import NetworkSelector from '@/components/NetworkSelector';
-import UserPositionsTreemap from '@/components/UserPositionsTreemap';
 import TopPositionsTable from '@/components/TopPositionsTable';
 
 const mockUserPositions = [
@@ -174,10 +173,6 @@ const DLend = () => {
         }}>
           <NavMenu />
         </Box>
-      </Box>
-
-      <Box sx={{ mb: 6 }}>
-        <UserPositionsTreemap data={mockUserPositions} />
       </Box>
 
       <Box>
