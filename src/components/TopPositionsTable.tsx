@@ -1,29 +1,11 @@
-import { Card, CardContent, Typography, Table, TableBody, TableCell, TableHead, TableRow, Box, Link } from '@mui/material';
-import { ArrowUp, ArrowDown } from 'lucide-react';
+import { Card, CardContent, Typography, Table, TableBody, TableCell, TableRow, Box, Link } from '@mui/material';
 import { useState, useMemo } from 'react';
-
-interface UserPosition {
-  lastActivity: string;
-  address: string;
-  dusdSupplied: number;
-  dusdDebt: number;
-  collateralSupplied: string[];
-  collateralValue: number;
-  currentLTV: number;
-  maxLTV: number;
-  liquidationLTV: number;
-  healthFactor: number;
-  healthIndicator: string;
-}
+import TableHeader from './table/TableHeader';
+import { UserPosition, SortConfig } from './table/types';
 
 interface TopPositionsTableProps {
   positions: UserPosition[];
 }
-
-type SortConfig = {
-  key: keyof UserPosition | null;
-  direction: 'asc' | 'desc';
-};
 
 const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
   const [sortConfig, setSortConfig] = useState<SortConfig>({
@@ -88,22 +70,6 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
     });
   }, [positions, sortConfig]);
 
-  const SortIcon = ({ columnKey }: { columnKey: keyof UserPosition }) => {
-    if (sortConfig.key !== columnKey) {
-      return (
-        <div className="flex flex-col opacity-30">
-          <ArrowUp className="w-4 h-4" />
-          <ArrowDown className="w-4 h-4" />
-        </div>
-      );
-    }
-    return sortConfig.direction === 'asc' ? (
-      <ArrowUp className="w-4 h-4" />
-    ) : (
-      <ArrowDown className="w-4 h-4" />
-    );
-  };
-
   return (
     <Card className="glass-card">
       <Box sx={{ p: 3, textAlign: 'center' }}>
@@ -113,58 +79,7 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
       </Box>
       <CardContent sx={{ overflowX: 'auto' }}>
         <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('lastActivity')}>
-                  Latest Activity
-                  <SortIcon columnKey="lastActivity" />
-                </div>
-              </TableCell>
-              <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('address')}>
-                  User
-                  <SortIcon columnKey="address" />
-                </div>
-              </TableCell>
-              <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('dusdSupplied')}>
-                  dUSD Supplied
-                  <SortIcon columnKey="dusdSupplied" />
-                </div>
-              </TableCell>
-              <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('dusdDebt')}>
-                  dUSD Debt
-                  <SortIcon columnKey="dusdDebt" />
-                </div>
-              </TableCell>
-              <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('collateralSupplied')}>
-                  Collateral
-                  <SortIcon columnKey="collateralSupplied" />
-                </div>
-              </TableCell>
-              <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('collateralValue')}>
-                  Collateral Value
-                  <SortIcon columnKey="collateralValue" />
-                </div>
-              </TableCell>
-              <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('currentLTV')}>
-                  Current LTV
-                  <SortIcon columnKey="currentLTV" />
-                </div>
-              </TableCell>
-              <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('healthFactor')}>
-                  Health Factor
-                  <SortIcon columnKey="healthFactor" />
-                </div>
-              </TableCell>
-            </TableRow>
-          </TableHead>
+          <TableHeader onSort={handleSort} sortConfig={sortConfig} />
           <TableBody>
             {sortedPositions.map((position) => {
               const calculatedSupplied = position.dusdSupplied === 0 ? 
