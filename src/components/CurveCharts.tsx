@@ -49,9 +49,18 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
                 },
                 formatter: (text) => formatDate(text),
               },
+              grid: {
+                line: {
+                  style: {
+                    stroke: 'rgba(255, 255, 255, 0.1)',
+                    lineWidth: 1,
+                  },
+                },
+              },
               line: {
                 style: {
                   stroke: 'rgba(255, 255, 255, 0.3)',
+                  lineWidth: 2,
                 },
               },
             }}
@@ -68,9 +77,18 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
                 },
                 formatter: (text) => Number(text).toFixed(4),
               },
+              grid: {
+                line: {
+                  style: {
+                    stroke: 'rgba(255, 255, 255, 0.1)',
+                    lineWidth: 1,
+                  },
+                },
+              },
               line: {
                 style: {
                   stroke: 'rgba(255, 255, 255, 0.3)',
+                  lineWidth: 2,
                 },
               },
               min: 0.999,
