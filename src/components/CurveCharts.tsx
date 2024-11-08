@@ -13,7 +13,7 @@ interface ChartCardProps {
 }
 
 const ChartCard = ({ title, children, fullWidth }: ChartCardProps) => (
-  <Card className="glass-card">
+  <Card className={`glass-card ${fullWidth ? 'col-span-full' : ''}`}>
     <CardContent>
       <Typography variant="h6" sx={{ color: 'white', mb: 2, textAlign: 'center' }}>
         {title}
@@ -117,7 +117,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
 
       <ChartCard title="dUSD AMO Revenue (Annualized)" fullWidth>
         <ResponsiveContainer>
-          <ComposedChart data={data.amoRevenue} className="md:col-span-2">
+          <ComposedChart data={data.amoRevenue}>
             <XAxis dataKey="date" tickFormatter={formatDate} />
             <YAxis yAxisId="left" tickFormatter={formatCurrency} />
             <YAxis yAxisId="right" orientation="right" tickFormatter={formatPercentage} />
