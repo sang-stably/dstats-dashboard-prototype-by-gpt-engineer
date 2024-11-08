@@ -15,7 +15,7 @@ const TVLChart = ({ data }: TVLChartProps) => {
     <ResponsiveContainer>
       <AreaChart 
         data={data}
-        margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
+        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
       >
         <defs>
           <linearGradient id="colorDusd" x1="0" y1="0" x2="0" y2="1">
@@ -40,7 +40,7 @@ const TVLChart = ({ data }: TVLChartProps) => {
         <Legend 
           verticalAlign="top"
           align="center"
-          height={24}
+          height={20}
           iconType="square"
           iconSize={10}
         />
