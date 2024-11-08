@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Table, TableBody, TableCell, TableHead, TableRow, Box, Link } from '@mui/material';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 
 interface UserPosition {
   lastActivity: string;
@@ -48,14 +49,78 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ color: 'white' }}>Latest Activity</TableCell>
-              <TableCell sx={{ color: 'white' }}>User</TableCell>
-              <TableCell sx={{ color: 'white' }}>dUSD Supplied</TableCell>
-              <TableCell sx={{ color: 'white' }}>dUSD Debt</TableCell>
-              <TableCell sx={{ color: 'white' }}>Collateral</TableCell>
-              <TableCell sx={{ color: 'white' }}>Collateral Value</TableCell>
-              <TableCell sx={{ color: 'white' }}>Current LTV</TableCell>
-              <TableCell sx={{ color: 'white' }}>Health Factor</TableCell>
+              <TableCell sx={{ color: 'white' }}>
+                <div className="flex items-center gap-1">
+                  Latest Activity
+                  <div className="flex flex-col">
+                    <ChevronUp className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell sx={{ color: 'white' }}>
+                <div className="flex items-center gap-1">
+                  User
+                  <div className="flex flex-col">
+                    <ChevronUp className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell sx={{ color: 'white' }}>
+                <div className="flex items-center gap-1">
+                  dUSD Supplied
+                  <div className="flex flex-col">
+                    <ChevronUp className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell sx={{ color: 'white' }}>
+                <div className="flex items-center gap-1">
+                  dUSD Debt
+                  <div className="flex flex-col">
+                    <ChevronUp className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell sx={{ color: 'white' }}>
+                <div className="flex items-center gap-1">
+                  Collateral
+                  <div className="flex flex-col">
+                    <ChevronUp className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell sx={{ color: 'white' }}>
+                <div className="flex items-center gap-1">
+                  Collateral Value
+                  <div className="flex flex-col">
+                    <ChevronUp className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell sx={{ color: 'white' }}>
+                <div className="flex items-center gap-1">
+                  Current LTV
+                  <div className="flex flex-col">
+                    <ChevronUp className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </div>
+              </TableCell>
+              <TableCell sx={{ color: 'white' }}>
+                <div className="flex items-center gap-1">
+                  Health Factor
+                  <div className="flex flex-col">
+                    <ChevronUp className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </div>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
