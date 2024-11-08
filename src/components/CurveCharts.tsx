@@ -4,7 +4,7 @@ import ChartCard from './charts/ChartCard';
 import TVLChart from './charts/TVLChart';
 import { 
   AreaChart, BarChart, ComposedChart, XAxis, YAxis, 
-  Tooltip, ResponsiveContainer, Area, Bar, Line,
+  Tooltip, ResponsiveContainer, Area, Bar, Line, Legend,
   formatDate, formatNumberWithSuffix, formatCurrency, formatPercentage, 
   commonTooltipStyle, commonAxisStyle, commonYAxisStyle
 } from './charts/ChartComponents';
