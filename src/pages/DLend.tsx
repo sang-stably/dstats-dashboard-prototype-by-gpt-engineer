@@ -1,4 +1,4 @@
-import { Container, Box } from '@mui/material';
+import { Container, Box, Typography } from '@mui/material';
 import NavMenu from '@/components/NavMenu';
 import NetworkSelector from '@/components/NetworkSelector';
 import UserPositionsTreemap from '@/components/UserPositionsTreemap';
@@ -40,6 +40,9 @@ const DLend = () => {
             alt="Trinity Logo" 
             style={{ height: '24px', width: 'auto' }}
           />
+          <Typography variant="h5" component="h1" fontWeight="bold">
+            dSTATS
+          </Typography>
         </Box>
         <Box sx={{ 
           display: { xs: 'none', sm: 'block' } 
