@@ -1,27 +1,30 @@
 import { Box, Button } from '@mui/material';
 
-export type TimeRange = '7D' | '1M' | '3M' | '1Y' | 'ALL';
+export type TimeRange = '1D' | '1W' | '1M' | '3M' | '1Y' | 'ALL';
 
 interface TimeRangeSelectorProps {
   value: TimeRange;
-  onChange: (value: TimeRange) => void;
+  onChange: (range: TimeRange) => void;
 }
 
 const TimeRangeSelector = ({ value, onChange }: TimeRangeSelectorProps) => {
+  const timeRanges: TimeRange[] = ['1D', '1W', '1M', '3M', '1Y', 'ALL'];
+
   return (
-    <Box sx={{ display: 'flex', gap: 0.5, justifyContent: 'flex-end', mb: 2 }}>
-      {(['7D', '1M', '3M', '1Y', 'ALL'] as TimeRange[]).map((range) => (
+    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+      {timeRanges.map((range) => (
         <Button
           key={range}
           onClick={() => onChange(range)}
           sx={{
-            minWidth: 'auto',
-            padding: '0px 2px',
+            minWidth: 'unset',
+            px: 1.5,
+            py: 0.5,
+            color: value === range ? '#8702ff' : '#ffffff',
             fontSize: '0.75rem',
-            color: value === range ? '#8702ff' : 'rgba(255, 255, 255, 0.7)',
+            fontWeight: 500,
             '&:hover': {
-              background: 'none',
-              color: '#8702ff',
+              backgroundColor: 'rgba(255, 255, 255, 0.05)',
             },
           }}
         >
