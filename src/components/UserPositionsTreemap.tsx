@@ -32,7 +32,7 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
       .sort((a, b) => b.collateralValue - a.collateralValue)
       .map((position) => ({
         name: position.address,
-        value: position.collateralValue,
+        value: position.collateralValue, // This determines the size of each block
         healthFactor: position.healthFactor,
       }));
     
@@ -48,6 +48,7 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
     data: transformData(data),
     colorField: 'healthFactor',
     color: ({ healthFactor }: any) => getColorByHealthFactor(healthFactor),
+    sizeField: 'value', // Explicitly set size field to use the value (collateral value)
     tooltip: {
       customContent: (title: string, items: any[]) => {
         if (!title) return '';
