@@ -4,7 +4,7 @@ import {
   Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, 
   Tooltip, ResponsiveContainer, formatDate, formatNumberWithSuffix,
   formatCurrency, formatPercentage, commonTooltipStyle, commonAxisStyle,
-  commonYAxisStyle, Candlestick 
+  commonYAxisStyle
 } from './charts/ChartComponents';
 
 interface CurveChartsProps {
@@ -40,15 +40,26 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               formatter={(value: number) => value.toFixed(4)}
               labelFormatter={formatDate}
             />
-            <Candlestick
-              yAxisId="left"
-              nameKey="date"
-              openKey="open"
-              highKey="high"
-              lowKey="low"
-              closeKey="close"
-              fill="#8702ff"
+            <Area
+              type="monotone"
+              dataKey="close"
               stroke="#8702ff"
+              fill="url(#colorClose)"
+              isAnimationActive={false}
+            />
+            <Line
+              type="monotone"
+              dataKey="high"
+              stroke="#22c55e"
+              dot={false}
+              strokeWidth={1}
+            />
+            <Line
+              type="monotone"
+              dataKey="low"
+              stroke="#ef4444"
+              dot={false}
+              strokeWidth={1}
             />
           </ComposedChart>
         </ResponsiveContainer>
