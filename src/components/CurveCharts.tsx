@@ -13,9 +13,24 @@ interface ChartCardProps {
 }
 
 const ChartCard = ({ title, children, fullWidth }: ChartCardProps) => (
-  <Card className={`glass-card ${fullWidth ? 'col-span-full' : ''}`}>
+  <Card 
+    sx={{ 
+      height: '100%',
+      background: 'rgba(255, 255, 255, 0.05)',
+      backdropFilter: 'blur(10px)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      transition: 'all 0.3s ease',
+      borderRadius: '12px',
+      '&:hover': {
+        transform: 'translateY(-2px)',
+        borderColor: 'rgba(135, 2, 255, 0.3)',
+        boxShadow: '0 8px 32px rgba(135, 2, 255, 0.15)'
+      }
+    }}
+    className={fullWidth ? 'col-span-full' : ''}
+  >
     <CardContent>
-      <Typography variant="h6" sx={{ color: 'white', mb: 2, textAlign: 'center' }}>
+      <Typography variant="subtitle2" sx={{ color: 'white', mb: 2, textAlign: 'left' }}>
         {title}
       </Typography>
       <Box sx={{ height: 300 }}>
