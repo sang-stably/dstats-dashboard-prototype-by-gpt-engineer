@@ -13,7 +13,10 @@ interface TVLChartProps {
 const TVLChart = ({ data }: TVLChartProps) => {
   return (
     <ResponsiveContainer>
-      <AreaChart data={data}>
+      <AreaChart 
+        data={data}
+        margin={{ top: 30, right: 30, left: 0, bottom: 0 }}
+      >
         <defs>
           <linearGradient id="colorDusd" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="#8702ff" stopOpacity={0.8}/>
@@ -35,11 +38,9 @@ const TVLChart = ({ data }: TVLChartProps) => {
           labelFormatter={formatDate}
         />
         <Legend 
-          wrapperStyle={{ 
-            paddingTop: '20px',
-            position: 'relative',
-            top: '-40px'
-          }}
+          verticalAlign="top"
+          align="center"
+          height={36}
           iconType="square"
           iconSize={10}
         />
