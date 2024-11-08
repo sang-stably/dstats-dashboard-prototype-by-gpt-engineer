@@ -9,7 +9,7 @@ interface TimeRangeSelectorProps {
 
 const TimeRangeSelector = ({ value, onChange }: TimeRangeSelectorProps) => {
   return (
-    <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end', mb: 2 }}>
+    <Box sx={{ display: 'flex', gap: 0.5, justifyContent: 'flex-end', mb: 2 }}>
       {(['7D', '1M', '3M', '1Y', 'ALL'] as TimeRange[]).map((range) => (
         <Button
           key={range}
