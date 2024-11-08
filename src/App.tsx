@@ -5,6 +5,7 @@ import { useState } from "react";
 import Index from "./pages/Index";
 import Collaterals from "./pages/Collaterals";
 import Curve from "./pages/Curve";
+import DLend from "./pages/DLend";
 import Footer from "./components/Footer";
 
 const queryClient = new QueryClient();
@@ -32,7 +33,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/collaterals" element={<Collaterals />} />
-              <Route path="/dlend" element={<Index />} />
+              <Route path="/dlend" element={<DLend />} />
               <Route path="/curve" element={<Curve />} />
             </Routes>
           </BrowserRouter>

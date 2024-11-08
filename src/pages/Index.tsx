@@ -3,25 +3,9 @@ import MetricCard from '@/components/MetricCard';
 import SupplyCharts from '@/components/SupplyCharts';
 import NavMenu from '@/components/NavMenu';
 import NetworkSelector from '@/components/NetworkSelector';
-import UserPositionsTreemap from '@/components/UserPositionsTreemap';
 import { useQuery } from '@tanstack/react-query';
 import { fetchDashboardData } from '@/lib/api';
 import { DashboardMetrics } from '@/lib/types';
-
-// Mock data for the treemap - in production, this should come from your API
-const mockUserPositions = [
-  {
-    address: "0x9eD6D2A6A29B5cF380B9EeD8...",
-    dusdSupplied: 0,
-    collateralSupplied: ["sUSDe", "sFRAX"],
-    collateralValue: 500000,
-    dusdDebt: 300000,
-    currentLTV: 60,
-    maxLTV: 80,
-    liquidationLTV: 85,
-    healthFactor: 1.42,
-  },
-];
 
 const Index = () => {
   const { data, isLoading } = useQuery({
@@ -158,12 +142,6 @@ const Index = () => {
         <Grid item xs={12} sx={{ mt: { xs: 2, sm: 3 } }}>
           <SupplyCharts data={data.supplyData} />
         </Grid>
-
-        {window.location.pathname === '/dlend' && (
-          <Grid item xs={12} sx={{ mt: { xs: 2, sm: 3 } }}>
-            <UserPositionsTreemap data={mockUserPositions} />
-          </Grid>
-        )}
       </Grid>
     </Container>
   );
