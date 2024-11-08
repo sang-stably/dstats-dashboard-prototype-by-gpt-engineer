@@ -4,12 +4,18 @@ import {
   Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, 
   Tooltip, ResponsiveContainer, formatDate, formatNumberWithSuffix,
   formatCurrency, formatPercentage, commonTooltipStyle, commonAxisStyle,
-  commonYAxisStyle 
+  commonYAxisStyle, Candlestick 
 } from './charts/ChartComponents';
 
 interface CurveChartsProps {
   data: {
-    lpPrice: Array<{ date: string; value: number }>;
+    lpPrice: Array<{ 
+      date: string; 
+      open: number;
+      high: number;
+      low: number;
+      close: number;
+    }>;
     tvl: Array<{ date: string; value: number }>;
     volume: Array<{ date: string; value: number }>;
     fees: Array<{ date: string; value: number }>;
@@ -22,13 +28,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
     <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <ChartCard title="dUSD/FRAX LP Price (USD)">
         <ResponsiveContainer>
-          <AreaChart data={data.lpPrice}>
-            <defs>
-              <linearGradient id="colorLpPrice" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8702ff" stopOpacity={0.3}/>
-                <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
-              </linearGradient>
-            </defs>
+          <ComposedChart data={data.lpPrice}>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
             <YAxis 
               {...commonYAxisStyle}
@@ -40,8 +40,17 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               formatter={(value: number) => value.toFixed(4)}
               labelFormatter={formatDate}
             />
-            <Area type="monotone" dataKey="value" stroke="#8702ff" fill="url(#colorLpPrice)" />
-          </AreaChart>
+            <Candlestick
+              yAxisId="left"
+              nameKey="date"
+              openKey="open"
+              highKey="high"
+              lowKey="low"
+              closeKey="close"
+              fill="#8702ff"
+              stroke="#8702ff"
+            />
+          </ComposedChart>
         </ResponsiveContainer>
       </ChartCard>
 
