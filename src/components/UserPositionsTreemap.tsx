@@ -21,12 +21,15 @@ interface TreemapData {
 
 const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
   const transformData = (positions: UserPosition[]): TreemapData => {
+    const children = positions.map((position) => ({
+      name: position.address,
+      value: position.collateralValue,
+    }));
+    
     return {
       name: 'User Positions',
-      children: positions.map((position) => ({
-        name: position.address,
-        value: position.collateralValue,
-      })),
+      value: children.reduce((sum, child) => sum + child.value, 0),
+      children,
     };
   };
 
