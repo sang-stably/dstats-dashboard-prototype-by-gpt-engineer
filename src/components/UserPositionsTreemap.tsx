@@ -47,7 +47,7 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
   const config = {
     data: transformData(data),
     colorField: 'healthFactor',
-    color: (node: any) => getColorByHealthFactor(node.healthFactor),
+    color: ({ healthFactor }: any) => getColorByHealthFactor(healthFactor),
     tooltip: {
       customContent: (title: string, items: any[]) => {
         if (!title) return '';
