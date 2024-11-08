@@ -12,15 +12,15 @@ body {
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   transition: all 0.3s ease;
 }
 
 .glass-card:hover {
   transform: translateY(-2px);
-  border: 1px solid rgba(135, 2, 255, 0.3);
+  border: 1px solid rgba(135, 2, 255, 0.3) !important;
   box-shadow: 0 8px 32px rgba(135, 2, 255, 0.15);
 }
 
