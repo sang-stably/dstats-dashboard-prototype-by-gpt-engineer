@@ -1,6 +1,8 @@
 import { Card, CardContent, Typography, Box } from '@mui/material';
 import { Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { format } from 'date-fns';
+import { useState } from 'react';
+import TimeRangeSelector, { TimeRange } from './TimeRangeSelector';
 
 const formatDate = (date: string) => format(new Date(date), 'MMM d');
 
@@ -49,35 +51,50 @@ interface ChartCardProps {
   title: string;
   children: React.ReactNode;
   fullWidth?: boolean;
+  onTimeRangeChange?: (range: TimeRange) => void;
 }
 
-const ChartCard = ({ title, children, fullWidth }: ChartCardProps) => (
-  <Card 
-    sx={{ 
-      height: '100%',
-      background: 'rgba(255, 255, 255, 0.05)',
-      backdropFilter: 'blur(10px)',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
-      transition: 'all 0.3s ease',
-      borderRadius: '12px',
-      '&:hover': {
-        transform: 'translateY(-2px)',
-        borderColor: 'rgba(135, 2, 255, 0.3)',
-        boxShadow: '0 8px 32px rgba(135, 2, 255, 0.15)'
-      }
-    }}
-    className={fullWidth ? 'col-span-full' : ''}
-  >
-    <CardContent>
-      <Typography variant="subtitle2" sx={{ color: 'white', mb: 2, textAlign: 'center' }}>
-        {title}
-      </Typography>
-      <Box sx={{ height: 300 }}>
-        {children}
-      </Box>
-    </CardContent>
-  </Card>
-);
+const ChartCard = ({ title, children, fullWidth, onTimeRangeChange }: ChartCardProps) => {
+  const [timeRange, setTimeRange] = useState<TimeRange>('1M');
+
+  const handleTimeRangeChange = (newRange: TimeRange) => {
+    setTimeRange(newRange);
+    if (onTimeRangeChange) {
+      onTimeRangeChange(newRange);
+    }
+  };
+
+  return (
+    <Card 
+      sx={{ 
+        height: '100%',
+        background: 'rgba(255, 255, 255, 0.05)',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        transition: 'all 0.3s ease',
+        borderRadius: '12px',
+        '&:hover': {
+          transform: 'translateY(-2px)',
+          borderColor: 'rgba(135, 2, 255, 0.3)',
+          boxShadow: '0 8px 32px rgba(135, 2, 255, 0.15)'
+        }
+      }}
+      className={fullWidth ? 'col-span-full' : ''}
+    >
+      <CardContent>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Typography variant="subtitle2" sx={{ color: 'white', textAlign: 'center' }}>
+            {title}
+          </Typography>
+          <TimeRangeSelector value={timeRange} onChange={handleTimeRangeChange} />
+          <Box sx={{ height: 300 }}>
+            {children}
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
+  );
+};
 
 interface CurveChartsProps {
   data: {
