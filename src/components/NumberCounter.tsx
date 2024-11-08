@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { NumberCounterProps } from '@/lib/types';
 
+const formatNumberWithSuffix = (num: number) => {
+  if (num >= 1000000) {
+    return `${(num / 1000000).toFixed(2)}M`;
+  } else if (num >= 1000) {
+    return `${(num / 1000).toFixed(2)}K`;
+  }
+  return num.toFixed(2);
+};
+
 const NumberCounter = ({ value, format = 'number' }: NumberCounterProps) => {
   const [displayValue, setDisplayValue] = useState(0);
   const previousValue = useRef(0);
@@ -28,11 +37,11 @@ const NumberCounter = ({ value, format = 'number' }: NumberCounterProps) => {
   const formatValue = (val: number) => {
     switch (format) {
       case 'currency':
-        return `$${val.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
+        return `$${formatNumberWithSuffix(val)}`;
       case 'percentage':
         return `${val.toFixed(2)}%`;
       default:
-        return val.toLocaleString('en-US', { maximumFractionDigits: 2 });
+        return formatNumberWithSuffix(val);
     }
   };
 
