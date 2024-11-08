@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { Stock } from '@ant-design/charts';
 import ChartCard from './charts/ChartCard';
 import { 
   Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, 
@@ -27,42 +28,22 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
   return (
     <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <ChartCard title="dUSD/FRAX LP Price (USD)">
-        <ResponsiveContainer>
-          <ComposedChart data={data.lpPrice}>
-            <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis 
-              {...commonYAxisStyle}
-              domain={[0.9990, 1.0050]} 
-              tickFormatter={(value) => value.toFixed(4)} 
-            />
-            <Tooltip
-              {...commonTooltipStyle}
-              formatter={(value: number) => value.toFixed(4)}
-              labelFormatter={formatDate}
-            />
-            <Area
-              type="monotone"
-              dataKey="close"
-              stroke="#8702ff"
-              fill="url(#colorClose)"
-              isAnimationActive={false}
-            />
-            <Line
-              type="monotone"
-              dataKey="high"
-              stroke="#22c55e"
-              dot={false}
-              strokeWidth={1}
-            />
-            <Line
-              type="monotone"
-              dataKey="low"
-              stroke="#ef4444"
-              dot={false}
-              strokeWidth={1}
-            />
-          </ComposedChart>
-        </ResponsiveContainer>
+        <Box sx={{ height: 300 }}>
+          <Stock
+            data={data.lpPrice}
+            xField="date"
+            yField={['open', 'close', 'high', 'low']}
+            theme={{
+              defaultColor: '#8702ff',
+            }}
+            tooltip={{
+              formatter: (datum) => ({
+                name: 'Price',
+                value: `O: ${datum.open.toFixed(4)} H: ${datum.high.toFixed(4)} L: ${datum.low.toFixed(4)} C: ${datum.close.toFixed(4)}`,
+              }),
+            }}
+          />
+        </Box>
       </ChartCard>
 
       <ChartCard title="dUSD/FRAX TVL">
