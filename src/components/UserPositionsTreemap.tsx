@@ -39,6 +39,8 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
     color: ['#8702ff', '#a64dff', '#bf80ff', '#dfbfff'],
     tooltip: {
       customContent: (title: string, items: any[]) => {
+        if (!title) return '';
+        
         const position = data.find((p) => p.address === title);
         if (!position) return '';
         
@@ -86,6 +88,7 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
         fontSize: 12,
       },
       formatter: (info: any) => {
+        if (!info || !info.name) return '';
         const position = data.find((p) => p.address === info.name);
         if (!position) return '';
         return `${position.address.slice(0, 6)}...`;
