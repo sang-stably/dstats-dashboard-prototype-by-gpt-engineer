@@ -28,11 +28,13 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
   };
 
   const transformData = (positions: UserPosition[]): TreemapData => {
-    const children = positions.map((position) => ({
-      name: position.address,
-      value: position.collateralValue,
-      healthFactor: position.healthFactor,
-    }));
+    const children = positions
+      .sort((a, b) => b.collateralValue - a.collateralValue)
+      .map((position) => ({
+        name: position.address,
+        value: position.collateralValue,
+        healthFactor: position.healthFactor,
+      }));
     
     return {
       name: 'User Positions',
@@ -111,9 +113,6 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
       p: 3,
       height: '400px'
     }}>
-      <Typography variant="h6" sx={{ mb: 2, color: 'white' }}>
-        User Positions
-      </Typography>
       <Treemap {...config} />
     </Box>
   );

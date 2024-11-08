@@ -10,8 +10,8 @@ interface TopPositionsTableProps {
 
 const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
   const [sortConfig, setSortConfig] = useState<SortConfig>({
-    key: null,
-    direction: 'asc'
+    key: 'collateralValue',
+    direction: 'desc'
   });
 
   const formatCurrency = (value: number) => {
@@ -85,7 +85,7 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
         >
           User Positions
         </Typography>
-        <UserPositionsTreemap data={positions} />
+        <UserPositionsTreemap data={sortedPositions} />
       </Box>
       <CardContent sx={{ overflowX: 'auto' }}>
         <Table>
