@@ -11,7 +11,7 @@ interface SortIconProps {
 const SortIcon = ({ columnKey, currentSortKey, sortDirection }: SortIconProps) => {
   if (currentSortKey !== columnKey) {
     return (
-      <Box sx={{ opacity: 0.3 }}>
+      <Box sx={{ opacity: 0.5 }}>
         <SwapVert sx={{ color: 'white' }} className="w-4 h-4" />
       </Box>
     );
