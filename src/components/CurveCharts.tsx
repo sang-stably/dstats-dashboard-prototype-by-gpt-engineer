@@ -132,7 +132,15 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               ]}
               labelFormatter={formatDate}
             />
-            <Legend />
+            <Legend 
+              wrapperStyle={{ 
+                paddingTop: '20px',
+                position: 'relative',
+                top: '-40px'
+              }}
+              iconType="square"
+              iconSize={10}
+            />
             <Area
               type="monotone"
               dataKey="frax"

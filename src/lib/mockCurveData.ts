@@ -25,8 +25,8 @@ export const curveChartData = {
   }),
   tvl: Array.from({ length: 30 }, (_, i) => {
     const progress = i / 29; // 0 to 1
-    const totalValue = 600000 + (400000 * progress); // Increases from 600k to 1M
-    const dusdRatio = 0.4 + (Math.random() * 0.2); // 40-60% dUSD
+    const totalValue = 600000 + (400000 * progress); // Smooth increase from 600k to 1M
+    const dusdRatio = 0.45 + (progress * 0.1); // Smooth increase in dUSD ratio from 45% to 55%
     const dusdValue = totalValue * dusdRatio;
     const fraxValue = totalValue * (1 - dusdRatio);
     
