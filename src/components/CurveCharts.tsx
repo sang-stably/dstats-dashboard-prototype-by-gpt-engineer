@@ -36,6 +36,46 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
             theme={{
               defaultColor: '#8702ff',
             }}
+            xAxis={{
+              title: {
+                text: 'Date',
+                style: {
+                  fill: 'white',
+                },
+              },
+              label: {
+                style: {
+                  fill: 'white',
+                },
+                formatter: (text) => formatDate(text),
+              },
+              line: {
+                style: {
+                  stroke: 'rgba(255, 255, 255, 0.3)',
+                },
+              },
+            }}
+            yAxis={{
+              title: {
+                text: 'Price (USD)',
+                style: {
+                  fill: 'white',
+                },
+              },
+              label: {
+                style: {
+                  fill: 'white',
+                },
+                formatter: (text) => Number(text).toFixed(4),
+              },
+              line: {
+                style: {
+                  stroke: 'rgba(255, 255, 255, 0.3)',
+                },
+              },
+              min: 0.999,
+              max: 1.001,
+            }}
             tooltip={{
               formatter: (datum) => ({
                 name: 'Price',
