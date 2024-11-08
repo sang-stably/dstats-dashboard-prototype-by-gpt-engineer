@@ -28,6 +28,11 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
     }).format(value);
   };
 
+  const calculateDusdSupplied = (debt: number, ltv: number) => {
+    if (ltv === 0) return 0;
+    return (debt / ltv) * 100;
+  };
+
   return (
     <Card className="glass-card">
       <Box sx={{ p: 3, textAlign: 'center' }}>
@@ -50,34 +55,38 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {positions.map((position) => (
-              <TableRow key={position.address} className="hover:bg-white/5">
-                <TableCell sx={{ color: 'white' }}>{position.lastActivity}</TableCell>
-                <TableCell sx={{ color: 'white', fontFamily: 'monospace' }}>
-                  {position.address}
-                </TableCell>
-                <TableCell sx={{ color: 'white' }}>
-                  {formatCurrency(position.dusdSupplied)}
-                </TableCell>
-                <TableCell sx={{ color: 'white' }}>
-                  {formatCurrency(position.dusdDebt)}
-                </TableCell>
-                <TableCell sx={{ color: 'white' }}>
-                  {position.collateralSupplied.length > 0 ? position.collateralSupplied.join(', ') : '-'}
-                </TableCell>
-                <TableCell sx={{ color: 'white' }}>
-                  {formatCurrency(position.collateralValue)}
-                </TableCell>
-                <TableCell sx={{ color: 'white' }}>
-                  {position.currentLTV.toFixed(2)}%
-                </TableCell>
-                <TableCell>
-                  <span>
+            {positions.map((position) => {
+              const calculatedSupplied = position.dusdSupplied === 0 ? 
+                calculateDusdSupplied(position.dusdDebt, position.currentLTV) : 
+                position.dusdSupplied;
+              
+              return (
+                <TableRow key={position.address} className="hover:bg-white/5">
+                  <TableCell sx={{ color: 'white' }}>{position.lastActivity}</TableCell>
+                  <TableCell sx={{ color: 'white', fontFamily: 'monospace' }}>
+                    {position.address}
+                  </TableCell>
+                  <TableCell sx={{ color: 'white' }}>
+                    {formatCurrency(calculatedSupplied)}
+                  </TableCell>
+                  <TableCell sx={{ color: 'white' }}>
+                    {formatCurrency(position.dusdDebt)}
+                  </TableCell>
+                  <TableCell sx={{ color: 'white' }}>
+                    {position.collateralSupplied.length > 0 ? position.collateralSupplied.join(', ') : '-'}
+                  </TableCell>
+                  <TableCell sx={{ color: 'white' }}>
+                    {formatCurrency(position.collateralValue)}
+                  </TableCell>
+                  <TableCell sx={{ color: 'white' }}>
+                    {position.currentLTV.toFixed(2)}%
+                  </TableCell>
+                  <TableCell sx={{ color: 'white' }}>
                     {position.healthFactor ? position.healthFactor.toFixed(2) : 'N/A'} {position.healthIndicator}
-                  </span>
-                </TableCell>
-              </TableRow>
-            ))}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </CardContent>
