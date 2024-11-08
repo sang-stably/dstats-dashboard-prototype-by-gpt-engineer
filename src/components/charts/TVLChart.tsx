@@ -43,7 +43,7 @@ const TVLChart = ({ data }: TVLChartProps) => {
           height={20}
           iconType="square"
           iconSize={10}
-          wrapperStyle={{ fontSize: '12px', color: 'white' }}
+          wrapperStyle={{ fontSize: '14px', color: 'white' }} // Updated font size to 14px
         />
         <Area
           type="monotone"
