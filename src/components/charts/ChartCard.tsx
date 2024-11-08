@@ -37,14 +37,14 @@ const ChartCard = ({ title, children, fullWidth, onTimeRangeChange }: ChartCardP
       }}
       className={fullWidth ? 'col-span-full' : ''}
     >
-      <CardContent>
+      <CardContent sx={{ pt: 3 }}> {/* Added top padding here */}
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Typography 
             variant="subtitle2" 
             sx={{ 
               color: 'white', 
               textAlign: 'center',
-              mb: 4, // Add margin bottom to create space between title and chart
+              mb: 2, // Reduced margin bottom from 4 to 2
             }}
           >
             {title}
@@ -52,7 +52,7 @@ const ChartCard = ({ title, children, fullWidth, onTimeRangeChange }: ChartCardP
           <Box sx={{ 
             height: 300, 
             position: 'relative',
-            mb: 2 // Reduce space between chart and time range selector
+            mb: 1 // Reduced margin bottom from 2 to 1
           }}>
             {children}
           </Box>
