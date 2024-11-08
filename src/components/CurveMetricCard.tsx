@@ -14,7 +14,12 @@ const CurveMetricCard = ({ title, value, info, format = 'currency' }: CurveMetri
   return (
     <Card className="glass-card" sx={{ borderRadius: '12px' }}>
       <CardContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between',
+          mb: 2 
+        }}>
           <Typography variant="subtitle2" sx={{ color: 'white' }}>
             {title}
           </Typography>
@@ -26,7 +31,15 @@ const CurveMetricCard = ({ title, value, info, format = 'currency' }: CurveMetri
               arrow: { sx: { color: 'rgba(19, 17, 28, 0.95)' } }
             }}
           >
-            <IconButton size="small" sx={{ color: 'white', '&:hover': { color: 'primary.main' } }}>
+            <IconButton 
+              size="small" 
+              sx={{ 
+                color: 'white', 
+                '&:hover': { color: 'primary.main' },
+                ml: 1,
+                padding: '4px'
+              }}
+            >
               <InfoIcon fontSize="small" />
             </IconButton>
           </Tooltip>
