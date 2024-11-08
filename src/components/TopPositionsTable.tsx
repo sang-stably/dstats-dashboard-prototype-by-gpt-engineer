@@ -1,5 +1,6 @@
 import { Card, CardContent, Typography, Table, TableBody, TableCell, TableHead, TableRow, Box, Link } from '@mui/material';
-import { ChevronUp, ChevronDown } from 'lucide-react';
+import { ArrowUp, ArrowDown } from 'lucide-react';
+import { useState, useMemo } from 'react';
 
 interface UserPosition {
   lastActivity: string;
@@ -19,7 +20,17 @@ interface TopPositionsTableProps {
   positions: UserPosition[];
 }
 
+type SortConfig = {
+  key: keyof UserPosition | null;
+  direction: 'asc' | 'desc';
+};
+
 const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
+  const [sortConfig, setSortConfig] = useState<SortConfig>({
+    key: null,
+    direction: 'asc'
+  });
+
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -38,6 +49,61 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
     return (debt / ltv) * 100;
   };
 
+  const handleSort = (key: keyof UserPosition) => {
+    setSortConfig((currentConfig) => ({
+      key,
+      direction:
+        currentConfig.key === key && currentConfig.direction === 'asc'
+          ? 'desc'
+          : 'asc',
+    }));
+  };
+
+  const sortedPositions = useMemo(() => {
+    if (!sortConfig.key) return positions;
+
+    return [...positions].sort((a, b) => {
+      if (sortConfig.key === 'collateralSupplied') {
+        const aValue = a[sortConfig.key].length;
+        const bValue = b[sortConfig.key].length;
+        return sortConfig.direction === 'asc' ? aValue - bValue : bValue - aValue;
+      }
+
+      const aValue = a[sortConfig.key];
+      const bValue = b[sortConfig.key];
+
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        return sortConfig.direction === 'asc'
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
+
+      if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return sortConfig.direction === 'asc'
+          ? aValue - bValue
+          : bValue - aValue;
+      }
+
+      return 0;
+    });
+  }, [positions, sortConfig]);
+
+  const SortIcon = ({ columnKey }: { columnKey: keyof UserPosition }) => {
+    if (sortConfig.key !== columnKey) {
+      return (
+        <div className="flex flex-col opacity-30">
+          <ArrowUp className="w-4 h-4" />
+          <ArrowDown className="w-4 h-4" />
+        </div>
+      );
+    }
+    return sortConfig.direction === 'asc' ? (
+      <ArrowUp className="w-4 h-4" />
+    ) : (
+      <ArrowDown className="w-4 h-4" />
+    );
+  };
+
   return (
     <Card className="glass-card">
       <Box sx={{ p: 3, textAlign: 'center' }}>
@@ -50,81 +116,57 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
           <TableHead>
             <TableRow>
               <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('lastActivity')}>
                   Latest Activity
-                  <div className="flex flex-col">
-                    <ChevronUp className="w-4 h-4" />
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                  <SortIcon columnKey="lastActivity" />
                 </div>
               </TableCell>
               <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('address')}>
                   User
-                  <div className="flex flex-col">
-                    <ChevronUp className="w-4 h-4" />
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                  <SortIcon columnKey="address" />
                 </div>
               </TableCell>
               <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('dusdSupplied')}>
                   dUSD Supplied
-                  <div className="flex flex-col">
-                    <ChevronUp className="w-4 h-4" />
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                  <SortIcon columnKey="dusdSupplied" />
                 </div>
               </TableCell>
               <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('dusdDebt')}>
                   dUSD Debt
-                  <div className="flex flex-col">
-                    <ChevronUp className="w-4 h-4" />
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                  <SortIcon columnKey="dusdDebt" />
                 </div>
               </TableCell>
               <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('collateralSupplied')}>
                   Collateral
-                  <div className="flex flex-col">
-                    <ChevronUp className="w-4 h-4" />
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                  <SortIcon columnKey="collateralSupplied" />
                 </div>
               </TableCell>
               <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('collateralValue')}>
                   Collateral Value
-                  <div className="flex flex-col">
-                    <ChevronUp className="w-4 h-4" />
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                  <SortIcon columnKey="collateralValue" />
                 </div>
               </TableCell>
               <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('currentLTV')}>
                   Current LTV
-                  <div className="flex flex-col">
-                    <ChevronUp className="w-4 h-4" />
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                  <SortIcon columnKey="currentLTV" />
                 </div>
               </TableCell>
               <TableCell sx={{ color: 'white' }}>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 cursor-pointer" onClick={() => handleSort('healthFactor')}>
                   Health Factor
-                  <div className="flex flex-col">
-                    <ChevronUp className="w-4 h-4" />
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                  <SortIcon columnKey="healthFactor" />
                 </div>
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {positions.map((position) => {
+            {sortedPositions.map((position) => {
               const calculatedSupplied = position.dusdSupplied === 0 ? 
                 calculateDusdSupplied(position.dusdDebt, position.currentLTV) : 
                 position.dusdSupplied;
