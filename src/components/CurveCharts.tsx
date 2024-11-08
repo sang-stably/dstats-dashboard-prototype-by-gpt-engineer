@@ -171,31 +171,12 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               verticalAlign="top"
               align="center"
               height={20}
-              iconType="circle"
-              iconSize={8}
-              wrapperStyle={{ 
-                fontSize: '14px', 
-                color: 'white',
-                paddingBottom: '10px'
-              }}
+              iconType="square"
+              iconSize={10}
+              wrapperStyle={{ fontSize: '14px', color: 'white' }}
             />
-            <Bar 
-              yAxisId="left" 
-              dataKey="revenue" 
-              fill="#8702ff" 
-              opacity={0.15} 
-              name="Revenue" 
-              radius={[4, 4, 0, 0]}
-            />
-            <Line 
-              yAxisId="right" 
-              type="monotone" 
-              dataKey="apy" 
-              stroke="#8702ff" 
-              strokeWidth={2.5}
-              dot={false}
-              name="APY" 
-            />
+            <Bar yAxisId="left" dataKey="revenue" fill="#8702ff" opacity={0.3} name="Revenue" />
+            <Line yAxisId="right" type="monotone" dataKey="apy" stroke="#8702ff" name="APY" />
           </ComposedChart>
         </ResponsiveContainer>
       </ChartCard>
