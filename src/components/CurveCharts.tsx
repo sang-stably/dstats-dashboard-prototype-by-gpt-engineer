@@ -3,7 +3,19 @@ import { Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, Tool
 import { format } from 'date-fns';
 
 const formatDate = (date: string) => format(new Date(date), 'MMM d');
-const formatCurrency = (value: number) => `$${value.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
+
+const formatNumberWithSuffix = (num: number) => {
+  if (num >= 1000000000) {
+    return `${(num / 1000000000).toFixed(2)}B`;
+  } else if (num >= 1000000) {
+    return `${(num / 1000000).toFixed(2)}M`;
+  } else if (num >= 1000) {
+    return `${(num / 1000).toFixed(2)}K`;
+  }
+  return num.toFixed(2);
+};
+
+const formatCurrency = (value: number) => `$${formatNumberWithSuffix(value)}`;
 const formatPercentage = (value: number) => `${value.toFixed(2)}%`;
 
 const commonTooltipStyle = {
@@ -115,7 +127,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               </linearGradient>
             </defs>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...commonYAxisStyle} tickFormatter={formatCurrency} />
+            <YAxis {...commonYAxisStyle} tickFormatter={formatNumberWithSuffix} />
             <Tooltip
               {...commonTooltipStyle}
               formatter={(value: number) => formatCurrency(value)}
@@ -130,7 +142,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
         <ResponsiveContainer>
           <BarChart data={data.volume}>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...commonYAxisStyle} tickFormatter={formatCurrency} />
+            <YAxis {...commonYAxisStyle} tickFormatter={formatNumberWithSuffix} />
             <Tooltip
               {...commonTooltipStyle}
               formatter={(value: number) => formatCurrency(value)}
@@ -151,7 +163,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               </linearGradient>
             </defs>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...commonYAxisStyle} tickFormatter={formatCurrency} />
+            <YAxis {...commonYAxisStyle} tickFormatter={formatNumberWithSuffix} />
             <Tooltip
               {...commonTooltipStyle}
               formatter={(value: number) => formatCurrency(value)}
@@ -166,7 +178,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
         <ResponsiveContainer>
           <ComposedChart data={data.amoRevenue}>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...commonYAxisStyle} yAxisId="left" tickFormatter={formatCurrency} />
+            <YAxis {...commonYAxisStyle} yAxisId="left" tickFormatter={formatNumberWithSuffix} />
             <YAxis {...commonYAxisStyle} yAxisId="right" orientation="right" tickFormatter={formatPercentage} />
             <Tooltip
               {...commonTooltipStyle}
