@@ -183,7 +183,7 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
             <YAxis 
               {...commonYAxisStyle} 
               tickFormatter={formatNumberWithSuffix}
-              domain={[11000, 'auto']} 
+              domain={[12000, 'auto']} 
             />
             <Tooltip
               {...commonTooltipStyle}
