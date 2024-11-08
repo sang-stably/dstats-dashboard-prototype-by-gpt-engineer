@@ -21,7 +21,6 @@ const mockUserPositions = [
     liquidationLTV: 85,
     healthFactor: 1.42,
   },
-  // Add more mock positions as needed
 ];
 
 const Index = () => {
@@ -160,9 +159,11 @@ const Index = () => {
           <SupplyCharts data={data.supplyData} />
         </Grid>
 
-        <Grid item xs={12} sx={{ mt: { xs: 2, sm: 3 } }}>
-          <UserPositionsTreemap data={mockUserPositions} />
-        </Grid>
+        {window.location.pathname === '/dlend' && (
+          <Grid item xs={12} sx={{ mt: { xs: 2, sm: 3 } }}>
+            <UserPositionsTreemap data={mockUserPositions} />
+          </Grid>
+        )}
       </Grid>
     </Container>
   );
