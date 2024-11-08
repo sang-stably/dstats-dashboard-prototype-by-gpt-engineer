@@ -180,7 +180,11 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               </linearGradient>
             </defs>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
-            <YAxis {...commonYAxisStyle} tickFormatter={formatNumberWithSuffix} />
+            <YAxis 
+              {...commonYAxisStyle} 
+              tickFormatter={formatNumberWithSuffix}
+              domain={[11000, 'auto']} 
+            />
             <Tooltip
               {...commonTooltipStyle}
               formatter={(value: number) => formatCurrency(value)}
