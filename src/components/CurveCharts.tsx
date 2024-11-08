@@ -9,12 +9,13 @@ const formatPercentage = (value: number) => `${value.toFixed(2)}%`;
 interface ChartCardProps {
   title: string;
   children: React.ReactNode;
+  fullWidth?: boolean;
 }
 
-const ChartCard = ({ title, children }: ChartCardProps) => (
+const ChartCard = ({ title, children, fullWidth }: ChartCardProps) => (
   <Card className="glass-card">
     <CardContent>
-      <Typography variant="h6" sx={{ color: 'white', mb: 2 }}>
+      <Typography variant="h6" sx={{ color: 'white', mb: 2, textAlign: 'center' }}>
         {title}
       </Typography>
       <Box sx={{ height: 300 }}>
@@ -47,7 +48,10 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
               </linearGradient>
             </defs>
             <XAxis dataKey="date" tickFormatter={formatDate} />
-            <YAxis tickFormatter={(value) => value.toFixed(4)} />
+            <YAxis 
+              domain={[0.9990, 1.0050]} 
+              tickFormatter={(value) => value.toFixed(4)} 
+            />
             <Tooltip
               formatter={(value: number) => value.toFixed(4)}
               labelFormatter={formatDate}
@@ -111,9 +115,9 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
         </ResponsiveContainer>
       </ChartCard>
 
-      <ChartCard title="dUSD AMO Revenue (Annualized)">
+      <ChartCard title="dUSD AMO Revenue (Annualized)" fullWidth>
         <ResponsiveContainer>
-          <ComposedChart data={data.amoRevenue}>
+          <ComposedChart data={data.amoRevenue} className="md:col-span-2">
             <XAxis dataKey="date" tickFormatter={formatDate} />
             <YAxis yAxisId="left" tickFormatter={formatCurrency} />
             <YAxis yAxisId="right" orientation="right" tickFormatter={formatPercentage} />
