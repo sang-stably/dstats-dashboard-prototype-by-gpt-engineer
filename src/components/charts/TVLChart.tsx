@@ -33,7 +33,7 @@ const TVLChart = ({ data }: TVLChartProps) => {
           {...commonTooltipStyle}
           formatter={(value: number, name: string) => [
             formatCurrency(value),
-            name === 'dusd' ? 'dUSD' : 'FRAX'
+            name === 'dusd' ? 'dUSD' : name === 'frax' ? 'FRAX' : name
           ]}
           labelFormatter={formatDate}
         />
@@ -43,7 +43,7 @@ const TVLChart = ({ data }: TVLChartProps) => {
           height={20}
           iconType="square"
           iconSize={10}
-          wrapperStyle={{ fontSize: '14px', color: 'white' }} // Updated font size to 14px
+          wrapperStyle={{ fontSize: '14px', color: 'white' }}
         />
         <Area
           type="monotone"
