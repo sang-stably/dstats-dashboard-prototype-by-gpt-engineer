@@ -1,17 +1,6 @@
 import { Treemap } from '@ant-design/plots';
-import { Box, Typography } from '@mui/material';
-
-interface UserPosition {
-  address: string;
-  dusdSupplied: number;
-  collateralSupplied: string[];
-  collateralValue: number;
-  dusdDebt: number;
-  currentLTV: number;
-  maxLTV: number;
-  liquidationLTV: number;
-  healthFactor: number;
-}
+import { Box } from '@mui/material';
+import { UserPosition } from './table/types';
 
 interface TreemapData {
   name: string;
@@ -22,78 +11,76 @@ interface TreemapData {
 
 const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
   const getColorByHealthFactor = (healthFactor: number) => {
-    if (healthFactor >= 1.5) return '#22c55e';
-    if (healthFactor >= 1.2) return '#fbbf24';
-    return '#ef4444';
+    if (!healthFactor) return '#64748b'; // gray for positions with no health factor
+    if (healthFactor >= 1.5) return '#22c55e'; // green for safe
+    if (healthFactor >= 1.2) return '#fbbf24'; // yellow for warning
+    return '#ef4444'; // red for danger
   };
 
   const transformData = (positions: UserPosition[]): TreemapData => {
-    const totalValue = positions.reduce((sum, pos) => sum + pos.collateralValue, 0);
+    // Filter out positions with no collateral value
+    const validPositions = positions.filter(pos => pos.collateralValue > 0);
     
-    const children = positions
-      .sort((a, b) => b.collateralValue - a.collateralValue)
-      .map((position) => ({
-        name: position.address,
-        value: position.collateralValue,
-        healthFactor: position.healthFactor,
-      }));
-    
+    const children = validPositions.map((position) => ({
+      name: `${position.address.slice(0, 6)}...${position.address.slice(-4)}`,
+      value: position.collateralValue,
+      healthFactor: position.healthFactor,
+      extra: {
+        address: position.address,
+        dusdDebt: position.dusdDebt,
+        collateral: position.collateralSupplied,
+        ltv: position.currentLTV,
+      }
+    }));
+
     return {
-      name: 'User Positions',
-      value: totalValue,
+      name: 'root',
+      value: validPositions.reduce((sum, pos) => sum + pos.collateralValue, 0),
       healthFactor: 0,
-      children,
+      children: children.sort((a, b) => b.value - a.value),
     };
   };
 
   const config = {
     data: transformData(data),
     colorField: 'healthFactor',
-    color: ({ healthFactor }: any) => getColorByHealthFactor(healthFactor),
+    color: ({ healthFactor }: { healthFactor: number }) => getColorByHealthFactor(healthFactor),
     sizeField: 'value',
     hierarchyConfig: {
       sort: (a: any, b: any) => b.value - a.value,
     },
-    animation: {
-      appear: {
-        animation: 'fade-in',
-      },
-    },
     tooltip: {
       customContent: (title: string, items: any[]) => {
-        if (!title) return '';
+        if (!items?.[0]?.data) return '';
+        const data = items[0].data;
         
-        const position = data.find((p) => p.address === title);
-        if (!position) return '';
-        
+        const formatValue = (value: number) => 
+          new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          }).format(value);
+
         return `
           <div style="padding: 12px; background: rgba(0, 0, 0, 0.8); border-radius: 4px; color: white;">
             <div style="margin-bottom: 8px;">
-              <strong>User:</strong> ${position.address}
+              <strong>Address:</strong> ${data.extra.address}
             </div>
             <div style="margin-bottom: 4px;">
-              <strong>dUSD Supplied:</strong> $${position.dusdSupplied.toLocaleString()}
+              <strong>Collateral Value:</strong> ${formatValue(data.value)}
             </div>
             <div style="margin-bottom: 4px;">
-              <strong>Collateral Supplied:</strong> ${position.collateralSupplied.join(', ')}
+              <strong>dUSD Debt:</strong> ${formatValue(data.extra.dusdDebt)}
             </div>
             <div style="margin-bottom: 4px;">
-              <strong>Collateral Value:</strong> $${position.collateralValue.toLocaleString()}
+              <strong>Collateral:</strong> ${data.extra.collateral.join(', ') || '-'}
             </div>
             <div style="margin-bottom: 4px;">
-              <strong>dUSD Debt:</strong> $${position.dusdDebt.toLocaleString()}
-            </div>
-            <div style="margin-bottom: 4px;">
-              <strong>Current LTV:</strong> ${position.currentLTV.toFixed(1)}%
-            </div>
-            <div style="margin-bottom: 4px;">
-              <strong>Max LTV:</strong> ${position.maxLTV}%
-            </div>
-            <div style="margin-bottom: 4px;">
-              <strong>Liquidation LTV:</strong> ${position.liquidationLTV}%
+              <strong>LTV:</strong> ${data.extra.ltv.toFixed(2)}%
             </div>
             <div>
-              <strong>Health Factor:</strong> ${position.healthFactor} ❤️
+              <strong>Health Factor:</strong> ${data.healthFactor.toFixed(2)}
             </div>
           </div>
         `;
@@ -103,10 +90,12 @@ const UserPositionsTreemap = ({ data }: { data: UserPosition[] }) => {
       style: {
         fill: 'white',
         fontSize: 12,
+        fontWeight: 'bold',
       },
-      formatter: (info: any) => {
-        if (!info || !info.name) return '';
-        return `${info.name.slice(0, 6)}...`;
+    },
+    animation: {
+      appear: {
+        animation: 'fade-in',
       },
     },
   };
