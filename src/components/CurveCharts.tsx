@@ -3,9 +3,9 @@ import { Stock } from '@ant-design/charts';
 import ChartCard from './charts/ChartCard';
 import { 
   Area, AreaChart, Bar, BarChart, Line, ComposedChart, XAxis, YAxis, 
-  Tooltip, ResponsiveContainer, formatDate, formatNumberWithSuffix,
-  formatCurrency, formatPercentage, commonTooltipStyle, commonAxisStyle,
-  commonYAxisStyle
+  Tooltip, ResponsiveContainer, Legend,
+  formatDate, formatNumberWithSuffix, formatCurrency, formatPercentage, 
+  commonTooltipStyle, commonAxisStyle, commonYAxisStyle
 } from './charts/ChartComponents';
 
 interface CurveChartsProps {
@@ -17,7 +17,12 @@ interface CurveChartsProps {
       low: number;
       close: number;
     }>;
-    tvl: Array<{ date: string; value: number }>;
+    tvl: Array<{ 
+      date: string; 
+      dusd: number;
+      frax: number;
+      total: number;
+    }>;
     volume: Array<{ date: string; value: number }>;
     fees: Array<{ date: string; value: number }>;
     amoRevenue: Array<{ date: string; revenue: number; apy: number }>;
@@ -108,19 +113,42 @@ const CurveCharts = ({ data }: CurveChartsProps) => {
         <ResponsiveContainer>
           <AreaChart data={data.tvl}>
             <defs>
-              <linearGradient id="colorTvl" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8702ff" stopOpacity={0.3}/>
-                <stop offset="95%" stopColor="#8702ff" stopOpacity={0}/>
+              <linearGradient id="colorDusd" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#8702ff" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#8702ff" stopOpacity={0.3}/>
+              </linearGradient>
+              <linearGradient id="colorFrax" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#a64dff" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#a64dff" stopOpacity={0.3}/>
               </linearGradient>
             </defs>
             <XAxis {...commonAxisStyle} dataKey="date" tickFormatter={formatDate} />
             <YAxis {...commonYAxisStyle} tickFormatter={formatNumberWithSuffix} />
             <Tooltip
               {...commonTooltipStyle}
-              formatter={(value: number) => formatCurrency(value)}
+              formatter={(value: number, name: string) => [
+                formatCurrency(value),
+                name === 'dusd' ? 'dUSD' : 'FRAX'
+              ]}
               labelFormatter={formatDate}
             />
-            <Area type="monotone" dataKey="value" stroke="#8702ff" fill="url(#colorTvl)" />
+            <Legend />
+            <Area
+              type="monotone"
+              dataKey="frax"
+              stackId="1"
+              stroke="#a64dff"
+              fill="url(#colorFrax)"
+              name="FRAX"
+            />
+            <Area
+              type="monotone"
+              dataKey="dusd"
+              stackId="1"
+              stroke="#8702ff"
+              fill="url(#colorDusd)"
+              name="dUSD"
+            />
           </AreaChart>
         </ResponsiveContainer>
       </ChartCard>

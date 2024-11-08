@@ -8,12 +8,12 @@ export const curveMetrics = {
 
 export const curveChartData = {
   lpPrice: Array.from({ length: 30 }, (_, i) => {
-    const basePrice = 1.0;
-    const randomVariation = Math.random() * 0.002 - 0.001;
+    const basePrice = 1.002;
+    const randomVariation = Math.random() * 0.004 - 0.002;
     const open = basePrice + randomVariation;
-    const close = basePrice + Math.random() * 0.002 - 0.001;
-    const high = Math.max(open, close) + Math.random() * 0.001;
-    const low = Math.min(open, close) - Math.random() * 0.001;
+    const close = basePrice + Math.random() * 0.004 - 0.002;
+    const high = Math.max(open, close) + Math.random() * 0.002;
+    const low = Math.min(open, close) - Math.random() * 0.002;
     
     return {
       date: new Date(2023, 10, i + 1).toISOString(),
@@ -23,10 +23,20 @@ export const curveChartData = {
       close
     };
   }),
-  tvl: Array.from({ length: 30 }, (_, i) => ({
-    date: new Date(2023, 10, i + 1).toISOString(),
-    value: 750000 + Math.random() * 250000
-  })),
+  tvl: Array.from({ length: 30 }, (_, i) => {
+    const progress = i / 29; // 0 to 1
+    const totalValue = 600000 + (400000 * progress); // Increases from 600k to 1M
+    const dusdRatio = 0.4 + (Math.random() * 0.2); // 40-60% dUSD
+    const dusdValue = totalValue * dusdRatio;
+    const fraxValue = totalValue * (1 - dusdRatio);
+    
+    return {
+      date: new Date(2023, 10, i + 1).toISOString(),
+      dusd: dusdValue,
+      frax: fraxValue,
+      total: totalValue
+    };
+  }),
   volume: Array.from({ length: 30 }, (_, i) => ({
     date: new Date(2023, 10, i + 1).toISOString(),
     value: 250000 + Math.random() * 500000
