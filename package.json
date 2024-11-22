@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@ant-design/charts": "^2.2.1",
-    "@ant-design/plots": "^2.1.12",
+    "@ant-design/plots": "^2.3.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@hookform/resolvers": "^3.9.0",

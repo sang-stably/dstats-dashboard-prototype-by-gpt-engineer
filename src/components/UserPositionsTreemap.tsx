@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Treemap } from '@ant-design/plots';
 import { UserPosition } from './table/types';
 
 interface TreemapProps {
@@ -13,13 +13,20 @@ const UserPositionsTreemap = ({ data }: TreemapProps) => {
     return '#ef4444'; // red for danger
   };
 
-  // Filter out positions with no collateral value and sort by value
-  const validPositions = data
-    .filter(pos => pos.collateralValue > 0)
-    .sort((a, b) => b.collateralValue - a.collateralValue);
-
-  // Calculate total value for relative sizing
-  const totalValue = validPositions.reduce((sum, pos) => sum + pos.collateralValue, 0);
+  // Filter out positions with no collateral value and format data for Treemap
+  const treeMapData = {
+    name: 'positions',
+    children: data
+      .filter(pos => pos.collateralValue > 0)
+      .map(position => ({
+        name: `${position.address.slice(0, 6)}...${position.address.slice(-4)}`,
+        value: position.collateralValue,
+        healthFactor: position.healthFactor,
+        address: position.address,
+        dusdDebt: position.dusdDebt,
+        currentLTV: position.currentLTV,
+      })),
+  };
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -30,75 +37,47 @@ const UserPositionsTreemap = ({ data }: TreemapProps) => {
     }).format(value);
   };
 
+  const config = {
+    data: treeMapData,
+    colorField: 'healthFactor',
+    color: ({ healthFactor }: { healthFactor: number }) => getColorByHealthFactor(healthFactor),
+    tooltip: {
+      formatter: (datum: any) => {
+        return {
+          name: datum.name,
+          value: `
+            Value: ${formatCurrency(datum.value)}
+            Debt: ${formatCurrency(datum.dusdDebt)}
+            Health Factor: ${datum.healthFactor.toFixed(2)}
+            LTV: ${datum.currentLTV.toFixed(2)}%
+          `,
+        };
+      },
+    },
+    label: {
+      style: {
+        fill: '#fff',
+        fontSize: 12,
+        fontWeight: 'bold',
+      },
+    },
+    animation: {
+      appear: {
+        animation: 'fade-in',
+      },
+    },
+    drilldown: {
+      enabled: false,
+    },
+    hierarchyConfig: {
+      padding: 0.15,
+    },
+  };
+
   return (
-    <Box sx={{ 
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: 1,
-      p: 2,
-      backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      borderRadius: 2,
-      minHeight: '400px'
-    }}>
-      {validPositions.map((position) => {
-        const relativeSize = (position.collateralValue / totalValue) * 100;
-        const minSize = Math.max(relativeSize * 3, 15); // Ensure minimum visibility
-        
-        return (
-          <Box
-            key={position.address}
-            sx={{
-              width: `${minSize}%`,
-              height: 100,
-              backgroundColor: getColorByHealthFactor(position.healthFactor),
-              borderRadius: 1,
-              p: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              cursor: 'pointer',
-              transition: 'transform 0.2s',
-              '&:hover': {
-                transform: 'scale(1.05)',
-                zIndex: 1,
-              },
-            }}
-            title={`
-              Address: ${position.address}
-              Value: ${formatCurrency(position.collateralValue)}
-              Debt: ${formatCurrency(position.dusdDebt)}
-              Health Factor: ${position.healthFactor.toFixed(2)}
-              LTV: ${position.currentLTV.toFixed(2)}%
-            `}
-          >
-            <Typography 
-              variant="caption" 
-              sx={{ 
-                color: 'white',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                width: '100%',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              {`${position.address.slice(0, 6)}...${position.address.slice(-4)}`}
-            </Typography>
-            <Typography 
-              variant="caption" 
-              sx={{ 
-                color: 'white',
-                textAlign: 'center'
-              }}
-            >
-              {formatCurrency(position.collateralValue)}
-            </Typography>
-          </Box>
-        );
-      })}
-    </Box>
+    <div style={{ height: 400, padding: 16, background: 'rgba(0, 0, 0, 0.2)', borderRadius: 8 }}>
+      <Treemap {...config} />
+    </div>
   );
 };
 
