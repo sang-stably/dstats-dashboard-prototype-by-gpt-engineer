@@ -85,7 +85,7 @@ const TopPositionsTable = ({ positions }: TopPositionsTableProps) => {
         >
           User Positions
         </Typography>
-        <UserPositionsTreemap data={sortedPositions} />
+        <UserPositionsTreemap data={positions} />
       </Box>
       <CardContent sx={{ overflowX: 'auto' }}>
         <Table>

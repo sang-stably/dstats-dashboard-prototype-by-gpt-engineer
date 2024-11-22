@@ -1,4 +1,4 @@
-import { TreeMap } from '@mui/x-charts/TreeMap';
+import { TreeMap } from '@mui/x-charts';
 import { Box, Typography } from '@mui/material';
 
 interface UserPosition {
@@ -16,11 +16,11 @@ interface UserPosition {
 }
 
 interface TreeMapProps {
-  positions: UserPosition[];
+  data: UserPosition[];
 }
 
-const UserPositionsTreemap = ({ positions }: TreeMapProps) => {
-  const data = positions.map((position) => ({
+const UserPositionsTreemap = ({ data }: TreeMapProps) => {
+  const treeMapData = data.map((position) => ({
     id: position.address,
     size: position.collateralValue,
     color: position.healthFactor < 1 ? '#ff4444' : 
@@ -28,7 +28,7 @@ const UserPositionsTreemap = ({ positions }: TreeMapProps) => {
     formattedValue: `$${position.collateralValue.toLocaleString()}`,
   }));
 
-  if (!positions.length) {
+  if (!data.length) {
     return (
       <Box sx={{ p: 4, textAlign: 'center' }}>
         <Typography>No positions available</Typography>
@@ -39,11 +39,16 @@ const UserPositionsTreemap = ({ positions }: TreeMapProps) => {
   return (
     <Box sx={{ width: '100%', height: 400, p: 2 }}>
       <TreeMap
-        dataset={data}
+        dataset={treeMapData}
         height={400}
         width={800}
-        colors={data.map(item => item.color)}
-        nodeLabel={({ data }) => `${data.id.slice(0, 8)}...${data.id.slice(-6)} (${data.formattedValue})`}
+        colors={treeMapData.map(item => item.color)}
+        nodes={[
+          {
+            data: treeMapData,
+            children: treeMapData
+          }
+        ]}
       />
     </Box>
   );
