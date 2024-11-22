@@ -83,6 +83,36 @@ const UserPositionsTreemap = ({ data }: TreemapProps) => {
           stroke="#fff"
           fill="#8884d8"
           isAnimationActive={false}
+          content={({ root, depth, x, y, width, height, index }) => {
+            const data = root.children[index];
+            return (
+              <g>
+                <rect
+                  x={x}
+                  y={y}
+                  width={width}
+                  height={height}
+                  style={{
+                    fill: data.color,
+                    stroke: '#fff',
+                    strokeWidth: 2,
+                    strokeOpacity: 1 / (depth + 1e-10),
+                  }}
+                />
+                {width > 50 && height > 30 && (
+                  <text
+                    x={x + width / 2}
+                    y={y + height / 2}
+                    textAnchor="middle"
+                    fill="#fff"
+                    fontSize={12}
+                  >
+                    {data.name}
+                  </text>
+                )}
+              </g>
+            );
+          }}
         >
           <Tooltip content={<CustomTooltip />} />
         </Treemap>
