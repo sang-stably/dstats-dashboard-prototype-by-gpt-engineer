@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material';
+import { Treemap, ResponsiveContainer, Tooltip } from 'recharts';
 import { UserPosition } from './table/types';
 
 interface TreemapProps {
@@ -13,13 +14,21 @@ const UserPositionsTreemap = ({ data }: TreemapProps) => {
     return '#ef4444'; // red for danger
   };
 
-  // Filter out positions with no collateral value and sort by value
-  const validPositions = data
-    .filter(pos => pos.collateralValue > 0)
-    .sort((a, b) => b.collateralValue - a.collateralValue);
-
-  // Calculate total value for relative sizing
-  const totalValue = validPositions.reduce((sum, pos) => sum + pos.collateralValue, 0);
+  // Filter out positions with no collateral value and transform data for Recharts
+  const transformedData = {
+    name: 'positions',
+    children: data
+      .filter(pos => pos.collateralValue > 0)
+      .map(pos => ({
+        name: `${pos.address.slice(0, 6)}...${pos.address.slice(-4)}`,
+        size: pos.collateralValue,
+        color: getColorByHealthFactor(pos.healthFactor),
+        healthFactor: pos.healthFactor,
+        collateralValue: pos.collateralValue,
+        dusdDebt: pos.dusdDebt,
+        currentLTV: pos.currentLTV,
+      })),
+  };
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -30,74 +39,83 @@ const UserPositionsTreemap = ({ data }: TreemapProps) => {
     }).format(value);
   };
 
+  const CustomTooltip = ({ active, payload }: any) => {
+    if (!active || !payload || !payload[0]) return null;
+
+    const data = payload[0].payload;
+    return (
+      <Box sx={{ 
+        bgcolor: 'rgba(0, 0, 0, 0.85)', 
+        p: 1.5, 
+        borderRadius: 1,
+        border: '1px solid rgba(255, 255, 255, 0.1)'
+      }}>
+        <Typography variant="caption" sx={{ color: 'white', display: 'block' }}>
+          Address: {data.name}
+        </Typography>
+        <Typography variant="caption" sx={{ color: 'white', display: 'block' }}>
+          Value: {formatCurrency(data.collateralValue)}
+        </Typography>
+        <Typography variant="caption" sx={{ color: 'white', display: 'block' }}>
+          Debt: {formatCurrency(data.dusdDebt)}
+        </Typography>
+        <Typography variant="caption" sx={{ color: 'white', display: 'block' }}>
+          Health Factor: {data.healthFactor.toFixed(2)}
+        </Typography>
+        <Typography variant="caption" sx={{ color: 'white', display: 'block' }}>
+          LTV: {data.currentLTV.toFixed(2)}%
+        </Typography>
+      </Box>
+    );
+  };
+
   return (
     <Box sx={{ 
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: 1,
+      height: 400,
       p: 2,
       backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      borderRadius: 2,
-      minHeight: '400px'
+      borderRadius: 2
     }}>
-      {validPositions.map((position) => {
-        const relativeSize = (position.collateralValue / totalValue) * 100;
-        const minSize = Math.max(relativeSize * 3, 15); // Ensure minimum visibility
-        
-        return (
-          <Box
-            key={position.address}
-            sx={{
-              width: `${minSize}%`,
-              height: 100,
-              backgroundColor: getColorByHealthFactor(position.healthFactor),
-              borderRadius: 1,
-              p: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              cursor: 'pointer',
-              transition: 'transform 0.2s',
-              '&:hover': {
-                transform: 'scale(1.05)',
-                zIndex: 1,
-              },
-            }}
-            title={`
-              Address: ${position.address}
-              Value: ${formatCurrency(position.collateralValue)}
-              Debt: ${formatCurrency(position.dusdDebt)}
-              Health Factor: ${position.healthFactor.toFixed(2)}
-              LTV: ${position.currentLTV.toFixed(2)}%
-            `}
-          >
-            <Typography 
-              variant="caption" 
-              sx={{ 
-                color: 'white',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                width: '100%',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              {`${position.address.slice(0, 6)}...${position.address.slice(-4)}`}
-            </Typography>
-            <Typography 
-              variant="caption" 
-              sx={{ 
-                color: 'white',
-                textAlign: 'center'
-              }}
-            >
-              {formatCurrency(position.collateralValue)}
-            </Typography>
-          </Box>
-        );
-      })}
+      <ResponsiveContainer>
+        <Treemap
+          data={[transformedData]}
+          dataKey="size"
+          stroke="#fff"
+          fill="#8884d8"
+          content={({ root, depth, x, y, width, height, index, payload, colors, rank, name }) => {
+            const data = root.children[index];
+            return (
+              <g>
+                <rect
+                  x={x}
+                  y={y}
+                  width={width}
+                  height={height}
+                  style={{
+                    fill: data.color,
+                    stroke: '#fff',
+                    strokeWidth: 2,
+                    strokeOpacity: 1 / (depth + 1e-10),
+                  }}
+                />
+                {width > 50 && height > 30 && (
+                  <text
+                    x={x + width / 2}
+                    y={y + height / 2}
+                    textAnchor="middle"
+                    fill="#fff"
+                    fontSize={12}
+                  >
+                    {data.name}
+                  </text>
+                )}
+              </g>
+            );
+          }}
+        >
+          <Tooltip content={<CustomTooltip />} />
+        </Treemap>
+      </ResponsiveContainer>
     </Box>
   );
 };
