@@ -1,4 +1,4 @@
-import { TreeMap } from '@mui/x-charts';
+import { TreeMapChart } from '@mui/x-charts/TreeMap';
 import { Box, Typography } from '@mui/material';
 
 interface UserPosition {
@@ -38,7 +38,7 @@ const UserPositionsTreemap = ({ data }: TreeMapProps) => {
 
   return (
     <Box sx={{ width: '100%', height: 400, p: 2 }}>
-      <TreeMap
+      <TreeMapChart
         dataset={treeMapData}
         height={400}
         width={800}
