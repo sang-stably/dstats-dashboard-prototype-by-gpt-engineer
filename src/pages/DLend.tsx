@@ -153,7 +153,7 @@ const DLend = () => {
             style={{ height: '24px', width: 'auto' }}
           />
           <Typography variant="h5" component="h1" fontWeight="bold">
-            dSTATS Dashboard
+            dSTATS
           </Typography>
         </Box>
         <Box sx={{ 
